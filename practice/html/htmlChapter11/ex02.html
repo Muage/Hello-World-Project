@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script>
+            window.onload = function() {
+                var count = 0;
+                var image = document.getElementById('image');
+                var frames = [
+                    'run1.jpg', 'run2.jpg', 'run3.jpg', 'run4.jpg', 'run5.jpg',
+                    'run6.jpg', 'run7.jpg', 'run8.jpg', 'run9.jpg', 'run10.jpg',
+                    'run11.jpg', 'run12.jpg', 'run13.jpg', 'run14.jpg', 'run15.jpg'
+                ];
+                setInterval(function() {
+                    image.src = frames[count % frames.length];
+                    count = count + 1;
+                }, 1000 / 20);
+            };
+        </script>
+    </head>
+    <body>
+        <img id="image"/>
+    </body>
+</html>

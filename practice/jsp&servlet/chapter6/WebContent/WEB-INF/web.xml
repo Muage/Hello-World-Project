@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.1">
+	<servlet>
+		<servlet-name>dbname-jsp</servlet-name>
+		<jsp-file>/DBName.jsp</jsp-file>
+		<init-param>
+			<param-name>DB_NAME</param-name>
+			<param-value>malldb</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dbname-jsp</servlet-name>
+		<url-pattern>/dbname</url-pattern>
+	</servlet-mapping>
+	<context-param>
+		<param-name>DB_NAME</param-name>
+		<param-value>bankdb</param-value>
+	</context-param>
+</web-app>

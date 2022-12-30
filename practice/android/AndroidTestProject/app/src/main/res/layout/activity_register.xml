@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edit_u_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:hint="User name" />
+
+    <EditText
+        android:id="@+id/edit_u_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:hint="User ID" />
+
+    <EditText
+        android:id="@+id/edit_u_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:hint="Password" />
+
+    <EditText
+        android:id="@+id/edit_cf_u_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:hint="Confirm Password" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edit_phone_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"
+            android:hint="Phone number" />
+
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/edit_phone_num"
+            android:text="send"/>
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edit_auth_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:hint="Auth Number" />
+
+    <EditText
+        android:id="@+id/edit_u_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:hint="Adress" />
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:enabled="true"
+        android:text="SIGN UP"/>
+
+</LinearLayout>

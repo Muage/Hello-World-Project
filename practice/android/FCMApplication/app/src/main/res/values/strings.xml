@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FCMApplication</string>
+    <string name="testFCM">Test Firebase Cloud Messaging</string>
+</resources>

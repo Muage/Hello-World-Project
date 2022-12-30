@@ -1,0 +1,28 @@
+<div class="container mt-3">
+    <div class="mb-3">
+        <input id="txt_email" class="form-control" type="email" value="user01@test.com" placeholder="email"/>
+    </div>
+    <div class="mb-3">
+        <input id="txt_password" class="form-control" type="password" value="12341234" placeholder="password"/>
+    </div>
+    <button id="btn_login" class="btn btn-primary" type="submit">로그인</button>
+</div>
+<script>
+    $("#btn_login").on("click", () => {
+        var email = $("#txt_email").val();
+        var password = $("#txt_password").val();
+        $.ajax({
+            type: "post",
+            url: '/users/login',
+            data: { email: email, password: password },
+            success: (data) => {
+                if(data == "success") {
+                    location.href = '/';
+                } else {
+                    alert("아이디와 비밀번호를 확인해주세요.");
+                    $("#txt_email").focus();
+                }
+            }
+        });
+    });
+</script>

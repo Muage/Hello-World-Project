@@ -1,0 +1,25 @@
+#content {
+    width: 800px;
+    margin: 0 auto;
+}
+
+#comments {
+    width: 800px;
+    margin: 0 auto;
+}
+
+h3 {
+    color: blue;
+    cursor: pointer;
+}
+
+h5 { color: green; }
+
+.box {
+    background: rgb(250, 250, 250);
+    color: gray;
+    padding: 5px;
+    margin: 5px;
+}
+
+.body { display: none; }

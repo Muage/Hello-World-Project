@@ -1,0 +1,27 @@
+<div class="container mt-3">
+    <div class="mb-3">
+        <input id="txt_name" class="form-control" type="text" placeholder="name"/>
+    </div>
+    <div class="mb-3">
+        <input id="txt_eamil" class="form-control" type="email" placeholder="email"/>
+    </div>
+    <div class="mb-3">
+        <input id="txt_password" class="form-control" type="password" placeholder="password"/>
+    </div>
+    <button id="btn_join" class="btn btn-primary" type="submit">가입하기</button>
+</div>
+<script>
+    $("#btn_join").on("click", () => {
+        var email = $("#txt_email").val();
+        var password = $("#txt_password").val();
+        var name = $("#txt_name").val();
+        $.ajax({
+            type: "post",
+            url: '/users/join',
+            data: { email: email, password: password, name: name },
+            success: () => {
+                alert("회원가입 성공");
+            }
+        });
+    });
+</script>

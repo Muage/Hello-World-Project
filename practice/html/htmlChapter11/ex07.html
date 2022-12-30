@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            table { border-collapse: collapse; }
+            td {
+                border-bottom: 1px solid gray;
+                padding: 10px;
+            }
+            .divButton {
+                width: 500px;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>[상품등록]</h1>
+        <form name="frm" action="sqlInsert.jsp">
+            <table>
+                <tr>
+                    <td><input type="text" name="pname" placeholder="상품명"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="price" placeholder="가격"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="num1" placeholder="num1">-
+                        <input type="text" name="num2" placeholder="num2">
+                    </td>
+                </tr>
+            </table>
+            <div class="divButton">
+                <input type="submit" value="상품등록">
+                <input type="reset" value="등록취소">
+            </div>
+        </form>
+    </body>
+    <script>
+        $(frm).submit(function(e) {
+            e.preventDefault();
+            if(confirm("등록하시겠습니까?") == false) return;
+
+            var pname = $(frm.pname).val();
+            var price = $(frm.price).val();
+            var num1 = $(frm.num1).val();
+            var num2 = $(frm.num2).val();
+
+            if(pname.replace(/[가-힣]/g, '') || pname == "") {
+                alert("상품명을 한글로 입력해주세요.");
+                $(frm.pname).val("");
+                $(frm.pname).focus();
+            } else if(price.replace(/[0-9]/g,'') || price == "") {
+                alert("가격을 숫자로 입력해주세요.");
+                $(frm.price).val("");
+                $(frm.price).focus();
+            } else if(num1.replace(/[0-9]/g,'') || num1.length != 6) {
+                alert("숫자 6자리로 입력해주세요.");
+                $(frm.num1).val("");
+                $(frm.num1).focus();
+            } else if(num2.replace(/[0-9]/g,'') || num2.length != 7) {
+                alert("숫자 6자리로 입력해주세요.");
+                $(frm.num2).val("");
+                $(frm.num2).focus();
+            } else {
+                alert('성공');
+            }
+        });
+    </script>
+</html>

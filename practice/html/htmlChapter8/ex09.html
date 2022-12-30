@@ -1,0 +1,25 @@
+<script>
+  function f(x) {
+    return x * x;
+  }
+
+  alert(f(3));
+
+  // 콜백함수
+  function callTenTimes(callback) {
+    for(var i = 0; i < 10; i++) {
+      callback();
+    }
+  }
+  //
+  // var callback = function() {
+  //   alert('함수 호출');
+  // };
+  // callTenTimes(callback);
+
+  // 익명 함수 사용한 콜백함수
+  callTenTimes(function() {
+    alert('함수 호출');
+  });
+
+</script>

@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>상품목록</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+        <style>
+            #container {
+                width: 680px;
+                background: gray;
+                padding: 10px;
+                overflow: hidden;
+            }
+
+            .box {
+                width: 150px;
+                background: pink;
+                padding: 5px;
+                margin: 5px;
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>[상품목록]</h1>
+        <a href="/product/insert">상품등록</a>
+        <div id="container"></div>
+        <script id="temp" type="text/x-handlebars-template">
+            {{#each .}}
+            <div class="box">
+                <img src="/upload/{{image}}" code={{code}} width="150"/>
+                <div>{{code}}</div>
+                <div>{{pname}}</div>
+                <div>{{price}}원</div>
+            </div>
+            {{/each}}
+        </script>
+    </body>
+    <script>
+        getList();
+
+        function getList() {
+            $.ajax({
+                type: "get",
+                url: "/product/list.json",
+                dataType: "json",
+                success: function(data) {
+                    var temp = Handlebars.compile($("#temp").html());
+                    $("#container").html(temp(data));
+                }
+            })
+        };
+
+        $("#container").on("click", ".box img", () => {
+            var code = $(this).attr("code");
+            location.href='/product/read?code=' + code;
+        });
+
+        var formData = new FormData();
+        formData.append('pname', pname);
+        formData.append('price', price);
+        formData.append('image', $(frm.image)[0].files[0]);
+
+        $.ajax({
+            type: "post",
+            url: "/product/insert",
+            data: formData,
+            processDate: false,
+            contentType: false,
+            success: function() {
+                alert('상품등록 성공!');
+                location.href = "/product";
+            }
+        });
+    </script>
+</html>

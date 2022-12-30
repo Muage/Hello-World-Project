@@ -1,0 +1,73 @@
+#products {
+	margin: 10px;
+	padding: 20px;
+}
+
+.product {
+	padding: 10px;
+	border-bottom: 1px dotted gray;
+	overflow: hidden;
+}
+
+.thumbnail {
+	margin-right: 20px;
+	float: left;
+}
+
+.thumbnail img {
+	width: 150px;
+	border-radius: 10px;
+}
+
+.info {
+	float: left;
+}
+
+.name {
+	margin: 10px 0px;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.price {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.date {
+	color: gray;
+	font-size: 12px;
+}
+
+.like {
+	margin-right: 20px;
+	color: red;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+#product {
+	margin: 20px;
+}
+
+#product div {
+	margin: 10px 0px;
+}
+
+#product img {
+	margin-bottom: 20px;
+	width: 400px;
+	border-radius: 20px;
+}
+
+.content {
+	margin: 20px 0px;
+	padding: 20px 0px;
+	border-top: 1px dotted gray;
+	border-bottom: 1px dotted gray;
+	font-size: 12px;
+}
+
+.email {
+	font-size: 15px;
+}

@@ -1,0 +1,183 @@
+<html>
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>전화번호 관리</title>
+    <!-- <link rel="stylesheet" href="themes/my-theme.min.css"/> -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.js"></script>
+    <style>
+      #strList {
+        font-family: "맑은 고딕";
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      #telList { font-family: "맑은 고딕"; }
+
+      h5 { cursor: pointer; }
+    </style>
+    <script type="text/javascript">
+      var db;
+
+      function winLoad() {
+        if(window.openDatabase == undefined) {
+          alert("이 브라우저는 Database를 지원하지 않습니다.")
+          return;
+        }
+
+        db = window.openDatabase("Telephone", "1.0", "Telephone Database", 1024*1024);
+        db.transaction(function(dbHelper) {
+          dbHelper.executeSql("create table if not exists tel(nem integer primary key autoincrement, name text not null, tel text)");
+        });
+        showData();
+      }
+
+      function showData() {
+        db.transaction(function(dbHelper) {
+          dbHelper.executeSql("select * from tel", [], successList, function() {
+            alert("실패");
+          });
+        });
+      }
+
+      function successList(dbHelper, rs) {
+        var content = "<hr/>";
+        var telList = document.getElementById("telList");
+
+        for(var i = 0; i < rs.rows.length; i++) {
+          var row = rs.rows.item(i);
+          content += "<h5 id='strList' onClick='frmEdit(" + row["num"] + ")'>" + row["name"] + " : " + row["tel"] + "</h5><hr/>";
+        }
+
+        if(rs.rows.length == 0) {
+          telList.innerHTML = "<h3>데이터가 존재하지 않습니다.</h3>";
+        } else {
+          telList.innerHTML = content;
+        }
+      }
+
+      function insert() {
+        var nameObj = frm.name.value;
+        var telObj = frm.tel.value;
+
+        if(nameObj == "" || nameObj == null) {
+          alert("이름을 입력하세요.");
+          return;
+        }
+
+        db.transaction(function(dbHelper) {
+          dbHelper.executeSql("insert into tel values(null, ?, ?)", [nameObj, telObj])
+        });
+        alert("저장되었습니다.");
+        showData();
+        frm.name.value = "";
+        frm.tel.value = "";
+      }
+
+      function frmEdit(num) {
+        db.transaction(function(dbHelper) {
+          dbHelper.executeSql("select * from tel where num = " + num, [], successEdit, function() {
+            alert("실패");
+          });
+        });
+      }
+
+      function successEdit(dbHelper, rs) {
+        window.location.href = "#edit";
+        var row = rs.rows.item(0);
+
+        frmedit.num.value = row["num"];
+        frmedit.name.value = row["name"];
+        frmedit.tel.value = row["tel"];
+      }
+
+      function telEdit() {
+        num = frmedit.num.value;
+        name = frmedit.name.value;
+        tel = frmedit.tel.value;
+
+        db.transaction(function(dbHelper) {
+          dbHelper.executeSql("update tel set name = '" + name + "', tel = '" + tel + "' where num = " + num);
+        });
+        alert("수정되었습니다.");
+        showData();
+      }
+
+      function telDelete() {
+        var num = frmedit.num.value;
+        db.transaction(function(dbHelper) {
+          var sql = "delete from tel where num = ?";
+          dbHelper.executeSql(sql, [num], undefined, function() {
+            alert("삭제 성공");
+          }, function() {
+            alert("삭제 실패");
+          });
+        });
+
+        alert("삭제되었습니다.");
+        showData();
+        window.location.href = "#main";
+      }
+    </script>
+  </head>
+  <body onload="winLoad();" data-theme="a">
+    <div data-role="page" id="main">
+      <div data-role="header" data-theme="b">
+        <a href="#insert" data-icon="plus" class="ui-btn-left" rel="external">입력</a>
+        <h1>전화번호목록</h1>
+      </div>
+      <div class="content_style" data-role="content" data-theme="c">
+        <div id="telList"></div>
+      </div>
+      <div data-role="footer" data-theme="b">
+        <h2>인천직업능력교육원</h2>
+      </div>
+    </div>
+    <div data-role="page" id="insert">
+      <div data-role="header" data-theme="b">
+        <a href="#main" data-icon="grid" class="ui-btn-left" rel="external">목록</a>
+        <h1>전화번호입력</h1>
+      </div>
+      <div class="content_style" data-role="content" data-theme="c">
+        <div id="telList">
+          <form name="frm">
+            <label>이름</label>
+            <input type="text" name="name" value=""/><br/>
+            <label>전화</label>
+            <input type="text" name="tel" value=""/><br/>
+            <input type="button" value="저장하기" data-theme="b" onclick="insert();"/>
+          </form>
+        </div>
+      </div>
+      <div data-role="footer" data-theme="b">
+        <h2>인천직업능력교육원</h2>
+      </div>
+
+    </div>
+    <div data-role="page" id="edit">
+      <div data-role="header" data-theme="b">
+        <a href="#main" data-icon="grid" class="ui-btn-left">목록</a>
+        <a href="#" data-icon="delete" class="ui-btn-right" onclick="telDelete()">삭제</a>
+        <h1>전화번호수정</h1>
+      </div>
+      <div class="content_style" data-role="content" data-theme="c">
+        <div id="telList">
+          <form name="frmedit">
+            <label>번호</label>
+            <input type="text" name="num" readonly/><br/>
+            <label>이름</label>
+            <input type="text" name="name"/><br/>
+            <label>전화</label>
+            <input type="text" name="tel"/><br/>
+            <input type="button" value="저장하기" data-theme="b" onclick="telEdit();"/>
+          </form>
+        </div>
+      </div>
+      <div data-role="footer" data-theme="b">
+        <h2>인천직업능력교육원</h2>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"/>
+    <title>HTML5로 동영상 연결하기 실습</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.js"></script>
+
+    <!-- Video JS 설정 -->
+    <link rel="stylesheet" type="text/css" href="video/video-js.css">
+    <script src="video/video.js"></script>
+    <style type="text/css">
+      #video_canvas {
+        margin-top: 0 auto;
+        width: 320px;
+        height: 290px;
+      }
+
+      .content_style {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>동영상 예제</h1>
+    <video width="320" height="240" controls autoplay>
+      <source src="video/sea.mp4" type="video/mp4"/>
+      <source src="video/sea.ogg" type="video/ogg"/>
+      <source src="video/sea.webm" type="video/webm"/>
+      브라우저가 HTML5 video 앨리먼트를 지원하지 않습니다.
+    </video>
+
+    <div data-role="page" id="video_value" data-add-back-btn="true">
+      <div data-role="header" data-theme="a">
+        <a href="#" rel="external" data-iceon="home" data-direction="reverse" class="ui-btn-left">Home</a>
+        <h1>최고의 가치</h1>
+      </div>
+      <div data-role="content" data-theme="c" class="content_style">
+        <div id="video_canvas">
+          <div>
+            <video class="video-js vjs-default-skin" width="320" height="240" controls preload="auto"
+                poster="video/pingu.jpg" data-setup="{}">
+              <source src="video/sea.mp4" type='video/mp4; codecs="avc1.42E01E,mp4a.40.2"'/>
+              <source src="video/sea.ogv" type='video/ogg; codecs="theora, vorbis"'/>
+              <source src="video/sea.webm" type='video/webm; codecs="vp8, vorbis"'/>
+            </video>
+
+            <!-- 브라우저가 지원하지 않을 경우 -->
+            <p class="vjs-no-video">
+              <strong>비디오 다운로드:</strong><a href="video/sea.mp4" target="_blank">MP4</a>,
+              <a href="video/sea.ogv", target="_blank">Ogg</a>,
+              <a href="video/sea.webm" target="_blank">WebM</a><br/>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div data-role="footer">
+        <h2>버추얼 대학교</h2>
+      </div>
+    </div>
+  </body>
+</html>

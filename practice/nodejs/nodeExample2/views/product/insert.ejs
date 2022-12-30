@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <title>상품등록</title>
+        <style>
+            table { border-collapse: collapse; }
+
+            td {
+                border: 1px solid black;
+                height: 30px;
+            }
+
+            .title {
+                background: gray;
+                color: white;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>[상품등록]</h1>
+        <form action="insert" name="frm" method="post" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td width="100" class="title">상품코드</td>
+                    <td width="500"><input type="text" name="code"/></td>
+                </tr>
+                <tr>
+                    <td width="100" class="title">상품이름</td>
+                    <td width="500"><input type="text" name="pname" size="50"/></td>
+                </tr>
+                <tr>
+                    <td width="100" class="title">상품가격</td>
+                    <td width="500"><input type="text" name="price"/></td>
+                </tr>
+                <tr>
+                    <td width="100" class="title">상품이미지</td>
+                    <td width="500">
+                        <img src="https://dummyimage.com/150x120" id="image" width="150">
+                        <input type="file" name="image" accept="image/*" style="visibility: hidden;">
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="저장">
+            <input type="reset" value="취소">
+            <input type="button" value="목록" onclick="location.href='/product/'">
+        </form>
+    </body>
+    <script>
+        $("#image").on("click", () => {
+            $(frm.image).click();
+        });
+
+        $(frm.image).on("change", (e) => {
+            var reader = new FileReader();
+            reader.onload = (e) => {
+                $("#image").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        })
+    </script>
+</html>

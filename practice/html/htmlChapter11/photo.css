@@ -1,0 +1,35 @@
+#content {
+    width: 850px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px gray;
+    text-align: center;
+}
+
+.box img { width: 120px; }
+
+.box .title {
+    width: 120px;
+    font-size: 13px;
+    margin: 0 auto;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#pagination {
+    width: 850px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10px;
+}

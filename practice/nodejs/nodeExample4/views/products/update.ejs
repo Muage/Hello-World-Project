@@ -1,0 +1,40 @@
+<div class="container mt-3">
+	<input id="id" type="hidden" value="<%= product.id %>"/>
+    <input id="txt_name" class="form-control mt-2" type="text" value="<%= product.data.name %>"/>
+    <textarea id="txt_content" class="form-control mt-2" rows="3"><%= product.data.content %></textarea>
+    <input id="txt_price" class="form-control mt-2" type="text" value="<%= product.data.price %>">
+	<img src="<%= product.data.url" style="width: 300px; border-radius: 10px; margin: 10px;"/>
+    <input id="image" class="form-control mt-2" type="file"/>
+    <button id="btn_send" class="btn btn-danger mt-3">올리기</button>
+</div>
+<script>
+    $("#btn_send").on("click", () => {
+        if(!confirm("상품 정보를 수정하시겠습니까?")) return;
+
+        var id = $("#id").val();
+        var name = $("#txt_name").val();
+        var price = $("#txt_price").val();
+        var content = $("#txt_content").val();
+        var file = $("#image")[0].files[0];
+        
+        var formData = new FormData();
+        formData.append("id", id);
+        formData.append("name", name);
+        formData.append("price", price);
+        formData.append("content", content);
+        formData.append("file", file);
+
+        $.ajax({
+            type: "post",
+            url: '/products/update',
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: () => {
+                alert("상품 정보 수정 성공");
+                location.href = '/';
+            }
+        });
+    });
+</script>

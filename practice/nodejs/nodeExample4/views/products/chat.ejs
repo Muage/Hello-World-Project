@@ -1,0 +1,134 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+<link rel="stylesheet" href="/stylesheets/chat.css" />
+<style>
+	.right sender {
+		display: none;
+	}
+
+	.left .del {
+		display: none;
+	}
+
+	img {
+		width: 50px;
+		border-radius: 5px;
+	}
+
+	.thumbnail {
+		margin: 0px 20px;
+		float: left;
+	}
+
+	.info {
+		float: left;
+	}
+</style>
+<div class="chat_wrap">
+	<div class="header" style="overflow: hidden;">
+		<span id="id" style="display: none;">
+			<%= id %>
+		</span>
+		<div class="thumbnail">
+			<img src="<%= data.url %>"/>
+		</div>
+		<div style="float: left;">
+			<div>
+				<%= data.name %>
+				[<%= data.price %>원]
+			</div>
+			<div><%= data.email %></div>
+		</div>
+	</div>
+	<div id="chat"></div>
+	<script id="temp" type="text/x-handlebars-template">
+		{{#each .}}
+		<div class="{{printLeftRight data.email}}">
+			<div class="sender">{{data.email}}</div>
+			<div class="message">
+				{{data.message}}
+				<a class="del" href="{{key}}"> X </a>
+			</div>
+			<div class="date">{{data.date}}</div>
+		</div>
+		{{/each}}
+	</script>
+	<script>
+		Handlebars.registerHelper("printLeftRight", (sender) => {
+			var email = $("#email").html();
+			if(email == sender) {
+				return "right";
+			} else {
+				return "left";
+			}
+		});
+	</script>
+	<div class="input-div">
+		<textarea id="txtMessage" placeholder="Press Enter for send message."></textarea>
+	</div>
+</div>
+<script>
+	var id = $("$id").html();
+	var email = $("#email").html();
+
+	// 채팅 목록 출력
+	realdb.ref("chats/" + id).on("value", (snap) => {
+		var rows = [];
+		snap.forEach(data => {
+			var row = { key: data.key, data: data.val() };
+			rows.push(row);
+		});
+		var temp = Handlebars.compile($("#temp").html());
+		$("#chat").html(temp(rows));
+		window.scrollTo(0, $("#chat").prop("scrollHeight"));
+	});
+
+	// 채팅 내용 입력 시 호출
+	realdb.ref("chats/" + id).on("child_added", (snap) => {
+		$("#chat").append(snap.val());
+		window.scrollTo(0, $("#chat").prop("scrollHeight"));
+	});
+
+	// 채팅 내용 삭제 시 호출
+	realdb.ref("/chats" + id).on("child_removed", (snap) => {
+		$("#chat").remove(snap.val());
+	});
+
+	// 채팅 내용 입력
+	$("#txtMessage").on("keydown", (e) => {
+		if(e.keyCode == 13 && !e.shiftKey) {
+			e.preventDefault();
+			var message = $(this).val();
+			if(message == "") {
+				alert("내용을 입력해주세요.");
+				return;
+			}
+			$("#txtMessage").val("");
+			var strDate = moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
+			realdb.ref("chats/" + id).push().set({
+				date: strDate,
+				email: email,
+				message: message
+			});
+			$.ajax({
+				type: "post",
+				url: '/products/chat/add_count',
+				data: { id: id },
+				success: () => {}
+			});
+		}
+	});
+
+	// 채팅 내용 삭제 버튼 클릭
+	$("#chat").on("click", ".del", (e) => {
+		e.preventDefault();
+		var key = $(this).attr("href");
+		if(!confirm(key + " 내용을 삭제하시겠습니까?")) return;
+		realdb.ref("chats/" + id + "/" + key).remove();
+		$.ajax({
+			type: "post",
+			url: '/products/chat/del_count',
+			data: { id: id },
+			success: () => {}
+		});
+	});
+</script>

@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            #slider {
+                display: flex;
+                width: 400px;
+                height: 250px;
+                margin: 10px auto;
+                border: 1px solid gray;
+                box-shadow: 10px 10px 5px gray;
+                align-items: center;
+                justify-content: center;
+            }
+            #items {
+                padding: 10px;
+                margin: 10px;
+                background-color: aqua;
+            }
+            #item {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #item img {
+                width: 150px;
+                height: 150px;
+                margin: 5px;
+            }
+            #item .title {
+                color: white;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="slider">
+            <button id="prev">◀</button>
+            <div id="items">
+                <div id="item"></div>
+            </div>
+            <button id="next">▶</button>
+        </div>
+    </body>
+    <script>
+        var index = 0;
+        var array = [];
+
+        for(var i = 0; i < 10; i++) {   // item 생성 후 배열에 저장
+            var str = "";
+            str += `<img src="http://placekitten.com/150/15${i}"/>`;
+            str += `<div class="title"> Kitten[${i}]</div>`;
+            array.push(str);
+        }
+
+        $("#item").html(array[index]);
+
+        var repeat = setInterval(function() {
+            $("#next").click();
+        }, 3000);
+
+        $("#next").on("click", function() {
+            clearInterval(repeat);  // 슬라이드 반복 중지
+            if(index == 9) index = 0;
+            else index++;
+            $("#item").hide().html(array[index % 10]).fadeIn(1000);
+            repeat = setInterval(function() {   // 슬라이드 반복 실행
+                $("#next").click();
+            }, 3000);
+        });
+
+        $("#prev").on("click", function() {
+            clearInterval(repeat);
+            if(index == 0) index = 9;
+            else index--;
+            $("#item").hide().html(array[index % 10]).fadeIn(1000);
+            repeat = setInterval(function() {
+                $("#next").click();
+            }, 3000);
+        });
+    </script>
+</html>

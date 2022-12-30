@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                var output = '';
+                for(var i = 0; i < 256; i++) {
+                    output += '<div> </div>';
+                }
+                document.body.innerHTML = output;
+
+                $('div').css({
+                    height: 2,
+                    backgroundColor: function(i) {
+                        return 'rgb(' + i + ', ' + i + ', ' + i + ')';
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </body>
+</html>

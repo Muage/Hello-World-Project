@@ -1,0 +1,47 @@
+<form name="frm">
+    <table width="300" border="1" style="margin: 100px auto 0;">
+        <tr>
+            <td colspan="2"><h1>로그인</h1></td>
+        </tr>
+        <tr>
+            <td width="100">아이디</td>
+            <td><input type="text" name="userid"/></td>
+        </tr>
+        <tr>
+            <td width="100">비밀번호</td>
+            <td><input type="password" name="userpassword"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="로그인"/>
+                <input type="checkbox" name="chkLogin"/>아이디저장
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script>
+    $(frm).on("submit", (e) => {
+        e.preventDefault();
+
+        var userid = $(frm.userid).val();
+        var userpassword = $(frm.userpassword).val();
+        var chkLogin = $(frm.chkLogin).is(":checked") ? 1 : 0;
+        // alert(userid + "\n" + userpassword);
+        $.ajax({
+            type: "post",
+            url: "/user/login",
+            data: { userid: userid, userpassword: userpassword, chkLogin: chkLogin },
+            dataType: "json",
+            success: (data) => {
+                if(data.result == 0) {
+                    alert("아이디가 존재하지 않습니다.");
+                } else if(data.result == 1) {
+                    location.href = '/';
+                } else {
+                    alert("비밀번호가 일치하지 않습니다.")
+                }
+            }
+        });
+    });
+</script>

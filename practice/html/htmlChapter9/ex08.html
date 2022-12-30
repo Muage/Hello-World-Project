@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <script>
+            window.onload = function() {
+                var image = document.getElementById('image');
+                image.src = 'pingu.jpg';
+                image.width = 300;
+                image.height = 200;
+            };
+
+            window.onload = function() {
+                document.body.setAttribute('data-custom', 'value');
+                var dataCustom = document.body.getAttribute('data-custom');
+                alert(dataCustom);
+            };
+        </script>
+    </head>
+    <body>
+        <img id="image"/>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<head>
+    <script>
+        window.onload = function() {
+            var headers = document.querySelectorAll('h1');
+            for(var i = 0; i < headers.length; i++) {
+                var header = headers[i];
+                header.style.color = 'orange';
+                header.style.background = 'green';
+                header.innerHTML = 'From JavaScript';
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>Header</h1>
+    <h1>Header</h1>
+    <h1>Header</h1>
+</body>

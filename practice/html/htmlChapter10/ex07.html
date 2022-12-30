@@ -1,0 +1,26 @@
+<head>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        #box.hover {
+            background-color: blue;
+            border-radius: 50px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#box').hover(function() {
+                $('#box').addClass('hover');
+            }, function() {
+                $('#box').removeClass('hover');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+</body>

@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <title>상품정보</title>
+    </head>
+    <body>
+        <h1>[상품정보]</h1>
+        <form action="update" name="frm" method="post" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td width="100" class="title">상품코드</td>
+                    <td width="500">
+                        <input type="text" name="code" value="<%= product.code %>" disabled/>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100" class="title">상품이름</td>
+                    <td width="500">
+                        <input type="text" name="pname" value="<%= product.pname %>"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100" class="title">상품가격</td>
+                    <td width="500">
+                        <input type="text" name="price" value="<%= product.price %>"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100" class="title">상품이미지</td>
+                    <td width="500">
+                        <img src="/upload/<%= product.image %>" id="image" width="150">
+                        <input type="file" name="image" accept="image/*" style="visibility: hidden;">
+                        <input type="text" name="oldImage" value="<%= product.image %>"/>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="수정">
+            <input type="button" value="삭제" id="btnDelete">
+            <input type="reset" value="취소">
+            <input type="button" value="목록" onclick="location.href='list'">
+        </form>
+    </body>
+    <script>
+        $("#btnDelete").on("click", () => {
+            if(!confirm("삭제하시겠습니까?")) return;
+            
+            var code = "<%= product.code %>";
+            var image = "<%= product.image %>";
+
+            location.href = '/product/delete?code=' + code + '&image=' + image;
+        })
+
+        $(frm).on("submit", (e) => {
+            e.preventDefault();
+            if(!confirm("수정하시겠습니까?")) return;
+            frm.submit();
+        })
+    </script>
+</html>

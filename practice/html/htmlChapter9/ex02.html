@@ -1,0 +1,28 @@
+<html>
+<head>
+    <!-- 문제
+    Cannot read properties of null (reading 'style') at ex02.html:4:37 -->
+    <!-- <script>
+        document.querySelector('h1').style.backgroundColor = 'red';
+        document.querySelector('h2').style.color = 'red';
+    </script> -->
+
+    <!-- 해결 2 -->
+    <script>
+        window.onload = function() {
+            document.querySelector('h1').style.backgroundColor = 'red'; // h1 태그 배경 색상 변경
+            document.querySelector('h2').style.color = 'red'; // h2 태그 색상 변경
+        }
+    </script>
+</head>
+<body>
+    <h1>Process-1</h1>
+    <h2>Process-2</h2>
+
+    <!-- 해결 1 : 유지 보수 어려움-->
+    <!-- <script>
+        document.querySelector('h1').style.backgroundColor = 'red'; // h1 태그 배경 색상 변경
+        document.querySelector('h2').style.color = 'red'; // h2 태그 색상 변경
+    </script> -->
+</body>
+</html>

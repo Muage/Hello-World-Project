@@ -1,0 +1,36 @@
+<script>
+  // 객체 선언
+  var product = {
+    제품명: '7D 건조 망고',
+    유형: '당절임',
+    성분: '망고, 설탕, 메타주아황산나트륨, 치자황색소',
+    원산지: '필리핀'
+  };
+
+  for(var i in product) {
+    alert(i + ' : ' + product[i]);
+  }
+
+  // 객체 선언
+  var object = {
+    number: 273,
+    string: 'rintiantta',
+    boolean: true,
+    array: [52, 273, 103, 32],
+    method: function() {
+
+    }
+  };
+
+  // 객체 선언
+  var person = {
+    name: '홍길동',
+    eat: function(food) {
+      alert(food + '을/를 먹습니다.');
+      alert(this.name + '이(가) ' + food + '을(를) 먹습니다.');
+    }
+  };
+
+  // 메서드 호출
+  person.eat('밥');
+</script>

@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>대학교 소개 페이지 만들기 실습</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.js"></script>
+    <style type="text/css">
+      #pic_univ {
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        -webkit-transition-property: width;
+        -webkit-transition-duration: .3s;
+      }
+
+      .small { width: 30%; }
+
+      .large { width: 100%; }
+
+      .clear_both { clear: both; }
+
+      .bold_style {
+        font-weight: bold;
+        color: #950000;
+      }
+    </style>
+    <!-- 대학교 소개 자바스크립트 설정 -->
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#pic_univ").data("flag", "false"); // 처음 flag값 false로 초기화
+        $("pic_univ").click(function() {  // flag값에 따라 스타일을 small 또는 large로 적용
+          var bflag = $("#pic_univ").data("flag");
+          if(bflag == "false") {
+            bflag = "true";
+            $("#pic_univ").removeClass("small");
+            $("#pic_univ").addClass("large");
+          } else {
+            bflag = "false";
+            $("#pic_univ").removeClass("large");
+            $("#pic_univ").addClass("small");
+          };
+          $("#pic_univ").data("flag", "true");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div data-role="page" id="intro" data-add-back-btn="true">
+      <div data-role="header" data-theme="a">
+        <a href="#" data-icon="back">Back</a>
+        <a href="#" data-icon="home" data-iconpos="notext" data-theme="b">홈</a>
+        <h1>대학교 소개</h1>
+      </div>
+      <div data-role="content" data-theme="c">
+        <img class="small" id="pic_univ" src="image/pingu.jpg" alt="">
+        <h2>"<span class="bold_style">시대정신</span>을 선도하는 열린 <span class="bold_style">학문 공동체</span>입니다."</h2>
+        <div class="clear_both"></div>
+        <p>안녕하십니까? 버추얼 대학교에 관심을 가져주셔서 감사합니다. 버추얼 대학교는 1세기의 역사를 지니며 그 동안 많은 발전을 거듭하였습니다.</p>
+        <p>버추얼 대학교는 세계에서 가장 선도적인 대학교 중의 하나로 인정받고 있습니다. 설립목적은 사회와 개인에 직접적인 기여와 성공을 준비할 수 있도록 하는 것입니다. 궁극적으로는 인류문명에 유용한 인재를 양성하는 것입니다. 오늘날 버추얼 대학교는 현재 인류가 당면하고 있는 여러 문제를 해결하고 다음 세대를 선도할 수 있는 리더가 될 수 있도록 학생들을 준비시키는 것입니다.</p>
+        <p>여러분의 미래를 버추얼 대학교에서 함께하시길 희망합니다.</p>
+        <p>총장 Luke Andrew</p>
+      </div>
+      <div data-role="footer">
+        <h2>버추얼 대학교</h2>
+      </div>
+    </div>
+  </body>
+</html>

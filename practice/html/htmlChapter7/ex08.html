@@ -1,0 +1,55 @@
+<head>
+  <link rel="stylesheet" href="./navigation.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+  <div id="page-wrapper">
+    <nav id="main-navigation">
+      <div class="pull-left">
+        <ul>
+          <li class="outer-menu-item">
+            <span class="menu-title">HTML5</span>
+            <ul class="inner-menu">
+              <li class="inner-menu-item"><a href="#">데이터</a></li>
+              <li class="inner-menu-item"><a href="#">데이터</a></li>
+            </ul>
+          </li>
+          <li class="outer-menu-item">
+            <span class="menu-title">CSS3</span>
+            <ul class="inner-menu">
+              <li class="inner-menu-item"><a href="#">데이터</a></li>
+              <li class="inner-menu-item"><a href="#">데이터</a></li>
+              <li class="inner-menu-item"><a href="#">데이터</a></li>
+            </ul>
+          </li>
+          <li class="outer-menu-item">
+            <span class="menu-title">JavaScript</span>
+            <ul class="inner-menu">
+              <li class="inner-menu-item"><a href="#">데이터</a></li>
+              <li class="inner-menu-item"><a href="#">데이터</a></li>
+              <li class="inner-menu-item"><a href="#">데이터</a></li>
+              <li class="inner-menu-item"><a href="#">데이터</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="pull-right">
+        <div class="search-bar">
+          <form>
+            <input type="text" class="input-search"/>
+            <input type="submit" class="input-search-submit" value="검색"/>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+</body>
+<script>
+  $(document).ready(function() {
+    $('.outer-menu-item').hover(function() {
+      $(this).find('.inner-menu').show();
+    }, function() {
+      $(this).find('.inner-menu').hide();
+    });
+  });
+</script>

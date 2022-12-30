@@ -1,0 +1,14 @@
+<head>
+    <script>
+        window.onload = function() {
+            var output = '';
+            for(var i = 0; i < 10; i++) {
+                output += '<h1>Header - ' + i + '</h1>';
+            }
+            // document.body.textContent = output; // 문서 객체 내부 글자 변경, HTML 태그 적용 X
+            document.body.innerHTML = output;   // 문서 객체 내부 글자 변경, HTML 태그 적용 O
+        }
+    </script>
+</head>
+<body>
+</body>

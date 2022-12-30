@@ -1,0 +1,63 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #content {
+            width: 800px;
+            margin: 0 auto;
+        }
+        #pagination {
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+    <div id="pagination">
+        <button id="prev">이전</button>
+        <span id="page"></span>
+        <button id="next">다음</button>
+    </div>
+</body>
+<script>
+    var page = 1;
+    getList();
+    function getList() {
+        $.ajax({
+            type: "get",
+            url: "https://jsonplaceholder.typicode.com/posts",
+            dataType: "json",
+            success: function(data) {
+                var str = "";
+                $(data).each(function() {
+                    var id = this.id;
+                    var title = this.title;
+                    var body = this.body;
+                    if(id >= (page - 1)*3+1 && id <= page*3) {
+                        str += `<h3>${id}:${title}</h3>`;
+                        str += `<p>${body}</p>`;
+                    }
+                });
+                
+                $("#content").html(str);
+                if(page == 1) {
+                    $("#prev").attr("disabled", true);
+                } else {
+                    $("#prev").attr("disabled", false);
+                }
+            }
+        });
+        $("#page").html(page);
+    }
+
+    $("#next").on("click", function() {
+        page++;
+        getList();
+    });
+
+    $("#prev").on("click", function() {
+        page--;
+        getList();
+    });
+</script>

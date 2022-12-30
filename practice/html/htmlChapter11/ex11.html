@@ -1,0 +1,63 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="comment.css"/>
+</head>
+<body>
+    <div id="content"></div>
+    <hr/>
+    <div id="comments"></div>
+</body>
+<script>
+    getList();
+
+    // 목록출력 함수
+    function getList() {
+        $.ajax({
+            type: "get",
+            url: "https://jsonplaceholder.typicode.com/posts",
+            dataType: "json",
+            success: function(data) {
+                var str = "";
+                $(data).each(function() {   // 포스트 목록 출력
+                    var id = this.id;
+                    var title = this.title;
+                    var body = this.body;
+                    if(id <= 2) {
+                        str += `<div class="box" postid="${id}">`;
+                        str += `<h3>${id}:${title}</h3>`;
+                        str += `<p class="body">${body}</p>`;
+                        str += `</div>`;
+                    }
+                });
+                $("#content").html(str);
+            }
+        });
+    }
+    $("#content").on("click", ".box", function() {
+        $("#content .box .body").each(function() {  // 모든 포스트 목록 숨김
+            $(this).hide();
+        });
+        var postid = $(this).attr("postid");
+        $(this).find(".body").show();   // 클릭한 포스트 내용 보여줌
+
+        $.ajax({
+            type: "get",
+            url: `https://jsonplaceholder.typicode.com/posts/${postid}/comments`,
+            dataType: "json",
+            success: function(data) {
+                var str = "";
+                $(data).each(function() {   // 커멘트 목록 출력
+                    var name = this.name;
+                    var email = this.email;
+                    var body = this.body;
+                    var id = this.id;
+                    str += '<div class="box">';
+                    str += `<h5>${id}:${name}[${email}]</h5>`;
+                    str += `<p>${body}</p>`;
+                    str += `</div`;
+                });
+                $("#comments").html(str);
+            }
+        });
+    });
+</script>

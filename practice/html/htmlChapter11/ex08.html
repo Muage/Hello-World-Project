@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            table {
+                border-collapse: collapse;
+                margin-top: 10px;
+            }
+            td {
+                border: 0.5px solid gray;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        이름: <input type="text" id="txtName">
+        <hr/>
+        주소: <input type="text" id="txtAddress" size="50">
+        <hr/>
+        <input type="button" value="저장" id="btnSave">
+        <input type="button" value="취소" id="btnCancel">
+        <button id="btnDel">선택삭제</button>
+        <table width="500" id="tbl">
+            <tr>
+                <td width="50">
+                    <input type="checkbox" id="chkAll">
+                </td>
+                <td width="100">이름</td>
+                <td width="300">주소</td>
+                <td width="50">삭제</td>
+            </tr>
+        </table>
+        <hr/>
+    </body>
+    <script>
+        // 저장 버튼 클릭
+        $("#btnSave").on("click", function() {
+            var txtName = $("#txtName").val();
+            var txtAddress = $("#txtAddress").val();
+            var str = "<tr class='row'>";
+            str += "<td><input type='checkbox' class='chk'></td>"
+            str += "<td>" + txtName + "</td>"
+            str += "<td>" + txtAddress + "</td>"
+            str += "<td><button>삭제</button></td>";
+            str += "</tr>";
+            $("#tbl").append(str);
+            $("#txtName").val("");
+            $("#txtAddress").val("");
+        });
+        
+        // 삭제 버튼 클릭
+        $("#tbl").on("click", "tr button", function() {
+            var row = $(this).parent().parent();
+            $(row).remove();
+        });
+
+        // 전체선택 버튼 클릭
+        $("#chkAll").on("click", function() {
+            if($(this).is(":checked")) {
+                $("#tbl tr input:checkbox").each(function() {
+                    $(this).prop("checked", true);
+                });
+            } else {
+                $("#tbl tr input:checkbox").each(function() {
+                    $(this).prop("checked", false);
+                });
+            }
+        });
+
+        // 전체삭제 버튼 클릭
+        $("#btnDel").on("click", function() {
+            $("#tbl tr input:checkbox:checked").each(function() {
+                var row = $(this).parent().parent();
+                $(row).remove()
+            });
+        });
+
+        //각행의 체크박스를 클릭한 경우
+        $("#tbl").on("click", ".row .chk", function() {
+            var all = $("#tbl .row .chk").length;
+            var checked = $("#tbl .row .chk:checked").length;
+
+            if(all == checked) {
+                $("#tbl #chkAll").prop("checked", true);
+            } else {
+                $("#tbl #chkAll").prop("checked", false);
+            }
+        });
+    </script>
+</html>

@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="/stylesheets/products.css"/>
+<div id="products"></div>
+<script id="temp" type="text/x-handlebars-template">
+    {{#each .}}
+    <div class="product">
+        <div class="thumbnail">
+            <a href='/products/read?id={{id}}'><img src="{{url}}"/></a>
+        </div>
+        <div class="info">
+            <div class="name">{{name}}</div>
+            <div class="date" style="color: gray;">{{date}}</div>
+            <div class="price">{{price}}원</div>
+            <div>
+                <span class="like" pid="{{id}}">{{printLike like}}</span>
+                <span id="bell" pid="{{id}}"><span id="count">{{cnt_chat}}</span></span>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script>
+    Handlebars.registerHelper("printLike", (like) => {
+        if(like == 0) {
+            return "♡";
+        } else {
+            return "♥";
+        }
+    });
+</script>
+<script>
+    var email = $("#email").html();
+    getList();
+
+    function getList() {
+        $.ajax({
+            type: "get",
+            url: '/products/list.json',
+            dataType: "json",
+            success: (data) => {
+                var temp = Handlebars.compile($("#temp").html());
+                $("#products").html(temp(data));
+            }
+        });
+    }
+
+    // 좋아요 버튼 클릭
+    $("#products").on("click", ".product .like", () => {
+        if(email == "" || email == null) {
+            location.href = 'users/login';
+            return;
+        }
+        var id = $(this).attr("pid");
+        if($(this).html() == "♡") {
+            $(this).html("♥");
+            $.ajax({
+                type: "post",
+                url: '/products/like.insert',
+                data: { id: id },
+                success: () => {
+                    alert("좋아요 추가");
+                }
+            });
+        } else {
+            $(this).html("♡");
+            $.ajax({
+                type: "post",
+                url: '/products/like/delete',
+                data: { id: id },
+                success: () => {
+                    alert("좋아요 삭제");
+                }
+            });
+        }
+    });
+
+    // 채팅 내용 입력 시 호출
+    realdb.ref("chats/").on("child_changed", (snap) => {
+        getList();
+    });
+</script>

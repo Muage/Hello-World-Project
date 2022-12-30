@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="./lightbox.css">
+        <style>
+            .box {
+                margin: 10px;
+                float: left;
+            }
+        </style>
+        <script>
+            $(document).ready(function() {
+                $('#darken-background').click(function() {
+                    $('#darken-background').hide();
+                });
+                $('.box').click(function() {
+                    $('#darken-background').show();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="box"><img src="pingu.jpg"/></div>
+        <div class="box"><img src="pingu.jpg"/></div>
+        <div class="box"><img src="pingu.jpg"/></div>
+
+        <div id="darken-background">
+            <div id="lightbox">
+                <img src="pingu.jpg" width="600"/>
+            </div>
+        </div>
+    </body>
+</html>

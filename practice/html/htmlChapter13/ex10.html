@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;" charset="utf-8">
+    <title>버추얼대학교</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css"/>
+
+    <!-- Photo Swipe CSS 설정 -->
+    <link href="photoswipe/examples/jquery-mobile.css" type="text/css" rel="stylesheet"/>
+    <link href="photoswipe/photoswipe.css" type="text/css" rel="stylesheet"/>
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+
+    <!-- Photo Swipe 자바스크립트 설정 -->
+    <script src="photoswipe/lib/klass.min.js"></script>
+    <script src="photoswipe/code.photoswipe.jquery-3.0.4.min.js"></script>
+    <script src="photoswipe/create_ps_instance.js"></script>
+  </head>
+  <body>
+    <!-- main page -->
+    <div data-role="page" id="main">
+      <div data-role="content">
+        <a href="#campus_images">캠퍼스 이미지</a>
+      </div>
+    </div>
+
+    <!-- campus images page -->
+    <div data-role="page" id="campus_images" class="gallery-page">
+      <div data-role="header">
+        <a href="#main" data-icon="home" data-direction="reverse" class="ui-btn-left">Home</a>
+        <h1>캠퍼스 이미지</h1>
+      </div>
+      <div data-role="content" data-theme="d">
+        <ul class="gallery">
+          <li>
+            <a href="image/pingu.jpg" rel="external">
+              <img src="image/pingu.jpg" alt="공원"/>
+            </a>
+          </li>
+          <li>
+            <a href="image/pingu.jpg" rel="external">
+              <img src="image/pingu.jpg" alt="자유관"/>
+            </a>
+          </li>
+          <li>
+            <a href="image/pingu.jpg" rel="external">
+              <img src="image/pingu.jpg" alt="성실관"/>
+            </a>
+          </li>
+          <li>
+            <a href="image/pingu.jpg" rel="external">
+              <img src="image/pingu.jpg" alt="학생관"/>
+            </a>
+          </li>
+          <li>
+            <a href="image/pingu.jpg" rel="external">
+              <img src="image/pingu.jpg" alt="조형물"/>
+            </a>
+          </li>
+          <li>
+            <a href="image/pingu.jpg" rel="external">
+              <img src="image/pingu.jpg" alt="본관"/>
+            </a>
+          </li>
+          <li>
+            <a href="image/pingu.jpg" rel="external">
+              <img src="image/pingu.jpg" alt="채플관"/>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div data-role="footer">
+        <h2>버추얼 대학교</h2>
+      </div>
+    </div>
+  </body>
+</html>

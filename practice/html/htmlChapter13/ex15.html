@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+      var db;
+      
+      function winLoad() {
+        if(window.openDatabase == undefined) {
+          alert("이 브라우저는 Database를 지원하지 않습니다.");
+          return;
+        }
+        db = window.openDatabase("Address", "1.0", "test", 1024*1024);
+        db.transaction(function(dbHelper) {
+          dbHelper.executeSql("create table if not exists students (num integer primary key autoincrement, name text not null, addr text)");
+        });
+        showData();
+      }
+
+      function insert() {
+        var nameObj = frm.name.value;
+        var addrObj = frm.addr.value;
+        if(nameObj == "" || nameObj == null) {
+          alert("이름을 입력하세요.");
+          return;
+        }
+        db.transaction(function(dbHelper) {
+          dbHelper.executeSql("insert into students values(null, ?, ?)", [nameObj, addrObj])
+        });
+      }
+
+      function showData() {
+        db.transaction(function(dbHelper) {
+          dbHelper.executeSql("select * from students", [], success, function() {
+            alert("실패");
+          });
+          frm.name.focus()
+        });
+      }
+
+      function success(dbHelper, rs) {
+        var content = "";
+        var stdList = document.getElementById("stdList");
+        for(var i = 0; i < rs.rows.length; i++) {
+          var row = rs.rows.item(i);
+          content += "<tr><td width=40>" + row["num"] + "</td>";
+          content += "<td width=60>" + row["name"] + "</td>";
+          content += "<td width=200>" + row["addr"] + "</td></tr>";
+        }
+        if(content == "") {
+          stdList.innerHTML = "<tr><td width=300>데이터가 존재하지 않습니다.</td></tr>";
+        } else {
+          stdList.innerHTML = content;
+        }
+      }
+
+      function stdDelete() {
+        var num = document.getElementById("num").value;
+        db.transaction(function(dbHelper) {
+          var sql = "delete from students where num = ?";
+          dbHelper.executeSql(sql, [num], undefined, function() {
+            alert("삭제 성공");
+          }, function() {
+            alert("삭제 실패");
+          });
+        });
+        showData();
+      }
+    </script>
+  </head>
+  <body onload="winLoad();">
+    <h1>주소 관리 화면</h1>
+    <form name="frm">
+      이름: <input type="text" id="name"><br/>
+      주소: <input type="text" id="addr"><br/>
+      <button onclick="insert()">추가</button><hr/>
+      <table id="stdList" border=1></table><hr/>
+      <input type="text" id="num"><br/>
+      <button onclick="stdDelete()">삭제</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+</head>
+<body>
+	<div id="divPage">
+		<div id="divTop">
+			<h1>[<%= title %>]</h1>
+		</div>
+		<div id="divCenter">
+			<div id="divMenu">
+				<div class="item"><a href="#">교수관리</a></div>
+				<div class="item"><a href="#">학생관리</a></div>
+				<div class="item"><a href="#">강좌관리</a></div>
+				<div class="item"><a href="#">수강신청</a></div>
+				<% if(userid == null) { %>
+					<div style="float:right">
+						<a href="/user/login">로그인</a>
+					</div>
+				<% } else { %>
+					<div style="float:right">
+						<a href="/user/logout">로그아웃</a>
+						<span><b><%= userid %></b></span>
+					</div>
+				<% } %>
+			</div>
+			<div id="divContent">
+				<%- include(pageName) %>
+			</div>
+		</div>
+		<div id="divBottom">
+			<h4>Copyright ⓒ example  All Rights Reserved.</h4>
+		</div>
+	</div>
+</body>
+</html>

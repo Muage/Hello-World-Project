@@ -1,0 +1,12 @@
+<web-app>
+	<error-page>
+		<exception-type>java.lang.NumberFormatException</exception-type>
+		<location>/NumberFormatError.jsp</location>
+		
+		<exception-type>java.lang.ArithmeticException</exception-type>
+		<location>/ArithmeticError.jsp</location>
+		
+		<error-code>404</error-code>
+		<location>/NotFoundError.jsp</location>
+	</error-page>
+</web-app>
