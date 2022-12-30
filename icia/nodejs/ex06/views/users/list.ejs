@@ -1,0 +1,32 @@
+<div id="users"></div>
+<script id="temp" type="text/x-handlebars-template">
+    {{#each rows}}
+        <div class="box">
+            <div class="left">
+                <img src="/photo/{{photo}}" width="100">
+            </div>
+            <div class="right">
+                <h3>{{userid}}({{username}})</h3>
+                <h4>{{email}}</h2>
+                <h4>{{address}}</h2>
+                <button userid="{{userid}}">정보수정</button>
+            </div>
+        </div>
+    {{/each}}
+</script>
+<script>
+    // 각 사용자의 수정 버튼 클릭
+    $("#users").on("click", ".box .right button", function() {
+        var userid = $(this).attr("userid");
+        location.href = "/users/read?userid=" + userid;
+    })
+    $.ajax({
+        type: "get",
+        url: "/users/list.json",
+        dataType: "json",
+        success: function(data) {
+            var temp = Handlebars.compile($("#temp").html());
+            $("#users").html(temp(data));
+        }
+    })
+</script>

@@ -1,0 +1,43 @@
+<div id="listTop">
+    <button class="listButton" onclick="location.href='/pro/insert'">교수 등록</button>
+</div>
+<table id="list"></table>
+<script id="temp" type="text/x-handlebars-template">
+    <tr class="title">
+        <td width="100">교수번호</td>
+        <td width="100">교수이름</td>
+        <td width="100">소속학과</td>
+        <td width="180">임용일자</td>
+        <td width="80">직급</td>
+        <td width="150">급여</td>
+        <td width="100">정보수정</td>
+    </tr>
+    {{#each .}}
+    <tr class="row">
+        <td>{{pcode}}</td>
+        <td>{{pname}}</td>
+        <td>{{dept}}</td>
+        <td>{{fhire}}</td>
+        <td>{{title}}</td>
+        <td>{{fsalary}}원</td>
+        <td><button class="listButton" code="{{pcode}}">수정</button></td>
+    </tr>
+    {{/each}}
+</script>
+<script>
+    // 정보수정 버튼 클릭
+    $("#list").on("click", ".row .listButton", function() {
+        var code = $(this).attr("code");
+        location.href = "/pro/update?pcode=" + code;
+    });
+
+    $.ajax({
+        type: "get",
+        url: "/pro/list.json",
+        dataType: "json",
+        success: function(data) {
+            var temp = Handlebars.compile($("#temp").html());
+            $("#list").html(temp(data));
+        }
+    });
+</script>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/home.css' />
+  </head>
+  <body>
+    <div id="top">
+      <img src="/images/genesis.png" width="120">
+      <img src="/images/gv.jpg" width="960">
+    </div>
+    <div id="menu">
+      <span class="item"><a href="/">Home</a></span>
+      <span class="item"><a href="/users">사용자관리</a></span>
+      <span class="item"><a href="/posts">게시판관리</a></span>
+    </div>
+    <div id="middle">
+      <h1><%= title %></h1>
+      <%- include(pageName) %>
+    </div>
+    <div id="bottom">
+      <h4>Copyright 2022. 인천일보아카데미 All Rights reserved.</h4>
+    </div>
+  </body>
+</html>

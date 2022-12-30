@@ -1,0 +1,104 @@
+<form name="frm" method="post" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td>아이디 : </td>
+            <td><input value="<%= row.userid %>" readonly type="text" name="userid" placeholder="아이디를 입력해주세요.">
+            </td>
+        </tr>
+        <tr>
+            <td>비밀번호 : </td>
+            <td><input value="<%= row.password %>" type="password" name="password" placeholder="비밀번호를 입력해주세요."></td>
+        </tr>
+        <tr>
+            <td>이름 : </td>
+            <td><input value="<%= row.username %>" type="text" name="username" placeholder="이름을 입력해주세요."></td>
+        </tr>
+        <tr>
+            <td>이메일 : </td>
+            <td><input value="<%= row.email %>" type="text" name="email" placeholder="이메일을 입력해주세요."></td>
+        </tr>
+        <tr>
+            <td>주소 : </td>
+            <td><input value="<%= row.address %>" type="text" name="address" placeholder="주소를 입력해주세요." size="70"></td>
+        </tr>
+        <tr>
+            <td>사진 : </td>
+            <td>
+                <input type="hidden" name="old" value="<%= row.photo %>">
+                <img id="photo" src="/photo/<%= row.photo %>" width="200">
+                <input type="file" value="사진" name="photo" style="display: none;">
+            </td>
+        </tr>
+    </table>
+    <div class="buttons">
+        <button type="submit">정보수정</button>
+        <button type="reset">수정취소</button>
+    </div>
+</form>
+
+<script>
+    $(frm).on("submit", function(e) {
+        e.preventDefault();
+        var userid = $(frm.userid).val();
+        var password = $(frm.password).val();
+        var username = $(frm.username).val();
+        var email = $(frm.email).val();
+        var photo = $(frm.photo).val();
+
+        if(password == "") {
+            alert("비밀번호를 입력해주세요.");
+            $(frm.password).focus();
+            return;
+        }
+        if(username == "") {
+            alert("이름을 입력해주세요.");
+            $(frm.username).focus();
+            return;
+        }
+        if(email == "") {
+            alert("이메일을 입력해주세요.");
+            $(frm.email).focus();
+            return;
+        }
+        if(!confirm('회원정보를 수정하시겠습니까?')) return;
+        frm.action = "/users/update";
+        frm.submit();
+    });
+
+    // 중복확인 버튼 클릭
+    $("#check").on("click", function() {
+        var userid = $(frm.userid).val();
+        if(userid == "") {
+            alert("아이디를 입력해주세요.");
+            $(frm.userid).focus();
+            return;
+        }
+        $.ajax({
+            type: "get",
+            url: "/users/check",
+            dataType: "json",
+            data: { userid: userid },
+            success: function(data) {
+                if(data.count > 0) {
+                    alert("이미 사용중인 아이디입니다.")
+                } else {
+                    alert("사용 가능한 아이디입니다.")
+                    check = true;
+                }
+            }
+        })
+    });
+
+    $("#photo").on("click", function() {
+        $(frm.photo).click();
+    })
+    
+    // 사진미리보기
+    $(frm.photo).on("change", function(e) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $("#photo").attr("src", e.target.result);
+        };
+        reader.readAsDataURL(this.files[0]);
+    })
+</script>

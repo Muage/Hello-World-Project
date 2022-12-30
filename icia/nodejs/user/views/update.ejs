@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <title>사용자수정</title>
+    </head>
+    <body>
+        <h1>사용자수정</h1>
+        <form name="frm" method="post">
+            아이디: <input type="text" name="id" value="<%= userid %>" readonly>
+            <hr>
+            비밀번호: <input type="password" name="pass">
+            <hr>
+            이름: <input type="text" name="name">
+            <hr>
+            사진: <input type="file" name="image">
+            <hr>
+            <button type="submit">사용자수정</button>
+            <button type="reset">등록취소</button>
+        </form>
+    </body>
+    <script>
+        var id = $(frm.id).val();
+
+        $.ajax({
+            type: "get",
+            url: "/users/read.json",
+            data: { id: id },
+            dataType: "json",
+            success: function(data) {
+                $(frm.pass).val(data.pass);
+                $(frm.name).val(data.name);
+            }
+        });
+
+        $(frm).on("submit", function(e) {
+            e.preventDefault();
+            var id = $(frm.id).val();
+            var pass = $(frm.pass).val();
+            var name = $(frm.name).val();
+
+            if(id == "" || pass == "" || name == "") {
+                alert("모든 정보를 입력해주세요.");
+                return;
+            }
+
+            $.ajax({
+                type: "post",
+                url: "/users/update",
+                data: { id: id, pass: pass, name: name },
+                success: function(data) {
+                    alert("수정되었습니다.");
+                    location.href = "/users";
+                }
+            });
+        });
+    </script>
+</html>

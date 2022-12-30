@@ -1,0 +1,29 @@
+<table id="posts"></table>
+<script id="temp" type="text/x-handlebars-template">
+    <tr class="title">
+        <td width="40">No.</td>
+        <td width="470">Title</td>
+        <td width="120">Date</td>
+        <td width="120">Writer</td>
+    </tr>
+    {{#each .}}
+    <tr class="row">
+        <td>{{id}}</td>
+        <td><div class="ellipsis subject">{{title}}</div></td>
+        <td>{{fdate}}</td>
+        <td>{{username}}({{userid}})</td>
+    </tr>
+    {{/each}}
+</script>
+
+<script>
+    $.ajax({
+        type: "get",
+        url: "/posts/list.json",
+        dataType: "json",
+        success: function(data){
+            temp=Handlebars.compile($("#temp").html());
+            $("#posts").html(temp(data));
+        }
+    })
+</script>

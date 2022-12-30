@@ -1,0 +1,106 @@
+<div id="bookInfo">
+    <div class="bookInfoLeft">
+        <img src="/books/<%= row.image %>" width="250">
+    </div>
+    <div class="bookInfoRight">
+        <div><%= row.code %>. <%= row.title %></div>
+        <hr>
+        <div>가격: <%= row.price %>원</div>
+        <div>판매수: <%= row.qnt %>권</div>
+        <hr>
+        <p><%= row.contents %></p>
+    </div>
+</div>
+<div id="review">
+    <div class="reviewTitle">리뷰작성</div>
+    <div id="reviewText">
+        <input type="text">
+        <button id="btn">리뷰작성</button>
+    </div>
+</div>
+<div id="reviews"></div>
+<script id="temp" type="text/x-handlebars-template">
+    {{#each .}}
+    <ul class="box">
+        <li>{{userid}} | {{fdate}}</li>
+        <li><p>{{text}}</p></li>
+        <li rid="{{id}}" class="{{del userid}}">삭제</li>
+    </ul>
+    {{/each}}
+</script>
+<script>
+    Handlebars.registerHelper("del", function(userid) {
+        var loginid = "<%= userid %>"
+        if(loginid == userid) {
+            return "del"
+        } else {
+            return "none";
+        }
+    });
+</script>
+<script>
+    var userid = "<%= userid %>";
+    var code = "<%= row.code %>";
+
+    getReview();
+
+
+    $("#reviews").on("click", ".box .del", function() {
+        var id = $(this).attr("rid");
+        if(!confirm("해당 리뷰를 삭제하시겠습니까?")) return;
+        // 리뷰삭제
+        $.ajax({
+            type: "post",
+            url: "/books/review/delete",
+            data: { id: id },
+            success:function() {
+                alert("해당 리뷰가 삭제되었습니다.");
+                getReview();
+            }
+        })
+    })
+
+    // 리뷰목록출력
+    function getReview() {
+        $.ajax({
+            type: "get",
+            url: "/books/review.json",
+            data: { code: code },
+            dataType: "json",
+            success: function(data) {
+                var temp = Handlebars.compile($("#temp").html());
+                $("#reviews").html(temp(data));
+            }
+        })
+    }
+
+    $("#btn").on("click", function() {
+        if(userid == "") {
+            alert("리뷰를 작성하시려면 로그인이 필요합니다.");
+            location.href = "/users/login";
+        }
+        var text = $("#text").val();
+        if(text == "") {
+            alert("리뷰 내용을 입력해주세요.");
+            $("#text").focus();
+            return;
+        }
+        // 리뷰등록
+        $.ajax({
+            type: "post",
+            url: "/books/review/insert",
+            data: { code: code, text: text },
+            success: function() {
+                alert("리뷰가 등록되었습니다.");
+                getReview();
+                $("#text").val("");
+            }
+        })
+    })
+
+    $("#text").on("keydown", function(e) {
+        if(e.keyCode == 13) {
+            $("#btn").click();
+        }
+    })
+</script>

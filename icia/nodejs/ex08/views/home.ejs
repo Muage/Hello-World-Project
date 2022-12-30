@@ -1,0 +1,52 @@
+<div class="homeTitle">최근도서</div>
+<div id="news"></div>
+<script id="temp" type="text/x-handlebars-template">
+    {{#each .}}
+        <div class="box">
+            <ul class="homeImage">
+                <li><img code="{{code}}" src="/books/{{image}}" width="180" height="220"></li>
+                <li><div class="info">{{title}}</div></li>
+                <li><div class="info">출시일 : {{fdate}}</div></li>
+            </ul>
+        </div>
+    {{/each}}
+</script>
+<div class="homeTitle">베스트도서</div>
+<div id="best"></div>
+<script id="tempBest" type="text/x-handlebars-template">
+    {{#each .}}
+        <div class="box">
+            <ul class="homeImage">
+                <li><img code="{{code}}" src="/books/{{image}}" width="180" height="220"></li>
+                <li><div class="info">{{title}}</div></li>
+                <li><div class="info">{{fprice}}원</div></li>
+            </ul>
+        </div>
+    {{/each}}
+</script>
+<script>
+    $("#news").on("click", ".homeImage img", function() {
+        var code = $(this).attr("code");
+        // alert(code);
+        location.href = "/books/read?code=" + code;
+    })
+
+    $.ajax({
+        type: "get",
+        url: "/new.json",
+        dataType: "json",
+        success: function(data) {
+            var temp = Handlebars.compile($("#temp").html());
+            $("#news").html(temp(data));
+        }
+    })
+    $.ajax({
+        type: "get",
+        url: "/best.json",
+        dataType: "json",
+        success: function(data) {
+            var temp = Handlebars.compile($("#tempBest").html());
+            $("#best").html(temp(data));
+        }
+    })
+</script>

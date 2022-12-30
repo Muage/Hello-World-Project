@@ -1,0 +1,168 @@
+<html>
+    <head>
+        <title>홍길동의 쇼핑몰</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+        <style>
+            #top {
+                margin: 10px;
+            }
+            * {
+                margin: 0px;
+                padding: 0px;
+            }
+            body {
+                width: 960px;
+                margin: 0px auto;
+                background: black;
+            }
+            #bottom {
+                text-align: center;
+                margin: 20px 0px;
+                padding: 30px 0px;
+                color: rgb(120, 120, 120);
+                font-size: 10px;
+                /* border: 5px solid rgba(128, 128, 128, 0.5);
+                background: rgba(128, 128, 128, 0.5); */
+            }
+            #best {
+                overflow: hidden;
+            }
+            #best .box {
+                width: 220px;
+                height: 220px;
+                float: left;
+                /* border: 1px solid gray;
+                border-radius: 5px; */
+                margin: 10px;
+                padding-top: 20px;
+                text-align: center;
+                background: rgb(10, 10, 10);
+                /* color: rgb(110, 110, 110); */
+                color: gray;
+                /* background: linear-gradient(rgba(128, 128, 128, 1), rgba(128, 128, 128, 0.1));
+                box-shadow: 5px 5px 10px gray; */
+            }
+            #best .box img {
+                margin: 10px 0px;
+                /* border-radius: 10px; */
+            }
+            #best .box .more {
+                border: 1px solid gray;
+                padding: 10px;
+                margin: auto;
+                width: 150px;
+                text-align: center;
+                font-size: 15px;
+            }
+            #best .box .more:hover {
+                background: rgb(230, 230, 200);
+            }
+            #info {
+                overflow: hidden;
+            }
+            #info #notice, #info #news {
+                width: 450px;
+                height: 450px;
+                /* border: 1px solid gray; */
+                float: left;
+                margin: 10px;
+            }
+            /* #top img {
+                border-radius: 5px;
+            } */
+            .row .title {
+                width: 350px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 20px;
+                color: gray;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="top">
+            <img src="genesis.png" width="120">
+            <img src="gv.jpg" width="960">
+        </div>
+        <div id="middle">
+            <!-- 베스트상품 -->
+            <div id="best"></div>
+            <script id="bestTemp" type="text/x-handlebars-template">
+                {{#each .}}
+                    <div class="box">
+                        <div class="title">{{title}}</div>
+                        <img src="{{image}}" width="220">
+                        <div class="more">{{more}}</div>
+                    </div>
+                {{/each}}
+            </script>
+            <div id="info">
+                <!-- 공지사항 출력 -->
+                <table id="notice"></table>
+                <script id="noticeTemp" type="text/x-handlebars-template">
+                    {{#each .}}
+                        <tr class="row">
+                            <td>{{id}}</td>
+                            <td><div class="title">{{title}}</div></td>
+                        </tr>
+                    {{/each}}
+                </script>
+                <table id="news"></table>
+            </div>
+        </div>
+        <div id="bottom">
+            <h3>Copyright 2022. 인천일보아카데미 All rights reserved</h3>
+        </div>
+    </body>
+    <script>
+        //JSON 데이터
+        var bestData=[
+            {title:"GV80", "image":"gv80.png", more:"자세히보기"},
+            {title:"GV70", "image":"gv70.png", more:"자세히보기"},
+            {title:"X5", "image":"x5.png", more:"자세히보기"},
+            {title:"X3", "image":"x3.png", more:"자세히보기"}
+        ];
+
+        var bestTemp=Handlebars.compile($("#bestTemp").html());
+        $("#best").html(bestTemp(bestData));
+
+        //posts 데이터 불러오기
+        $.ajax({
+            type: "get",
+            url: "https://jsonplaceholder.typicode.com/posts",
+            dataType: "json",
+            success: function(data){
+                var rows=[];
+                $(data).each(function(){
+                    if(this.id <= 10){
+                        var row={"id": this.id, "title": this.title};
+                        rows.push(row);
+                    }
+                });
+                // alert(rows.length);
+                temp=Handlebars.compile($("#noticeTemp").html());
+                $("#notice").html(temp(rows));
+            }
+        })
+
+        // 뉴스 데이터 생성하기
+        $.ajax({
+            type: "get",
+            url: "https://jsonplaceholder.typicode.com/albums",
+            dataType: "json",
+            success: function(data){
+                var rows=[];
+                $(data).each(function(){
+                    if(this.id <= 10){
+                        var row={"id": this.id, "title": this.title}
+                        rows.push(row);
+                    }
+                })
+                temp=Handlebars.compile($("#noticeTemp").html());
+                $("#news").html(temp(rows));
+            }
+        })
+    </script>
+</html>

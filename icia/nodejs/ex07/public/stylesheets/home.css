@@ -1,0 +1,309 @@
+@font-face {
+    font-family: SCDream3;
+    src: url("/images/SCDream3.otf") format("opentype");
+}
+
+@font-face {
+    font-family: SCDream4;
+    src: url("/images/SCDream4.otf") format("opentype");
+}
+
+* {
+    font-family: SCDream3;
+}
+
+body {
+    width: 960px;
+    margin: 0px auto;
+    /* font-family: 'NanumSquareRound'; */
+}
+
+.right {
+    float: right;
+}
+
+#top {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* #menu {
+    margin: 30px 0px;
+    border: 50px 0px;
+    text-align: center;
+    // padding: 50px;
+} */
+#menu .item a {
+    text-decoration: none;
+    color: rgb(120, 120, 120);
+    border: 1px solid gray;
+    padding: 10px 30px;
+    margin: 30px;
+    font-family: SCDream4;
+    /* font-size: 15px; */
+}
+
+#menu .userid {
+    font-weight: bold;
+}
+
+#menu .item a:hover {
+    font-weight: bold;
+    background: rgb(230, 230, 200);
+    color: black;
+}
+
+#middleTitle {
+    margin: 50px auto;
+    text-align: center;
+    color: rgb(0, 36, 103);
+    font-family: SCDream4;
+}
+/* h1 {
+    text-align: center;
+    // font-family: 'NanumSquareRoundLight';
+} */
+
+/* login.ejs */
+#login {
+    text-align: center;
+}
+
+#login li {
+    list-style: none;
+}
+
+#login input {
+    padding: 20px 150px 20px 30px;
+    border: 1px solid rgb(200, 200, 200);
+}
+
+#login input:focus {
+    outline: 1px solid rgb(98, 168, 48);
+}
+
+.listInput {
+    padding: 0;
+}
+
+#loginId {
+    border-radius: 6px 6px 0 0;
+}
+
+#loginPassword {
+    border-radius: 0 0 6px 6px;
+}
+
+#loginId:focus {
+    border: 1px solid rgb(98, 168, 48);
+}
+
+#keepLogin {
+    width: 350px;
+    text-align: left;
+    margin: 30px auto;
+}
+
+#login button {
+    padding: 15px 150px;
+    color: white;
+    background: rgb(98, 168, 48);
+    border: none;
+    border-radius: 5px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+/* home.ejs */
+.homeTitle {
+    /* border-bottom: 5px solid rgb(243, 243, 243); */
+    padding: 10px;
+    margin: 10px;
+    font-family: SCDream4;
+}
+
+#news {
+    background: rgb(243, 243, 243);
+}
+
+#news .box {
+    float: left;
+}
+
+/* insert.ejs */
+table {
+    border-collapse: collapse;
+    margin: 0px auto;
+}
+
+#insert input[type="text"] {
+    padding: 10px;
+    width: 400px;
+    margin: 10px auto;
+    border: 1px solid rgb(200, 200, 200);
+}
+
+/* list.ejs */
+#listTop {
+    text-align: center;
+    margin: 20px;
+}
+
+#query {
+    padding: 15px;
+    width: 80%;
+    border: 1px solid rgb(200, 200, 200);
+}
+
+#query:focus {
+    outline: 1px solid rgb(98, 168, 48);
+}
+
+#listMenu {
+    overflow: hidden;
+    margin: 30px auto;
+}
+
+/* bottom */
+#bottom {
+    color: rgb(119, 119, 119);
+    padding: 30px 0px;
+    margin: 20px 0px;
+    text-align: center;
+}
+
+
+
+/* * {
+    padding: 0px;
+    margin: 0px;
+} */
+
+/* #middle img {
+    margin: 20px auto;
+} */
+
+/* #books {
+    overflow: hidden;
+} */
+
+/* .box {
+    float: left;
+    width: 200px;
+    height: 300px;
+    margin: 15px;
+    text-align: center;
+} */
+
+/* .buttons {
+    text-align: center;
+} */
+
+/* button {
+    padding: 7px 15px;
+    color: white;
+    background: rgb(98, 168, 48);
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+} */
+
+/* .button {
+    padding: 7px 15px;
+    background: rgb(98, 168, 48);
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+} */
+
+/* .button a {
+    text-decoration: none;
+    color: white;
+} */
+
+/* button:hover {
+    color: black;
+    font-weight: bold;
+    background: beige;
+    cursor: pointer;
+} */
+
+/* button:disabled {
+    display: none;
+} */
+
+/* .ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} */
+
+/* #info {
+    margin-top: 30px;
+    overflow: hidden;
+} */
+
+/* #left {
+    width: 450px;
+    float: left;
+} */
+
+/* #right {
+    width: 450px;
+    float: left;
+} */
+
+/* hr {
+    margin: 20px 0px;
+} */
+
+/* #insertBook {
+    float: right;
+} */
+
+/* #books .title {
+    color: black;
+    font-weight: bold;
+    background: rgb(230, 230, 200);
+} */
+
+/* table {
+    border-collapse: collapse;
+    margin: 0px auto;
+    margin-top: 30px;
+} */
+/* #login .tdLogin {
+    text-align: center;
+    padding: 30px;
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 6px;
+    width: 460px;
+    // border-radius: 6px;
+} */
+/* td {
+    padding: 10px;
+    border-bottom: 1px solid rgb(230, 230, 200);
+} */
+
+/* tr:hover {
+    color: black;
+    font-weight: bold;
+    background: rgb(230, 230, 200);
+} */
+
+/* table .title {
+    background: rgb(230, 230, 200);
+    color: white;
+} */
+
+/* input[type="text"], input[type="password"] {
+    border: 1px solid rgb(120, 120, 120);
+    padding: 8px;
+    border-radius: 5px;
+} */
+
+/* textarea {
+    border: 1px solid rgb(120, 120, 120);
+    padding: 8px;
+    border-radius: 5px;
+} */

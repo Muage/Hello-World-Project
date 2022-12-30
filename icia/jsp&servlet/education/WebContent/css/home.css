@@ -1,0 +1,720 @@
+@font-face {
+	font-family: SCDream3;
+	src: url("/css/SCDream3.otf") format("opentype");
+}
+
+@font-face {
+	font-family: SCDream4;
+	src: url("/css/SCDream4.otf") format("opentype");
+}
+
+* {
+	font-family: SCDream3;
+}
+
+body {
+	width: 960px;
+	margin: 0px auto;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+		margin-right: 70px;
+}
+
+#top {
+	text-align: center;
+}
+
+#menu {
+	margin: 30px auto;
+	border: 50px 0px;
+	text-align: center;
+	/* // padding: 50px; */
+}
+
+#menu .item a {
+	text-decoration: none;
+	color: rgb(100, 100, 100);
+	border: 1px solid gray;
+	padding: 10px 30px;
+	margin: 10px;
+	font-family: SCDream4;
+	/* font-size: 15px; */
+}
+
+#menu .userid {
+	font-weight: bold;
+}
+
+#menu .item a:hover {
+	font-weight: bold;
+	border: 1px solid orange;
+	color: orange;
+}
+
+#middleTitle {
+	margin: 30px 0 10px;
+	padding: 30px;
+	text-align: center;
+	color: black;
+	font-family: SCDream4;
+}
+.middleTitle {
+	margin: 30px 0 10px;
+	padding: 30px;
+	text-align: center;
+	color: black;
+	font-family: SCDream4;
+}
+/* h1 {
+    text-align: center;
+    // font-family: 'NanumSquareRoundLight';
+} */
+
+/* search.jsp */
+#middleTop {
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+#right {
+	float: right;
+	margin: 0 10px 20px 0;
+}
+
+.middleButton {
+	padding: 8px 13px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background: gray;
+	cursor: pointer;
+}
+
+#save {
+	float: left;
+	margin: 0 0 20px 10px;
+	padding: 8px 13px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background: gray;
+	cursor: pointer;
+}
+
+#tbl {
+	border-collapse: collapse;
+	text-align: center;
+	margin: 0 auto;
+}
+
+#tbl .title {
+	background: gray;
+	color: white;
+}
+
+#tbl .row:hover {
+	color: black;
+	font-weight: bold;
+}
+
+#tbl td {
+	padding: 10px;
+	border-bottom: 1px solid gray;
+}
+
+#tbl .lastTd {
+	padding: 10px;
+	border: none;
+}
+
+.buttons {
+	text-align: center;
+}
+
+.buttons button {
+	padding: 5px 12px;
+	margin-top: 30px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background: gray;
+	cursor: pointer;
+}
+
+#clist {
+	border-collapse: collapse;
+	text-align: center;
+	margin: 0 auto;
+}
+
+#clist .title {
+	background: gray;
+	color: white;
+}
+
+#clist .row:hover {
+	color: black;
+	font-weight: bold;
+}
+
+#clist td {
+	padding: 10px;
+	border-bottom: 1px solid gray;
+}
+
+#clist button {
+	text-align: center;
+	padding: 5px 12px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background: gray;
+	cursor: pointer;
+}
+
+#slist {
+	border-collapse: collapse;
+	text-align: center;
+	margin: 0 auto;
+}
+
+#slist .title {
+	background: gray;
+	color: white;
+}
+
+#slist .row:hover {
+	color: black;
+	font-weight: bold;
+}
+
+#slist td {
+	padding: 10px;
+	border-bottom: 1px solid gray;
+}
+
+#slist button {
+	text-align: center;
+	padding: 5px 12px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background: gray;
+	cursor: pointer;
+}
+
+#aTitle {
+	text-decoration: none;
+}
+
+/* login.ejs */
+#login {
+	text-align: center;
+}
+
+#login li {
+	list-style: none;
+}
+
+#login input {
+	padding: 20px 150px 20px 30px;
+	border: 1px solid rgb(200, 200, 200);
+}
+
+#login input:focus {
+	outline: 1px solid rgb(98, 168, 48);
+}
+
+.listInput {
+	padding: 0;
+}
+
+#loginId {
+	border-radius: 6px 6px 0 0;
+}
+
+#loginPassword {
+	border-radius: 0 0 6px 6px;
+}
+
+#loginId:focus {
+	border: 1px solid rgb(98, 168, 48);
+}
+
+#keepLogin {
+	width: 350px;
+	text-align: left;
+	margin: 30px auto;
+}
+
+#login button {
+	padding: 15px 150px;
+	color: white;
+	background: rgb(98, 168, 48);
+	border: none;
+	border-radius: 5px;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+/* home.ejs */
+.homeTitle {
+	/* border-bottom: 5px solid rgb(243, 243, 243); */
+	padding: 10px;
+	margin: 0 0 10px 0;
+	font-family: SCDream4;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#news {
+	margin-bottom: 40px;
+	background: rgb(243, 243, 243);
+	overflow: hidden;
+}
+
+#best {
+	background: rgb(243, 243, 243);
+	overflow: hidden;
+}
+
+.homeImage {
+	list-style: none;
+	float: left;
+	padding: 0;
+	margin: 30px;
+	cursor: pointer;
+}
+
+.info {
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 200px;
+	margin-top: 5px;
+}
+
+/* insert.ejs */
+#insert {
+	border-collapse: collapse;
+	text-align: center;
+	margin: 0 auto;
+}
+
+#insert td {
+	padding: 10px;
+}
+
+#insert .insertTableLeft {
+	text-align: right;
+	padding-right: 50px;
+}
+
+#insert .insertTableRight {
+	text-align: left;
+	padding-left: 50px;
+}
+
+/* table {
+    border-collapse: collapse;
+    margin: 0px auto;
+} */
+
+/* #insert input[type="text"] {
+    padding: 10px;
+    width: 400px;
+    margin: 10px auto;
+    border: 1px solid rgb(200, 200, 200);
+} */
+
+/* list.ejs */
+#listTop {
+	text-align: left;
+	margin: 0 0 20px 70px;
+	overflow: hidden;
+}
+
+#listTop select, #listTop input {
+	padding: 5px 15px 5px 5px;
+  	border-radius: 4px;
+  	outline: none;
+}
+
+#listTop button {
+	padding: 6px 13px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background: gray;
+	cursor: pointer;
+}
+
+#listCount {
+	float: right;
+	margin: 0 40px 20px 0;
+}
+
+#listInsert {
+	padding: 8px 13px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background: gray;
+	cursor: pointer;
+}
+
+.insertLeft {
+	margin: 0 0 20px 25px;
+	width: 100px;
+	float: left;
+}
+
+.insertRight {
+	margin: 0 25px 20px 0;
+	width: 30px;
+	float: left;
+	font-size: 18px;
+}
+
+#listRead {
+	margin-top: 20px;
+}
+
+#list {
+	border-collapse: collapse;
+	text-align: center;
+	margin: 0 auto;
+}
+
+#list .title {
+	background: rgb(1, 175, 255);
+	color: white;
+}
+
+#list td {
+	padding: 10px;
+	border-bottom: 1px solid rgb(1, 175, 255);
+}
+
+#listMenu {
+	overflow: hidden;
+	margin: 30px auto;
+}
+
+.buttons button:disabled {
+	display: none;
+}
+
+/* read.ejs */
+#bookInfo {
+	width: 900px;
+	overflow: hidden;
+	margin: 0px auto;
+}
+
+.bookInfoLeft {
+	margin: 0 0 20px 25px;
+	width: 300px;
+	float: left;
+}
+
+.bookInfoRight {
+	margin: 0 25px 20px 0;
+	width: 550px;
+	float: left;
+	font-size: 18px;
+}
+
+.reviewTitle {
+	padding: 10px;
+	margin: 0 50px 10px;
+	font-family: SCDream4;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#reviewText input[type="text"] {
+	padding: 5px;
+	width: 750px;
+	margin: 0 10px 0 50px;
+	border: 1px solid rgb(200, 200, 200);
+}
+
+#reviewText input:focus {
+	outline: 1px solid rgb(98, 168, 48);
+	border-radius: 3px;
+}
+
+#review button {
+	padding: 8px 13px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background: rgb(98, 168, 48);
+	cursor: pointer;
+}
+
+#reviews .box {
+	list-style: none;
+	padding: 0;
+	margin: 30px 0 0 60px;
+}
+
+.none {
+	display: none;
+}
+
+.del {
+	font-size: 14px;
+	color: rgb(110, 110, 110);;
+	cursor: pointer;
+}
+
+/* update.ejs */
+.updateMenu {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+#updateMenuInfo, #UpdateMenuCourses {
+	padding: 8px 20px;
+	margin: 0 30px;
+	color: rgb(100, 100, 100);
+	border: 1px solid gray;
+}
+
+.row button {
+	padding: 5px 12px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background: gray;
+	cursor: pointer;
+}
+
+#listCou {
+	border-collapse: collapse;
+	text-align: center;
+	margin: 30px auto 0;
+}
+
+#listCou .title {
+	background: rgb(1, 175, 255);
+	color: white;
+}
+
+#listCou td {
+	padding: 10px;
+	border-bottom: 1px solid rgb(1, 175, 255);
+}
+
+#updateAll {
+	margin: 0;
+	padding: 5px 12px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background: rgb(1, 175, 255);
+	cursor: pointer;
+}
+
+/* .row .update {
+    padding: 5px 12px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background: rgb(1, 175, 255);
+    cursor: pointer;
+} */
+
+/* STU-update.ejs */
+#updateStu {
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+#updateStu td {
+	padding: 10px 20px;
+}
+
+#updateStuInfo {
+	border-bottom: 1px solid rgb(1, 175, 255);
+}
+
+#enrollments {
+	width: 800px;
+	margin: 30px auto;
+}
+
+#enrollments #list {
+	padding: 5px;
+}
+
+#enrollments button {
+	padding: 5px 13px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background: rgb(1, 175, 255);
+	cursor: pointer;
+}
+
+#enrolls {
+	text-align: center;
+	border-collapse: collapse;
+	margin: 40px auto;
+}
+
+#enrolls .title {
+	background: rgb(1, 175, 255);
+	color: white;
+}
+
+#enrolls td {
+	padding: 10px;
+	border-bottom: 1px solid rgb(1, 175, 255);
+}
+
+/* bottom */
+#bottom {
+	color: rgb(33, 43, 54);
+	background: rgb(234, 237, 240);
+	padding: 40px 0px;
+	margin: 30px auto;
+	text-align: center;
+}
+
+/* * {
+    padding: 0px;
+    margin: 0px;
+} */
+
+/* #middle img {
+    margin: 20px auto;
+} */
+
+/* #books {
+    overflow: hidden;
+} */
+
+/* .box {
+    float: left;
+    width: 200px;
+    height: 300px;
+    margin: 15px;
+    text-align: center;
+} */
+
+/* .buttons {
+    text-align: center;
+} */
+
+/* button {
+    padding: 7px 15px;
+    color: white;
+    background: rgb(98, 168, 48);
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+} */
+
+/* .button {
+    padding: 7px 15px;
+    background: rgb(98, 168, 48);
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+} */
+
+/* .button a {
+    text-decoration: none;
+    color: white;
+} */
+
+/* button:hover {
+    color: black;
+    font-weight: bold;
+    background: beige;
+    cursor: pointer;
+} */
+
+/* button:disabled {
+    display: none;
+} */
+
+/* #info {
+    margin-top: 30px;
+    overflow: hidden;
+} */
+
+/* #left {
+    width: 450px;
+    float: left;
+} */
+
+/* #right {
+    width: 450px;
+    float: left;
+} */
+
+/* hr {
+    margin: 20px 0px;
+} */
+
+/* #insertBook {
+    float: right;
+} */
+
+/* #books .title {
+    color: black;
+    font-weight: bold;
+    background: rgb(230, 230, 200);
+} */
+
+/* table {
+    border-collapse: collapse;
+    margin: 0px auto;
+    margin-top: 30px;
+} */
+/* #login .tdLogin {
+    text-align: center;
+    padding: 30px;
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 6px;
+    width: 460px;
+    // border-radius: 6px;
+} */
+/* td {
+    padding: 10px;
+    border-bottom: 1px solid rgb(230, 230, 200);
+} */
+
+/* tr:hover {
+    color: black;
+    font-weight: bold;
+    background: rgb(230, 230, 200);
+} */
+
+/* table .title {
+    background: rgb(230, 230, 200);
+    color: white;
+} */
+
+/* input[type="text"], input[type="password"] {
+    border: 1px solid rgb(120, 120, 120);
+    padding: 8px;
+    border-radius: 5px;
+} */
+
+/* textarea {
+    border: 1px solid rgb(120, 120, 120);
+    padding: 8px;
+    border-radius: 5px;
+} */

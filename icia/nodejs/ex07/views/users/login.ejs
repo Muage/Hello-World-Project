@@ -1,0 +1,54 @@
+<form name="frm" method="post">
+    <div id="login">
+        <div class="inner">
+            <ul class="listInput">
+                <li><input id="loginId" type="text" name="userid" placeholder="아이디"></li>
+                <li><input id="loginPassword" type="password" name="password" placeholder="비밀번호"></li>
+            </ul>
+        </div>
+        <div id="keepLogin">
+            <input type="checkbox" name="check">로그인상태유지
+        </div>
+        <div>
+            <button>로그인</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(frm).on("submit", function(e) {
+        e.preventDefault();
+        var userid = $(frm.userid).val();
+        var password = $(frm.password).val();
+        var check = $(frm.check).is(":checked") ? 1:0;
+        // alert(check);
+
+        if(userid == "") {
+            alert("아이디를 입력해주세요.")
+            $(frm.userid).focus();
+            return;
+        }
+        if(password == "") {
+            alert("비밀번호를 입력해주세요.")
+            $(frm.password).focus();
+            return;
+        }
+
+        // login check
+        $.ajax({
+            type: "post",
+            url: "/users/login",
+            data: { userid: userid, password: password, check: check },
+            dataType: "json",
+            success: function(data) {
+                if(data.result == 0) {
+                    alert("아이디가 존재하지 않습니다.");
+                } else if(data.result == 2) {
+                    alert("비밀번호가 일치하지 않습니다.");
+                } else {
+                    location.href = "/";
+                }
+            }
+        })
+    })
+</script>

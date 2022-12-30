@@ -1,0 +1,78 @@
+<div>
+    <div id="listTop">
+        <button class="listButton" onclick="location.href='/pro/insert'">학생 등록</button>
+    </div>
+    <div id="listCount">
+        전체 학생수: <span id="count"></span>명
+    </div>
+    <table id="list"></table>
+    <script id="temp" type="text/x-handlebars-template">
+        <tr class="title">
+            <td width="100">학생번호</td>
+            <td width="100">학생이름</td>
+            <td width="100">소속학과</td>
+            <td width="180">생년월일</td>
+            <td width="80">학년</td>
+            <td width="150">지도교수</td>
+            <td width="100">정보수정</td>
+        </tr>
+        {{#each rows}}
+        <tr class="row">
+            <td>{{scode}}</td>
+            <td>{{sname}}</td>
+            <td>{{dept}}</td>
+            <td>{{fbirthday}}</td>
+            <td>{{year}}</td>
+            <td>{{pname}}({{advisor}})</td>
+            <td><button class="listButton" code="{{scode}}">수정</button></td>
+        </tr>
+        {{/each}}
+    </script>
+    <div class="buttons">
+        <button id="prev">이전</button>
+        <span id="page">1/2</span>
+        <button id="next">다음</button>
+    </div>
+</div>
+<script>
+    var page = 1;
+    getList();
+
+    $("#prev").on("click", function() {
+        page--;
+        getList();
+    });
+    $("#next").on("click", function() {
+        page++;
+        getList();
+    })
+
+
+    // 정보수정 버튼 클릭
+    $("#list").on("click", ".row .listButton", function() {
+        var code = $(this).attr("code");
+        location.href = "/stu/update?scode=" + code;
+    });
+
+    function getList() {
+        $.ajax({
+            type: "get",
+            url: "/stu/list.json",
+            dataType: "json",
+            data: { page: page },
+            success: function(data) {
+                var temp = Handlebars.compile($("#temp").html());
+                $("#list").html(temp(data));
+                $("#count").html(data.count);
+                var last = Math.ceil(data.count/5);
+                $("#page").html(page + "/" + last);
+
+                if(page == 1) $("#prev").attr("disabled", true);
+                else $("#prev").attr("disabled", false);
+
+                if(page == last) $("#next").attr("disabled", true);
+                else $("#next").attr("disabled", false);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,295 @@
+<div class="updateMenu">
+    <span id="updateMenuInfo">정보수정</span>
+    <span id="UpdateMenuCourses">담당과목</span>
+</div>
+<div id="courses">
+    <table id="list"></table>
+    <script id="temp" type="text/x-handlebars-template">
+        <tr class="title">
+            <td width="100">강좌번호</td>
+            <td width="300">강좌이름</td>
+            <td width="100">강의시수</td>
+            <td width="100">강의실</td>
+            <td width="100">수강인원</td>
+            <td width="100">학생보기</td>
+        </tr>
+        {{#each .}}
+        <tr class="row">
+            <td class="lcode">{{lcode}}</td>
+            <td class="lname">{{lname}}</td>
+            <td>{{hours}}</td>
+            <td>{{room}}</td>
+            <td>{{capacity}}(<b>{{persons}}</b>)</td>
+            <td><button class="stu">수강학생</button></td>
+        </tr>
+        {{/each}}
+    </script>
+    <table id="listCou"></table>
+    <script id="tempCou" type="text/x-handlebars-template">
+        <tr>
+            <td colspan="6">
+                <h3>
+                    <span id="lname"></span>
+                    (<span id="lcode"></span>)
+                </h3>
+            </td>
+            <td><button id="updateAll">선택수정</button></td>
+        </tr>
+        <tr class="title">
+            <td width="30"><input id="chkAll" type="checkbox"></td>
+            <td width="150">학생번호</td>
+            <td width="100">학생이름</td>
+            <td width="100">학생학과</td>
+            <td width="100">학생학년</td>
+            <td width="150">수강신청일</td>
+            <td width="150">성적</td>
+        </tr>
+        {{#each .}}
+        <tr class="row">
+            <td><input class="chk" type="checkbox"></td>
+            <td class="scode">{{scode}}</td>
+            <td>{{sname}}</td>
+            <td>{{dept}}</td>
+            <td>{{year}}</td>
+            <td>{{fdate}}</td>
+            <td>
+                <input class="grade" type="text" value="{{grade}}" size="3">
+                <button class="update">수정</button>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+</div>
+<form id="updateForm" name="frm" method="post">
+    <table id="insert" width="450">
+        <tr>
+            <td class="insertTableLeft">교수번호</td>
+            <td class="insertTableRight"><input type="text" name="pcode" value = "<%= row.pcode %>"></td>
+        </tr>
+        <tr>
+            <td class="insertTableLeft">교수이름</td>
+            <td class="insertTableRight"><input type="text" name="pname" value = "<%= row.pname %>"></td>
+        </tr>
+        <tr>
+            <td class="insertTableLeft">교수학과</td>
+            <td class="insertTableRight">
+                <select name="dept">
+                    <option value="전자" <%if(row.dept == '전자') {%>selected<%} %>>전자공학과</option>
+                    <option value="전산" <%if(row.dept == '전산') {%>selected<%} %>>컴퓨터공학과</option>
+                    <option value="건축" <%if(row.dept == '건축') {%>selected<%} %>>건축공학과</option>
+                    <option value="통신" <%if(row.dept == '통신') {%>selected<%} %>>컴퓨터통신학과</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="insertTableLeft">임용일자</td>
+            <td class="insertTableRight">
+                <input type="text" name="yy" size="4" maxlength="4" value="<%= row.yy %>">년
+                <input type="text" name="mm" size="2" maxlength="2" value="<%= row.mm %>">월
+                <input type="text" name="dd" size="2" maxlength="2" value="<%= row.dd %>">일
+            </td>
+        </tr>
+        <tr>
+            <td class="insertTableLeft">교수직급</td>
+            <td class="insertTableRight">
+                <input type="radio" name="title" value="정교수" <%if(row.title == '정교수') {%>checked<%} %>>정교수
+                <input type="radio" name="title" value="부교수" <%if(row.title == '부교수') {%>checked<%} %>>부교수
+                <input type="radio" name="title" value="조교수" <%if(row.title == '조교수') {%>checked<%} %>>조교수
+            </td>
+        </tr>
+        <tr>
+            <td class="insertTableLeft" value = "<%= row.salary %>">교수급여</td>
+            <td class="insertTableRight"><input type="text" name="salary"></td>
+        </tr>
+    </table>
+    <div class="buttons">
+        <button type="submit">정보수정</button>
+        <button type="reset">수정취소</button>
+        <button id="updateDelete" type="button">교수삭제</button>
+    </div>
+</form>
+<script>
+    $("#courses").hide();
+    var pcode = "<%= row.pcode %>";
+    var lcode = "";
+
+    // 선택 수정 버튼 클릭
+    $("#listCou").on("click", "#updateAll", function() {
+        var checked = $("#listCou .row .chk:checked").length;
+        if(checked == 0) {
+            alert("수정할 학생을 선택해주세요.");
+            return;
+        }
+        if(!confirm("선택한 학생들의 성적을 수정하시겠습니까?")) return;
+        // 선택 학생 점수 수정
+        $("#listCou .row .chk:checked").each(function() {
+            var row = $(this).parent().parent();
+            var lcode = $("#lcode").html();
+            var scode = row.find(".scode").html();
+            var grade = row.find(".grade").val();
+            
+            $.ajax({
+                type: "post",
+                url: "/cou/enroll_update",
+                data: { lcode: lcode, scode: scode, grade: grade },
+                success:function(){}
+            })
+        });
+        alert("성적 수정이 완료되었습니다.");
+        getList();
+    })
+
+    // 각 행의 체크박스를 클릭
+    $("#listCou").on("click", ".row .chk", function() {
+        var chkAll = $("#listCou .row .chk").length;
+        var checked = $("#listCou .row .chk:checked").length;
+
+        if(chkAll == checked) {
+            $("#chkAll").prop("checked", true);
+        } else {
+            $("#chkAll").prop("checked", false);
+        }
+    })
+
+    // 전체 체크버튼 클릭
+    $("#listCou").on("click", "#chkAll", function() {
+        if($(this).is(":checked")) {
+            $("#listCou .row .chk").each(function() {
+                $(this).prop("checked", true);
+            })
+        } else {
+            $("#listCou .row .chk").each(function() {
+                $(this).prop("checked", false);
+            })
+        }
+    })
+
+    // 성적 수정 버튼 클릭
+    $("#listCou").on("click", ".row .update", function() {
+        var row = $(this).parent().parent();
+        var lcode = $("#lcode").html();
+        var scode = row.find(".scode").html();
+        var grade = row.find(".grade").val();
+        if(!confirm(`${lcode}과목 ${scode} 학생의 성적을 ${grade}점으로 수정하시겠습니까?`)) return;
+        // 성적수정
+        $.ajax({
+            type: "post",
+            url: "/cou/enroll_update",
+            data: { lcode: lcode, scode: scode, grade: grade },
+            success: function() {
+                alert("성적이 수정되었습니다.");
+            }
+        })
+    });
+
+    // 수강학생 버튼 클릭
+    $("#list").on("click", ".row button", function() {
+        var row = $(this).parent().parent();
+        var lcode = row.find(".lcode").html();
+        var lname = row.find(".lname").html();
+        
+        getList();
+        function getList(){
+            $.ajax({
+                type: "get",
+                url: "/cou/stu_list.json",
+                data: { lcode: lcode },
+                dataType: "json",
+                success: function(data) {
+                    var temp = Handlebars.compile($("#tempCou").html());
+                    $("#listCou").html(temp(data));
+                    $("#lname").html(lname);
+                    $("#lcode").html(lcode);
+                }
+            });
+        }
+    });
+
+    // 담당과목 목록 출력
+    $.ajax({
+        type: "get",
+        url: "/pro/courses.json",
+        data: { pcode: pcode },
+        dataType: "json",
+        success: function(data) {
+            var temp = Handlebars.compile($("#temp").html());
+            $("#list").html(temp(data));
+        }
+    })
+
+    $("#updateMenuInfo").on("click", function() {
+        $("#updateForm").show();
+        $("#courses").hide();
+        $(this).css("border", "none");
+        $(this).css("background", "rgb(51, 100, 196)");
+        $(this).css("color", "white");
+
+        $("#UpdateMenuCourses").css("border", "1px solid gray");
+        $("#UpdateMenuCourses").css("background", "none");
+        $("#UpdateMenuCourses").css("color", "rgb(100, 100, 100)");
+    });
+
+    $("#UpdateMenuCourses").on("click", function() {
+        $("#updateForm").hide();
+        $("#courses").show();
+        $(this).css("border", "none");
+        $(this).css("background", "rgb(51, 100, 196)");
+        $(this).css("color", "white");
+
+        $("#updateMenuInfo").css("border", "1px solid gray");
+        $("#updateMenuInfo").css("background", "none");
+        $("#updateMenuInfo").css("color", "rgb(100, 100, 100)");
+    });
+
+    $("#updateDelete").on("click", function() {
+        if(!confirm("해당 교수를 삭제하시겠습니까?")) return;
+        var pcode = $(frm.pcode).val();
+        //교수삭제
+        $.ajax({
+            type: "post",
+            url: "/pro/delete",
+            data: { pcode: pcode },
+            dataType: "json",
+            success: function(data) {
+                if(data.scnt == 0 && data.ccnt == 0) {
+                    alert("해당 교수가 삭제되었습니다.");
+                    location.href='/pro';
+                } else {
+                    alert(`지도학생: ${ data.scnt }, 담당과목: ${ data.ccnt }\n해당 교수를 삭제할 수 없습니다.`);
+                }
+                
+            }
+        })
+    })
+
+    $(frm).on("reset", function() {
+        if(!confirm("수정을 취소하시겠습니까?")) {
+            return;
+        } else {
+            location.href='/pro';
+        }
+
+    })
+
+    $(frm).on("submit", function(e) {
+        e.preventDefault();
+        var pname = $(frm.pname).val();
+        var salary = $(frm.salary).val();
+
+        if(pname == "") {
+            alert("교수이름을 입력해주세요.");
+            $(frm.pname).focus();
+            return;
+        }
+
+        if(salary.replace(/[0-9]/g,'') || salary == "") {
+            alert("교수급여를 숫자로 입력해주세요.");
+            $(frm.salary).focus();
+            $(frm.salary).val("");
+            return;
+        }
+
+        if(!confirm("교수 정보를 수정하시겠습니까?")) return;
+        frm.submit();
+    })
+</script>

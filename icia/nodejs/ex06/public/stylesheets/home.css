@@ -1,0 +1,171 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    width: 960px;
+    margin: 0px auto;
+    font-family: 'NanumSquareRound';
+}
+
+#menu {
+    margin: 30px 0px;
+    border: 50px 0px;
+    text-align: center;
+    /* padding: 50px; */
+}
+
+#menu .item a {
+    text-decoration: none;
+    color: rgb(120, 120, 120);
+    border: 1px solid gray;
+    padding: 10px 30px;
+    margin: 30px;
+    
+    /* font-size: 15px; */
+}
+
+#menu .item a:hover {
+    font-weight: bold;
+    background: rgb(230, 230, 200);
+    color: black;
+}
+
+#middle img {
+    margin: 20px auto;
+}
+
+#bottom {
+    color: rgb(120, 120, 120);
+    padding: 30px 0px;
+    margin: 20px 0px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    /* font-family: 'NanumSquareRoundLight'; */
+}
+
+#books {
+    overflow: hidden;
+}
+
+.box {
+    float: left;
+    width: 200px;
+    height: 300px;
+    margin: 15px;
+    text-align: center;
+}
+
+.buttons {
+    text-align: center;
+}
+
+button {
+    padding: 7px 15px;
+    color: white;
+    background: rgb(98, 168, 48);
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.button {
+    padding: 7px 15px;
+    background: rgb(98, 168, 48);
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.button a {
+    text-decoration: none;
+    color: white;
+}
+
+button:hover {
+    color: black;
+    font-weight: bold;
+    background: beige;
+    cursor: pointer;
+}
+
+button:disabled {
+    display: none;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#info {
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+#left {
+    width: 450px;
+    float: left;
+}
+
+#right {
+    width: 450px;
+    float: left;
+}
+
+hr {
+    margin: 20px 0px;
+}
+
+#insertBook {
+    float: right;
+}
+
+#books .title {
+    color: black;
+    font-weight: bold;
+    background: rgb(230, 230, 200);
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0px auto;
+    margin-top: 30px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid rgb(230, 230, 200);
+}
+
+tr:hover {
+    color: black;
+    font-weight: bold;
+    background: rgb(230, 230, 200);
+}
+
+
+
+/* table .title {
+    background: rgb(230, 230, 200);
+    color: white;
+} */
+
+
+
+input[type="text"], input[type="password"] {
+    border: 1px solid rgb(120, 120, 120);
+    padding: 8px;
+    border-radius: 5px;
+}
+
+textarea {
+    border: 1px solid rgb(120, 120, 120);
+    padding: 8px;
+    border-radius: 5px;
+}

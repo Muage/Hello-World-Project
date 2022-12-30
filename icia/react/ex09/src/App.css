@@ -1,0 +1,41 @@
+@font-face {
+	font-family: 'Roboto';
+	src: url("./font/RobotoCondensed-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SCDream3';
+	src: url("./font/SCDream3.otf") format("opentype");
+}
+
+body {
+	font-family: 'Roboto';
+}
+
+.App {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.menubar a {
+	text-decoration: none;
+	color: white;
+	font-size: 1.5rem;
+	padding: 20px;
+}
+
+.menubar a:hover {
+	color: #999;
+}
+
+.subMenu {
+	padding: 20px;
+}
+
+.subMenu a {
+	text-decoration: none;
+	color: blue;
+	font-size: 1rem;
+	font-weight: 550;
+	padding: 20px;
+}

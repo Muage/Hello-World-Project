@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+        <title>사용자목록</title>
+    </head>
+    <body>
+        <h1>사용자목록</h1>
+        <a href="/users/insert"><button>사용자등록</button></a>
+        <table id="tbl" border="1"></table>
+        <script id="temp" type="text/x-handlebars-template">
+            {{#each .}}
+                <tr class="row">
+                    <td><img src="{{image}}" width="100"></td>
+                    <td><a href="/users/update?id={{id}}">{{id}}</a></td>
+                    <td>{{pass}}</td>
+                    <td>{{name}}</td>
+                    <td>{{image}}</td>
+                    <td><button id="{{id}}">삭제</button></td>
+                </tr>
+            {{/each}}
+        </script>
+    </body>
+    <script>
+        getList();
+
+        $("#tbl").on("click", ".row button", function() {
+            var id = $(this).attr("id");
+            if(!confirm(id + " 사용자를 삭제하시겠습니까?")) return;
+            $.ajax({
+                type: "post",
+                url: "/users/delete",
+                data: { id: id },
+                success: function(data) {
+                    alert("삭제되었습니다.");
+                    getList();
+                }
+            })
+        });
+
+        function getList() {
+            $.ajax({
+                type: "get",
+                url: "/users/list.json",
+                dataType: "json",
+                success: function(data) {
+                    var temp = Handlebars.compile($("#temp").html());
+                    $("#tbl").html(temp(data));
+                }
+            })
+        }
+    </script>
+</html>

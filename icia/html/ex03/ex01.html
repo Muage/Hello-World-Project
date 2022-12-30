@@ -1,0 +1,182 @@
+<html>
+    <head>
+        <title>한빛미디어</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+        <style>
+            * {
+                margin:0px; 
+                padding:0px;
+            }
+
+            body {
+                width:960px;
+                margin: 0px auto;
+            }
+
+            #top {
+                
+            }
+
+            #middle {
+                padding-top: 20px;
+            }
+
+            #bottom {
+                text-align: center;
+                border-top: 3px solid gray;
+                margin-top: 30px;
+                padding-top: 20px;
+            }
+
+            #new, #best {
+                overflow: hidden;
+                margin: 20px 0px;
+            }
+
+            #list {
+                overflow: hidden;
+            }
+
+            #new .box, #best .box {
+                width:150px;
+                height: 200px;
+                float:left;
+                margin-top:10px;
+                margin-right:35px;
+                text-align: center;
+            }
+
+            #list .box {
+                width: 220;
+                height: 270px;
+                float:left;
+                margin-right:15.5px;
+                text-align:center;
+            }
+            .title{
+                font-size: 12px;
+                font-weight: bold;
+                color: green;
+            }
+            .price{
+                font-size: 12px;
+            }
+            #menu span {
+                font-size: 25px;
+                padding-right: 30px;
+                text-align: center;
+            }
+
+            #menu span:hover {
+                color: green;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="top">
+            <img src="ex03/back.png" width="960">
+        </div>
+        <div id="middle">
+            <div id="menu">
+                <span id="btnNew">새로 나온 책</span>
+                <span id="btnBest">베스트 셀러</span>
+            </div>
+            <!-- 새로 나온 책 -->
+            <div id="new"></div>
+            <script id="newTemp" type="text/x-handlebars-template">
+                {{#each .}}
+                    <div class="box">
+                        <img src="{{image}}" width="120" height="165">
+                        <div class="title">{{title}}</div>
+                    </div>
+                {{/each}}
+            </script>
+            
+            <!-- 베스트 셀러 -->
+            <div id="best">
+                <div class="box">
+                    <img src="ex03/파피용.jpg" width="120" height="165">
+                    <div class="title">베스트셀러</div>
+                </div>
+                <div class="box">
+                    <img src="ex03/파피용.jpg" width="120" height="165">
+                    <div class="title">베스트셀러</div>
+                </div>
+                <div class="box">
+                    <img src="ex03/파피용.jpg" width="120" height="165">
+                    <div class="title">베스트셀러</div>
+                </div>
+                <div class="box">
+                    <img src="ex03/파피용.jpg" width="120" height="165">
+                    <div class="title">베스트셀러</div>
+                </div>
+                <div class="box">
+                    <img src="ex03/파피용.jpg" width="120" height="165">
+                    <div class="title">베스트셀러</div>
+                </div>
+            </div>
+            <!-- 도서 목록 -->
+            <div id="list">
+                <script id="listTemp" type="text/x-handlebars-template">
+                    {{#each .}}
+                        <div class="box">
+                            <img src="{{image}}" width="120" height="165">
+                            <div class="title">{{title}}</div>
+                            <div class="price">{{price}}</div>
+                        </div>
+                    {{/each}}
+                </script>
+            </div>
+        </div>
+        <div id="bottom">
+            <h3>Copyright 2022. 인천일보 아카데이 All rights Reseved.</h3>
+        </div>
+    </body>
+    <script>
+        $("#best").hide();
+        $("#btnNew  ").css("border-bottom", "5px solid green");
+
+        // 새로나온책을 클릭한 경우
+        $("#btnNew").on("click", function(){
+            $("#new").show();
+            $("#best").hide();
+            $(this).css("border-bottom", "5px solid green");
+            $("#btnBest").css("border", "none");
+        });
+
+        // 베스트셀러를 클릭한 경우
+        $("#btnBest").on("click", function(){
+            $("#best").show();
+            $("#new").hide();
+            $(this).css("border-bottom", "5px solid green");
+            $("#btnNew").css("border", "none");
+        });
+
+        newData = [
+            {"image": "ex03/파피용.jpg", "title": "파피용"},
+            {"image": "ex03/변론을시작하겠습니다.jpg", "title": "변론을시작하겠습니다"},
+            {"image": "ex03/아몬드.jpg", "title": "아몬드"},
+            {"image": "ex03/완득이.jpg", "title": "완득이"},
+            {"image": "ex03/인간의마음을이해하는수업.jpg", "title": "인간의마음을이해하는수업"},
+        ];
+
+        temp = Handlebars.compile($("#newTemp").html());
+        $("#new").html(temp(newData));
+
+        listData = [
+            {"image": "ex03/상상력사전.jpg", "title": "상상력사전", "price": "15,800원"},
+            {"image": "ex03/나빌레라.jpg", "title": "나빌레라", "price": "12,000원"},
+            {"image": "ex03/포엠툰.jpg", "title": "포엠툰", "price": "12,000원"},
+            {"image": "ex03/살면서쉬웠던날은단하루도없었다.jpg", "title": "살면서쉬웠던날은단하루도없었다", "price": "13,000원"},
+            {"image": "ex03/파페포포안단테.jpg", "title": "파페포포안단테", "price": "9,000원"},
+            {"image": "ex03/파페포포투게더.jpg", "title": "파페포포투게더", "price": "9,000원"},
+            {"image": "ex03/파페포포메모리즈.jpg", "title": "파페포포메모리즈", "price": "7,500원"},
+            {"image": "ex03/가시고기.jpg", "title": "가시고기", "price": "13,500원"}
+        ]
+
+        listTemp = Handlebars.compile($("#listTemp").html());
+        $("#list").html(listTemp(listData));
+    </script>
+</html>

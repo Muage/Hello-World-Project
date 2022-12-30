@@ -1,0 +1,164 @@
+<html>
+    <head>
+        <title>홍길동의 고래사전</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+        <style>
+            * {
+                margin: 0px;
+                padding: 0px;
+            }
+            body {
+                width: 960px;
+                margin: 0px auto;
+            }
+            #bottom {
+                text-align: center;
+                border-top: 1px dotted gray;
+                margin-top: 20px;
+                padding-top: 20px;
+            }
+            #best {
+                width: 960px;
+                overflow: hidden;
+                margin-top: 20px;
+            }
+            #best .box {
+                width: 300px;
+                height: 300px;
+                float: left;
+                border: 1px solid gray;
+                border-radius: 10px;
+            }
+            #best .box:nth-child(2) {
+                margin-left: 25px;
+                margin-right: 25px;
+            }
+            #recent {
+                width: 960px;
+                overflow: hidden;
+                margin-top: 30px;
+            }
+            #recent .box {
+                width: 300px;
+                height: 150px;
+                border: 1px solid gray;
+                float: left;
+                border-radius: 10px;
+                margin-bottom: 10px;
+                overflow: hidden;
+            }
+            #recent .box:nth-child(3n-1) {
+                margin-left: 25px;
+                margin-right: 25px;
+            }
+            .box {
+                text-align: center;
+                /* padding-top: 10px; */
+            }
+            .title {
+                font-size: 15px;
+                font-weight: bold;
+            }
+            #recent .box .image {
+                width: 150px;
+                float: left;
+            }
+            #recent .box .info {
+                width: 150px;
+                float: right;
+                text-align: left;
+                margin-top: 15px;
+            }
+            img {
+                margin-top: 15px;
+                border-radius: 10px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="top">
+            <img src="https://via.placeholder.com/960x200" alt="placeholder">
+        </div>
+        <div id="middle">
+            <div id="best"></div>
+            <script id="temp" type="text/x-handlebars-template">
+                {{#each .}}
+                    <div class="box">
+                        <img src="{{image}}" width="250">
+                        <div class="title">{{title}}</div>
+                    </div>
+                {{/each}}
+            </script>
+            <!-- 최근 상품 목록 -->
+            <div id="recent">
+                <div class="box">
+                    <script id="tempRecent" type="text/x-handlebars-template">
+                        {{#each .}}
+                            <div class="box">
+                                <div class="image">
+                                    <img src="{{image}}" width="100">
+                                </div>
+                                <div class="info">
+                                    <div class="title">{{title}}</div>
+                                    <div class="type">{{type}}</div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div id="bottom">
+            <h3>Copyright 2022. 인천일보 아카데미. All right reserved</h3>
+        </div>
+    </body>
+    <script>
+        //JSON 데이터
+        var bestData = [
+            {"image" : "../ex01/고래.jpg",
+             "title" : "고래(Whale)"},
+            {"image" : "../ex01/상어.jpg",
+             "title" : "상어(Shark)"},
+            {"image" : "../ex01/돌고래.jpg",
+             "title" : "돌고래(Dolphin)"}
+        ];
+
+        var temp = Handlebars.compile($("#temp").html());
+        $("#best").html(temp(bestData));
+
+        var recentData = [
+            {"image" : "../ex01/향유고래.jpg",
+             "title" : "향유고래",
+             "type" : "Sperm whale"},
+             {"image" : "../ex01/고래상어.jpg",
+             "title" : "고래상어",
+             "type" : "Whale shark"},
+             {"image" : "../ex01/범고래.jpg",
+             "title" : "범고래",
+             "type" : "Killer whale"},
+            {"image" : "../ex01/혹등고래.jpg",
+             "title" : "혹등고래",
+             "type" : "Humpback whale"},
+             {"image" : "../ex01/귀상어.jpg",
+             "title" : "귀상어",
+             "type" : "Hammerhead shark"},
+             {"image" : "../ex01/참돌고래.jpg",
+             "title" : "참돌고래",
+             "type" : "Common dolphin"},
+            {"image" : "../ex01/흰수염고래.jpg",
+             "title" : "흰수염고래",
+             "type" : "Blue whale"},
+            {"image" : "../ex01/철갑상어.jpg",
+             "title" : "철갑상어",
+             "type" : "Sturgeon"},
+            {"image" : "../ex01/흰돌고래.jpg",
+             "title" : "흰돌고래",
+             "type" : "Beluga whale"},
+        ];
+
+        var tempRecent = Handlebars.compile($("#tempRecent").html());
+        $("#recent").html(tempRecent(recentData));
+    </script>
+</html>

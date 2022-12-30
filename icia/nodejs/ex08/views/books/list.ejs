@@ -1,0 +1,90 @@
+<style>
+    .review{
+        cursor: pointer;
+        color: blue;
+    }
+    .reviews {
+        display: none;
+        margin: 10px 0;
+    }
+    .row {
+        margin: 10px 0;
+        padding: 10px 0;
+    }
+</style>
+<div id="books"></div>
+<script id="temp" type="text/x-handlebars-template">
+    {{#each .}}
+    <div class="row">
+        <span>{{code}} : {{title}}</span>
+        <span class="review" code="{{code}}">리뷰보기</span>
+        <hr>
+        <div class="reviews"></div>
+    </div>
+    {{/each}}
+</script>
+<script id="tempReview" type="text/x-handlebars-template">
+    <h2>리뷰</h2>
+    {{#each .}}
+    <div class="box">
+        <div>{{userid}} | {{fdate}}</div>
+        <p>{{id}} {{text}}</p>
+        <span class="del" rid="{{id}}" code = "{{code}}">삭제</span>
+    </div>
+    {{/each}}
+</script>
+<script>
+    getBooks();
+
+    $("#books").on("click", ".del", function() {
+        var id = $(this).attr("rid");
+        var code = $(this).attr("code");
+        if(!confirm("해당 리뷰를 삭제하시겠습니까?")) return;
+        // 리뷰삭제
+        $.ajax({
+            type: "post",
+            url: "/books/review/delete",
+            data: { id: id },
+            success:function() {
+                alert("해당 리뷰가 삭제되었습니다.");
+                getReview(code);
+            }
+        })
+    })
+
+    $("#books").on("click", ".row .review", function() {
+        $("#books .reviews").each(function() {
+            $(this).hide();
+        })
+        var row = $(this).parent();
+        row.find(".reviews").show();
+        var code = $(this).attr("code");
+        getReview(code);
+    })
+
+    function getBooks() {
+        $.ajax({
+            type: "get",
+            url: "/books/list.json",
+            dataType: "json",
+            success: function(data) {
+                var temp = Handlebars.compile($("#temp").html());
+                $("#books").html(temp(data));
+            }
+        })
+    }
+
+    // 리뷰목록출력
+    function getReview(code) {
+        $.ajax({
+            type: "get",
+            url: "/books/review.json",
+            data: { code: code },
+            dataType: "json",
+            success: function(data) {
+                var temp = Handlebars.compile($("#tempReview").html());
+                $(".reviews").html(temp(data));
+            }
+        })
+    }
+</script>

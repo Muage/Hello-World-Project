@@ -1,0 +1,46 @@
+<form name="frm" method="post" enctype="multipart/form-data">
+    <table id="insert">
+        <tr>
+            <td><input type="text" name="title" size="80" placeholder="도서제목"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="price" size="80" placeholder="가격"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="userid" value="<%= userid %>"></td>
+        </tr>
+        <tr>
+            <td>
+                <img src="https://via.placeholder.com/200x230">
+                <br>
+                <input type="file" name="image">
+            </td>
+        </tr>
+    </table>
+    <div class="buttons">
+        <button type="submit">도서등록</button>
+        <button type="reset">등록취소</button>
+    </div>
+</form>
+<script>
+    $(frm).on("submit", function(e) {
+        e.preventDefault();
+        if(!confirm("등록하시겠습니까?")) return;
+
+        // 등록
+        frm.submit();
+    })
+
+    // 이미지 미리보기
+    $(frm.image).on("change", function(e) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $("#image").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+
+    $("#image").on("click", function() {
+        $(frm.image).click();
+    })
+</script>
