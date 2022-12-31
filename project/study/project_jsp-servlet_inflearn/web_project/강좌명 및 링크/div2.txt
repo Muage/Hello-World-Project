@@ -1,0 +1,14 @@
+[C#과 유니티로 만드는 MMORPG 게임 개발 시리즈] Part1: C# 기초 프로그래밍 입문
+: https://www.inflearn.com/course/%EC%9C%A0%EB%8B%88%ED%8B%B0-MMORPG-%EA%B0%9C%EB%B0%9C-part1
+
+일주일 완성! 3dsmax 입문 (자동차 및 캐릭터 만들기)
+: https://www.inflearn.com/course/%EC%9D%BC%EC%A3%BC%EC%9D%BC%EC%99%84%EC%84%B1-3dsmax-%EC%9E%85%EB%AC%B8
+
+제대로 파는 Git & GitHub - by 얄코
+: https://www.inflearn.com/course/%EC%A0%9C%EB%8C%80%EB%A1%9C-%ED%8C%8C%EB%8A%94-%EA%B9%83
+
+실제 이력서 사례로 알아보는 [합격하는 이력서] 작성 가이드
+: https://www.inflearn.com/course/%ED%95%A9%EA%B2%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EB%A0%A5%EC%84%9C-%EC%9E%91%EC%84%B1-%EA%B0%80%EC%9D%B4%EB%93%9C
+
+Flutter 앱 개발 완성
+: https://www.inflearn.com/course/%ED%94%8C%EB%9F%AC%ED%84%B0-%EC%95%B1%EA%B0%9C%EB%B0%9C-%EC%99%84%EC%84%B1

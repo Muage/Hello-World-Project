@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face { font-family: 'font'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff'); font-weight: normal; font-style: normal; }
+        h1 {
+            font-family: 'font', sans-serif;
+            font-size: 25px;
+        }
+        html {
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            height: 50px;
+            border: 2px solid black;
+            padding-left: 10px;
+        }
+        #id_ {
+            font-size: 20px;
+        }
+        #pass_ {
+            font-size: 20px;
+        }
+        #submit {
+            width: 200px;
+            height: 75px;
+            background-color: green;
+            color: white;
+            font-size: 30px;
+            font-family: 'font', sans-serif;
+            transition-duration: 0.5s;
+            cursor: pointer;
+        }
+        #submit:hover {
+            background-color:lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 4em;">로그인 폼 예시</h1>
+
+    <h1>아이디</h1>
+
+    <form id="idform">
+        <input type="id" name="id" id="id_" placeholder="아이디를 입력해주세요...">
+    </form>
+
+    <h1>패스워드</h1>
+
+    <form id="passform">
+        <input type="password" name="pass" id="pass_" placeholder="비밀번호를 입력해주세요...">
+    </form>
+    <br>
+    <br>
+
+    <button id="submit">로그인</button>
+
+    <!--JAVASCRIPT START-->
+    <script> //JS
+        document.getElementById('submit').onclick = function() {
+            var ID = document.getElementById('id_').value;
+            var pass = document.getElementById('pass_').value;
+            if (ID === "1234" && pass === "1234") {
+                alert("로그인 성공!");
+            }
+            else {
+                alert("로그인 실패!");
+            }
+        }
+    </script>
+</body>
+</html>

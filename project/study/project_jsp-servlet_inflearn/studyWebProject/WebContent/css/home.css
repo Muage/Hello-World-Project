@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+body {
+	width: 960px;
+	margin: 0px auto;
+}
+
+#top {
+	margin-top: 20px;
+	text-align: center;
+}
+
+#menu {
+	margin: 30px 0;
+}
+
+#menu h2 {
+	padding: 20px;
+	background: #E2E2E2;
+}
+
+.item a {
+	text-decoration: none;
+	color: gray;
+	padding: 10px;
+	margin: 10px;
+	/* font-size: 15px; */
+}
+
+.item a:hover {
+	font-weight: bold;
+	border-bottom: 1px solid black;
+	color: black;
+}
+
+.right {
+	float: right;
+}
+
+#own {
+	overflow: hidden;
+}
+
+.box {
+	float: left;
+	margin: 20px;
+	height: 300px;
+}
+
+.title {
+	width: 280px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.buttons {
+	text-align: center;
+}
+
+.buttons button {
+	margin: 20px 5px;
+}
+
+.buttons button:disabled {
+	visibility: hidden;
+}
+
+#bottom {
+	background: #E2E2E2;
+	margin-top: 50px;
+	padding: 40px 0px;
+	text-align: center;
+}
+
+
+button {
+	padding: 5px 12px;
+	border: none;
+	border-radius: 3px;
+	background: gray;
+	color: white;
+	cursor: pointer;
+}
+
+select {
+	padding: 5px 10px;
+	border-radius: 3px;
+	border: 1px solid gray;
+}
+
+input[type="text"] {
+	padding: 5px 10px;
+	border-radius: 3px;
+	border: 1px solid gray;
+}
+
+/* login */
+#login {
+	text-align: center;
+	margin-top: 50px;
+}
+
+#login li {
+	list-style: none;
+}
+
+#login input {
+	padding: 20px 150px 20px 30px;
+	border: 1px solid #E2E2E2;
+}
+
+#login input:focus {
+	outline: 1px solid gray;
+}
+
+.listInput {
+	padding: 0;
+}
+
+#loginId {
+	border-radius: 6px 6px 0 0;
+}
+
+#loginPassword {
+	border-radius: 0 0 6px 6px;
+}
+
+#loginId:focus {
+	border: 1px solid gray;
+}
+
+#keepLogin {
+	width: 350px;
+	text-align: left;
+	margin: 30px auto;
+}
+
+#login button {
+	padding: 15px 150px;
+	color: white;
+	background: gray;
+	border: none;
+	border-radius: 5px;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+#login a {
+	text-decoration: none;
+	color: white;
+}
+
+#sort {
+	margin: 70px 10px 0;
+}
