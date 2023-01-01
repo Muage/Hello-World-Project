@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.StoreMapper">
+	
+	<select id="newCode" resultType="String">
+		select concat('s', max((substr(s_code, 2)) + 1)) as new_code
+		from tbl_store;
+	</select>
+
+	<insert id="insert">
+		insert into tbl_store(s_code, s_name, s_admin, s_location, s_rating, s_status, s_order,s_waiting, s_tel, s_c_code, s_photo)
+		values(#{s_code}, #{s_name}, #{s_admin}, #{s_location}, #{s_rating}, #{s_status}, #{s_order}, #{s_waiting}, #{s_tel}, #{s_c_code}, #{s_photo})
+	</insert>
+	
+	<select id="list" resultType="com.example.domain.StoreVO">
+		select s.*, c.c_type
+		from tbl_store s, tbl_category c
+		where s.s_c_code = c.c_code
+		limit 0, 5
+	</select>
+	
+	<select id="clist" resultType="com.example.domain.StoreVO">
+		select *
+		from tbl_store
+		where s_c_code = #{s_c_code}
+	</select>
+
+	<select id="read" resultType="com.example.domain.StoreVO">
+		select *
+		from tbl_store
+		where s_code = #{s_code}
+	</select>
+	
+	<select id="storeread" resultType="com.example.domain.StoreVO">
+ 	 	select *
+		from tbl_store
+		where u_id = #{u_id}
+ 	 </select>
+ 	 
+ 	 <select id="search" resultType="Hashmap">
+		select s.*, m.m_name
+		from tbl_store s, tbl_menu m
+		where s.s_code = m.s_code and (s.s_name like concat('%', #{query}, '%') or m.m_name like concat('%', #{query}, '%'))
+		group by s.s_code
+	</select>
+	
+	<update id="update">
+		update tbl_store
+		set s_c_code = #{s_c_code}, s_name = #{s_name}, s_location = #{s_location}, s_tel = #{s_tel}, s_admin = #{s_admin}, s_photo = #{s_photo}
+		where s_code = #{s_code}
+	</update>
+	
+	<update id="updateBtn">
+ 	 	update tbl_store
+ 	 	set s_status = not(s_status)
+ 	 	where s_code = #{s_code}
+ 	 </update>
+ 	 
+ 	 <update id="update_waiting">
+		update tbl_store
+		set s_waiting = (
+			select count(*)
+			from tbl_post
+			where s_code = #{s_code}
+		)
+		where s_code = #{s_code}
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_store
+		where s_code = #{s_code}
+	</delete>
+	
+</mapper>

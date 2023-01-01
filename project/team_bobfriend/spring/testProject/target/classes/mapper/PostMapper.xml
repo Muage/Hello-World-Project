@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.PostMapper">
+
+	<!-- 게시글 작성-->
+	<insert id="insert">
+		insert into tbl_post(c_code, s_code, u_code, p_title, p_content, p_date, p_headcount, p_status)
+		values(#{c_code}, #{s_code}, #{u_code}, #{p_title}, #{p_content}, #{p_date}, #{p_headcount}, #{p_status})
+	</insert>
+
+	<!-- 특정 가계의 게시글 리스트-->
+	<select id="list" resultType="com.example.domain.PostVO">
+		select *
+		from tbl_post
+		where s_code = #{s_code}
+ 	</select>
+ 	
+	<!--게시글의 c_code 가져오기-->
+	<select id="get_c_code" resultType="int">
+		select c_code
+		from tbl_post
+		where p_code = #{p_code}
+	</select>
+	
+	<!--특정 게시글 삭제-->
+	<delete id="delete">
+		delete from tbl_post
+		where p_code = #{p_code}
+	</delete>
+ 	
+</mapper>
