@@ -1,0 +1,17 @@
+/*변경사항*/
+/*
+
+1. 가게 삭제 테이블 제거
+
+2. 가게테이블에 u_id, u_pass column 생성
+alter table tbl_store add column u_id varchar(20) not null,
+alter table tbl_store add column u_pass varchar(20) not null
+
+3. tbl_report, review 테이블 r_date 수정
+alter table tbl_report change column r_date report_date  datetime default now();
+alter table tbl_review change column r_date review_date  datetime default now();
+
+4. tbl_menu m_code 추가
+alter table tbl_menu add column m_code int;
+
+*/
