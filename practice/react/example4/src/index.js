@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AttendanceBook from './list/AttendanceBook';
+import SignUp from './form/SignUp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AttendanceBook />
+    <SignUp />
   </React.StrictMode>
 );
 
