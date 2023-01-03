@@ -4,12 +4,14 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import AttendanceBook from './list/AttendanceBook';
 import SignUp from './form/SignUp';
+import Calculator from './shared_state/Calculator';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AttendanceBook />
     <SignUp />
+    <Calculator />
   </React.StrictMode>
 );
 
