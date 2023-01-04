@@ -4,12 +4,14 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import ProfileCard from './composition/ProfileCard';
 import DarkOrLight from './context/DarkOrLight';
+import Blocks from './styling/Blocks';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ProfileCard />
     <DarkOrLight />
+    <Blocks />
   </React.StrictMode>
 );
 
