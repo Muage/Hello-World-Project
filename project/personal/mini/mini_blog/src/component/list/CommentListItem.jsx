@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
     width: calc(100% - 32px);
@@ -29,7 +30,7 @@ function CommentListItem(props) {
             <ContentText>{comment.content}</ContentText>
         </Wrapper>
     );
-    
+
 }
 
 export default CommentListItem;
