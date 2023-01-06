@@ -38,4 +38,7 @@ html, body {
     transition: all .35s;
 }
 
-.active {}
+.active {
+    display: block;
+    height: 100%;
+}
