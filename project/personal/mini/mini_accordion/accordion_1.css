@@ -1,0 +1,41 @@
+html, body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.panel-faq-container {
+    margin-bottom: -16px;
+}
+
+.panel-faq-title {
+    color: green;
+    cursor: pointer;
+}
+
+.panel-faq-answer {
+    /** 방법 1 **/
+    /* padding: 15px; */
+    /* display: none; */
+
+    /** 방법 2 **/
+    height: 0;
+    overflow: hidden;
+}
+
+#btn-all-close {
+    margin-bottom: 10px;
+    background-color: forestgreen;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    padding: 10px 25px;
+    float: right;
+}
+
+#btn-all-close:hover {
+    background-color: green;
+    color: #FFF;
+    transition: all .35s;
+}
+
+.active {}
