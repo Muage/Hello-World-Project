@@ -1,6 +1,5 @@
 package backjoonProblem;
 
-import java.util.Arrays;
 
 // 문제 ( 함수 )
 // 셀프 넘버는 1949년 인도 수학자 D.R. Kaprekar가 이름 붙였다.
