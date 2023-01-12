@@ -45,41 +45,22 @@ package backjoonProblem;
 public class Problem04673 {
 	
 	public static void main(String[] args) {
-//		int a = 1234;
-//		String b = Integer.toString(a);
-//		int[] c = new int[b.length()];
-//		System.out.println(b.length());
-//		for(int i = 0; i < b.length(); i++) {
-//			c[i] = b.charAt(i) - '0';
-//		}
-//		System.out.println(Arrays.toString(c));
-		
 		boolean[] selfNo = new boolean[10001];
 		
 		for(int i = 1; i < 10001; i++) {
-			int num = 0;
+			int num = i;
 			String temp = Integer.toString(i);
 			int[] tempArr = new int[temp.length()];
-			
 			for(int j = 0; j < temp.length(); j++) {
 				tempArr[j] = temp.charAt(j) - '0';
 				num += tempArr[j];
 			}
-//			selfNo[i] = true;
+			if(num < 10001) selfNo[num] = true;
 		}
 		
-//		for(int i = 1; i < 10001; i++) {
-//			if(selfNo[i] == true) System.out.println(i);
-//		}
+		for(int i = 1; i < 10001; i++) {
+			if(selfNo[i] == false) System.out.println(i);
+		}
 	}
-	
-//	static int selfNo(int x) {
-//		String ans = Integer.toString(x);
-//		
-//		for(int i = 0; i < ans.length(); i++) {
-//			x += Integer.parseInt(ans.substring(i, i + 1));
-//		}
-//		return x;
-//	}
 	
 }
