@@ -31,37 +31,32 @@ public class Problem01157 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		
-		int[] alphabet = new int[52];
-		for(int i = 0; i < 52; i++) {
-			alphabet[i] = 0;
-		}
+		int[] alphabet = new int[26];
 		
 		String word = scanner.next();
 		for(int i = 0; i < word.length(); i++) {
-			if(word.charAt(i) > 90) {
-				int ascii = Integer.valueOf(word.charAt(i) - 'a' + 26);
-				alphabet[ascii] += 1;
-			}
-			
-			if(word.charAt(i) < 90) {
-				int ascii = Integer.valueOf(word.charAt(i) - 'A');
-				alphabet[ascii] += 1;
+			int ascii = 0;
+			if(word.charAt(i) >= 'a') {
+				ascii = Integer.valueOf(word.charAt(i) - 'a');
+				alphabet[ascii]++;
+			} else if(word.charAt(i) >= 'A') {
+				ascii = Integer.valueOf(word.charAt(i) - 'A');
+				alphabet[ascii]++;
 			}
 		}
 		
-		for(int i = 0; i < 52; i++) {
-			int max = 0;
+		int max = 0;
+		char result = 0;
+		for(int i = 0; i < 26; i++) {
 			if(alphabet[i] > max) {
 				max = alphabet[i];
-				if(alphabet[i] > 25) {
-					System.out.println((char)alphabet[i] + 'a' + 26);
-				} else {
-					System.out.println((char)alphabet[i] + 'A');
-				}
+				result = (char)(i + 'A');
 			} else if(alphabet[i] == max) {
-				System.out.println("?");
+				result = '?';
 			}
 		}
+		
+		System.out.println(result);
 		
 		scanner.close();
 	}
