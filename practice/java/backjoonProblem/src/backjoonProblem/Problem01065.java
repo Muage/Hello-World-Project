@@ -41,7 +41,7 @@ public class Problem01065 {
 		
 		if(n < 100) {
 			count = n;
-		} else if(n > 100) {
+		} else if(n >= 100) {
 			count = 99;
 			for(int i = 100; i < n + 1; i++) {
 				String temp = Integer.toString(i);
