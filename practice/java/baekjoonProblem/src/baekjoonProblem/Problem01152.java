@@ -32,19 +32,11 @@ public class Problem01152 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		
-		int count = 0;
-		String sentence = scanner.next();
-		char[] arrSentence = new char[sentence.length()];
+		String sentence = scanner.nextLine();
 		
-		for(int i = 0; i < sentence.length(); i++) {
-			arrSentence[i] = sentence.charAt(i);
-			
-			if(arrSentence[i] == ' ') count++;
-		}
+		StringTokenizer st = new StringTokenizer(sentence, " ");
 		
-		System.out.println(sentence.length());
-		System.out.println(Arrays.toString(arrSentence));
-		System.out.println(count);
+		System.out.println(st.countTokens());
 		
 		scanner.close();
 	}
