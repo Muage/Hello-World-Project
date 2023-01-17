@@ -52,10 +52,40 @@ public class Problem02941 {
 		String word = scanner.nextLine();
 		
 		for(int i = 0; i < word.length(); i++) {
-			if(word.charAt(i) == 'c') {
-				if(word.charAt(i + 1) == '=' || word.charAt(i + 1) == '-') count = 0;
+			if(word.charAt(i) == 'c' & word.charAt(i + 1) == '=') {
+				count++;
+			} else if(word.charAt(i) == 'c' & word.charAt(i + 1) == '-') {
+				count++;
+			} else if(word.charAt(i) == 'd') {
+				if(word.charAt(i + 1) == 'z') {
+					if(word.charAt(i + 2) == '=') {
+						count++;
+					}
+				} else if(word.charAt(i + 1) == '-') {
+					count++;
+				}
+			} else if(word.charAt(i) == 'l') {
+				if(word.charAt(i + 1) == 'j') {
+					count++;
+				}
+			} else if(word.charAt(i) == 'n') {
+				if(word.charAt(i + 1) == 'j') {
+					count++;
+				}
+			} else if(word.charAt(i) == 's') {
+				if(word.charAt(i + 1) == '=') {
+					count++;
+				}
+			} else if(word.charAt(i) == 'z') {
+				if(word.charAt(i + 1) == '=') {
+					count++;
+				}
 			}
+			
+			count++;
 		}
+		
+		System.out.println(count);
 		
 		scanner.close();
 	}
