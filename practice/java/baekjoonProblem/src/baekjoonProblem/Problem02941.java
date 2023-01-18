@@ -1,6 +1,6 @@
 package baekjoonProblem;
 
-import java.io.*;
+import java.util.*;
 
 // 문제
 // 예전에는 운영체제에서 크로아티아 알파벳을 입력할 수가 없었다.
@@ -46,29 +46,20 @@ import java.io.*;
 public class Problem02941 {
 	
 	public static void main(String[] args) throws Exception {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		Scanner scanner = new Scanner(System.in);
 		
-		String word = reader.readLine();
-		int count = word.length();
+		String word = scanner.nextLine();
+		String[] alphabet = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
 		
-		for(int i = 0; i < word.length(); i++) {
-			if(word.charAt(i) == '=' && (word.charAt(i - 1) == 'c' || word.charAt(i - 1) == 's' || word.charAt(i - 1) == 'z')) {
-				if(word.charAt(i - 1) == 'z' && word.charAt(i - 2) == 'd') {
-					count--;
-				}
-				count--;
-			} else if(word.charAt(i) == '-') {
-				if(word.charAt(i - 1) == 'c' || word.charAt(i - 1) == 'd') {
-					count--;
-				}
-			} else if(word.charAt(i) == 'j') {
-				if(word.charAt(i - 1) == 'l' || word.charAt(i - 1) == 'n') {
-					count--;
-				}
+		for(int i = 0; i < alphabet.length; i++) {
+			if(word.contains(alphabet[i])) {	// contains: 문자열 포함 여부 확인
+				word = word.replace(alphabet[i], "|");
 			}
 		}
 		
-		System.out.println(count);
+		System.out.println(word.length());
+		
+		scanner.close();
 	}
 
 }
