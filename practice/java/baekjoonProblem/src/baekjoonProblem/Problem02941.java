@@ -1,6 +1,6 @@
 package baekjoonProblem;
 
-import java.util.*;
+import java.io.*;
 
 // 문제
 // 예전에는 운영체제에서 크로아티아 알파벳을 입력할 수가 없었다.
@@ -45,49 +45,30 @@ import java.util.*;
 
 public class Problem02941 {
 	
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+	public static void main(String[] args) throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
-		int count = 0;
-		String word = scanner.nextLine();
+		String word = reader.readLine();
+		int count = word.length();
 		
 		for(int i = 0; i < word.length(); i++) {
-			if(word.charAt(i) == 'c' & word.charAt(i + 1) == '=') {
-				count++;
-			} else if(word.charAt(i) == 'c' & word.charAt(i + 1) == '-') {
-				count++;
-			} else if(word.charAt(i) == 'd') {
-				if(word.charAt(i + 1) == 'z') {
-					if(word.charAt(i + 2) == '=') {
-						count++;
-					}
-				} else if(word.charAt(i + 1) == '-') {
-					count++;
+			if(word.charAt(i) == '=' && (word.charAt(i - 1) == 'c' || word.charAt(i - 1) == 's' || word.charAt(i - 1) == 'z')) {
+				if(word.charAt(i - 1) == 'z' && word.charAt(i - 2) == 'd') {
+					count--;
 				}
-			} else if(word.charAt(i) == 'l') {
-				if(word.charAt(i + 1) == 'j') {
-					count++;
+				count--;
+			} else if(word.charAt(i) == '-') {
+				if(word.charAt(i - 1) == 'c' || word.charAt(i - 1) == 'd') {
+					count--;
 				}
-			} else if(word.charAt(i) == 'n') {
-				if(word.charAt(i + 1) == 'j') {
-					count++;
-				}
-			} else if(word.charAt(i) == 's') {
-				if(word.charAt(i + 1) == '=') {
-					count++;
-				}
-			} else if(word.charAt(i) == 'z') {
-				if(word.charAt(i + 1) == '=') {
-					count++;
+			} else if(word.charAt(i) == 'j') {
+				if(word.charAt(i - 1) == 'l' || word.charAt(i - 1) == 'n') {
+					count--;
 				}
 			}
-			
-			count++;
 		}
 		
 		System.out.println(count);
-		
-		scanner.close();
 	}
 
 }
