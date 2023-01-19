@@ -35,6 +35,18 @@ public class Problem01712 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		
+		int fix = scanner.nextInt();
+		int variable = scanner.nextInt();
+		int price = scanner.nextInt();
+		int quantity = 0;
+		
+		if(variable < price) {
+			quantity = (fix / (price - variable)) + 1;
+		} else {
+			quantity = -1;
+		}
+		
+		System.out.println(quantity);
 		
 		scanner.close();
 	}
