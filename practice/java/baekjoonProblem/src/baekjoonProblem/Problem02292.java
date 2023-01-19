@@ -1,5 +1,7 @@
 package baekjoonProblem;
 
+import java.util.*;
+
 // 문제  ( 기본 수학 1 단계 )
 // 위의 그림과 같이 육각형으로 이루어진 벌집이 있다.
 // 그림에서 보는 바와 같이 중앙의 방 1부터 시작해서 이웃하는 방에 돌아가면서 1씩 증가하는 번호를 주소로 매길 수 있다.
@@ -21,7 +23,23 @@ package baekjoonProblem;
 public class Problem02292 {
 	
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
 		
+		int n = scanner.nextInt();
+		int count = 1;
+		int range = 2;
+		
+		if(n == 1) {
+			System.out.println(1);
+		} else {
+			while(range <= n) {
+				range = range + (count * 6);
+				count++;
+			}
+			System.out.println(count);
+		}
+		
+		scanner.close();
 	}
 
 }
