@@ -1,5 +1,7 @@
 package baekjoonProblem;
 
+import java.util.*;
+
 // 문제  ( 기본 수학 1 단계 )
 // 무한히 큰 배열에 다음과 같이 분수들이 적혀있다.
 // 1/1	1/2	1/3	1/4	1/5	…
@@ -42,5 +44,28 @@ package baekjoonProblem;
 // (10) 2/4
 
 public class Problem01193 {
+	
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		int x = scanner.nextInt();
+		int count = 0;
+		int n = 0;
+		
+		while(true) {
+			n++;
+			count = n * (n + 1) / 2;
+			if(count >= x) {
+				if(n % 2 == 0) {
+					System.out.println((x - count + n) + "/" + (count - x + 1));
+				} else {
+					System.out.println((count - x + 1) + "/" + (x - count + n));
+				}
+				break;
+			}
+		}
+		
+		scanner.close();
+	}
 
 }
