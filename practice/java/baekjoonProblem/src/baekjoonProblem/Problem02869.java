@@ -1,5 +1,7 @@
 package baekjoonProblem;
 
+import java.util.*;
+
 // 문제  ( 기본 수학 1 단계 )
 // 땅 위에 달팽이가 있다.
 // 이 달팽이는 높이가 V미터인 나무 막대를 올라갈 것이다.
@@ -26,5 +28,23 @@ package baekjoonProblem;
 // (3)	999999901
 
 public class Problem02869 {
+	
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		int a = scanner.nextInt();
+		int b = scanner.nextInt();
+		int v = scanner.nextInt();
+		
+		int day = (v - b) / (a - b);
+		
+		if((v - b) % (a - b) != 0) {
+			day++;
+		}
+		
+		System.out.println(day);
+		
+		scanner.close();
+	}
 
 }
