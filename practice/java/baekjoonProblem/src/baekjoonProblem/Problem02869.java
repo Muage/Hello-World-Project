@@ -1,5 +1,6 @@
 package baekjoonProblem;
 
+import java.io.*;
 import java.util.*;
 
 // 문제  ( 기본 수학 1 단계 )
@@ -29,12 +30,13 @@ import java.util.*;
 
 public class Problem02869 {
 	
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+	public static void main(String[] args) throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(reader.readLine(), " ");
 		
-		int a = scanner.nextInt();
-		int b = scanner.nextInt();
-		int v = scanner.nextInt();
+		int a = Integer.valueOf(st.nextToken());
+		int b = Integer.valueOf(st.nextToken());
+		int v = Integer.valueOf(st.nextToken());
 		
 		int day = (v - b) / (a - b);
 		
@@ -43,8 +45,6 @@ public class Problem02869 {
 		}
 		
 		System.out.println(day);
-		
-		scanner.close();
 	}
 
 }
