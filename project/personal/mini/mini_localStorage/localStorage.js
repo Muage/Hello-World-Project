@@ -185,6 +185,23 @@ window.onload = () => {
         
         const newText3 = document.createTextNode('영화보기');
         newCell3.appendChild(newText3);
+
+        /* 테이블 Row 구하기 */
+        const myTable = document.getElementById('myTable');
+        // console.log(myTable.rows.length - 1);   // thead가 있으므로 보통 순수 tbody쪽의 row만 알기 위해 -1
+        // console.log(myTable.rows[0]);           // thead
+        // console.log(myTable.rows[1]);           // tbody의 first row
+
+        /* Cell 개수 구하기 */
+        const cntRow = myTable.rows.length - 1;
+        const cntCell = myTable.rows[cntRow].cells.length;  // 해당 row의 cell의 개수
+        console.log(cntCell);
+        console.log("테이블 row 수: " + cntRow);
+
+        /* 반복문 순회하면서 각 Cell의 정보값 setting */
+        for(let i = 0; i < cntCell; i++) {
+            htmlTbody.rows[cntRow - 1].cells[i].innerHTML = `Data [${cntRow - 1}][${i}]`;
+        }
     });
 
 }
