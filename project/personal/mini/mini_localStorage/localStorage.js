@@ -51,6 +51,7 @@ window.onload = () => {
     });
 
 
+
     /* localStorage Data All View  버튼 */
     const btnAllView = document.querySelector('.btnAllView');
     // console.log(btnAllView);
@@ -148,6 +149,42 @@ window.onload = () => {
         /* append 붙이기 */
         $('#html-tbody').empty();
         $('#html-tbody').append(result);
+    });
+
+
+    /* 테이블의 열과 줄을 동적으로 생성하여 삽입하기 */
+    /* 버튼 가져오기 */
+    const btnCreate = document.querySelector('.btnCreate');
+    // console.log(btnCreate);
+
+    /* Create row and column 클릭 시 */
+    btnCreate.addEventListener('click', () => {
+        let htmlTbody = document.getElementById('html-tbody-create');
+        // console.log(htmlTbody);
+
+        /* JavaScript Table row and column */
+
+        /* Insert a row at the end of table */
+        const newRow = htmlTbody.insertRow();
+
+        /* Insert a cell at the end of the row */
+        const newCell0 = newRow.insertCell();
+        const newCell1 = newRow.insertCell();
+        const newCell2 = newRow.insertCell();
+        const newCell3 = newRow.insertCell();
+
+        /* Append - 텍스트 노드를 새롭게 생성한 Cell에 붙이기 */
+        const newText0 = document.createTextNode('홍길동');
+        newCell0.appendChild(newText0);
+        
+        const newText1 = document.createTextNode('hong@example.com');
+        newCell1.appendChild(newText1);
+        
+        const newText2 = document.createTextNode('22');
+        newCell2.appendChild(newText2);
+        
+        const newText3 = document.createTextNode('영화보기');
+        newCell3.appendChild(newText3);
     });
 
 }
