@@ -1,5 +1,8 @@
 package baekjoonProblem;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 // 문제 ( 정렬 단계 )
 // 배열을 정렬하는 것은 쉽다.
 // 수가 주어지면, 그 수의 각 자리수를 내림차순으로 정렬해보자.
@@ -26,7 +29,31 @@ package baekjoonProblem;
 public class Problem01427 {
 	
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
 		
+		int temp = 0;
+		String n = scanner.next();
+		int[] arr = new int[n.length()];
+		
+		for(int i = 0; i < n.length(); i++) {
+			arr[i] = n.charAt(i) - '0';
+		}
+		
+		for(int i = 0; i < arr.length - 1; i++) {
+			for(int j = i + 1; j < arr.length; j++) {
+				if(arr[i] < arr[j]) {
+					temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+		
+		for(int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i]);
+		}
+		
+		scanner.close();
 	}
 
 }
