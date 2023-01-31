@@ -1,6 +1,5 @@
 package baekjoonProblem;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 // 문제 ( 정렬 단계 )
