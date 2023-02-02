@@ -41,3 +41,20 @@ function setCookie() {
     document.cookie = cookies;
     alert("쿠키를 생성하였습니다.");
 }
+
+/* 쿠키 삭제하기 */
+function delCookie() {
+    /* document.cookie에 값을 대입하는 형태로 쿠키 삭제 */
+    // document.cookie = 'username=honggildong';                               // 쿠키 생성
+    // document.cookie = 'username=lessonsin';                                 // 쿠키 수정
+    // document.cookie = 'username=; expires=Sat, 01 Jan 1972 00:00:00 GMT';   // 쿠키 삭제
+    document.cookie = 'userid=; expires=Sat, 01 Jan 1972 00:00:00 GMT';
+    alert("쿠키를 삭제하였습니다.");
+}
+
+/** Summary */
+/** 1. JS에서 쿠키를 편리하게 사용하려면 사용자가 직접 함수를 만드는 것 */
+/** 2. 더 편리한 것은 JS 쿠키 관련 경량 라이브러리 사용 */
+/** 3. document.cookie */
+/** 4. 쿠키의 삭제는 한참 지난 날짜를 입력하는 것 */
+/** 5. 일반적으로 Set(생성), Get(읽기), Del(삭제) 사용자 함수를 구현해서 사용함 */
