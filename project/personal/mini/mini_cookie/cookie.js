@@ -16,5 +16,28 @@ function getCookie() {
 
 /* 쿠키 생성하기 */
 function setCookie() {
+    // /* 기본적인 날짜 출력 -> 날짜 쓸 일? : 만료일 -> expiration, expire */
+    // let nowDate = new Date();
+    // console.log(nowDate);
     
+    // /* 만료일 생성 */
+    // let expiration = nowDate.getDate() + 10;
+    // console.log(expiration);
+
+    /* 현재 날짜 기준으로 만료일 생성 */
+    let expiration = new Date();
+    expiration.setDate(expiration.getDate() + 10);
+    console.log(expiration);
+
+    /* 날짜를 쿠키로 저장하기 위해 UTC 방식으로 표시 -> toUTCString() 사용 */
+    console.log(expiration.toUTCString());
+
+    /* 쿠키 생성하기 */
+    let cookies = "";
+    cookies = "userid=superman; expires=" + expiration.toUTCString();
+    console.log(cookies);
+
+    /* 쿠키 저장하기 */
+    document.cookie = cookies;
+    alert("쿠키를 생성하였습니다.");
 }
