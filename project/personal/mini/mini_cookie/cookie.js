@@ -72,8 +72,34 @@ const setCookie = function(cname, cvalue, cexpire) {
     event.preventDefault(); // submit, href 발생 시 이동 및 새로고침 방지
 
     /* 넘어온 값 체크 */
-    cname = document.getElementById('cname').ariaValueMax;
-    console.log(cname);
+    if(document.getElementById('cname').value != "") {
+        cname = document.getElementById('cname').value;
+        cvalue = document.getElementById('cvalue').value;
+        cexpire = document.getElementById('cexpire').value;
+    }
+    console.log("cname: " + cname);
+    console.log("cvalue: " + cvalue);
+    console.log("cexpire: " + cexpire);
+    console.log("typeof cexpire: " + typeof cexpire);
+
+    /* 만료일 생성 */
+    let expiration = new Date();
+    console.log(expiration);
+    expiration.setDate(expiration.getDate() + parseInt(cexpire));
+    console.log(expiration);
+
+    /* 날짜를 쿠키로 저장하기 위해 UTC 방식으로 표기 */
+    console.log(expiration.toUTCString);
+
+    /* 쿠키 생성하기 */
+    let cookies = "";
+    cookies += `${cname}=${cvalue};`;
+    cookies += `expires=${expiration.toUTCString};`;
+    console.log(cookies);
+
+    /* 쿠키 저장하기 */
+    document.cookie = cookies;
+    alert("쿠키를 생성하였습니다.");
 
 }
 
