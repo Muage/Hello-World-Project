@@ -22,6 +22,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
+                    <!-- 방법 1
                     <tr>
                         <td class="align-middle">쿠키 확인하기</td>
                         <td><button onclick="getCookie();">Get Cookie</button></td>
@@ -33,6 +34,30 @@
                     <tr>
                         <td class="align-middle">쿠키 삭제하기</td>
                         <td><button onclick="delCookie();">Del Cookie</button></td>
+                    </tr>
+                    -->
+
+                    <tr>
+                        <td class="align-middle">쿠키 확인하기</td>
+                        <td><button onclick="getCookie();">Get Cookie</button></td>
+                    </tr>
+                    <tr>
+                        <form id="form">
+                            <td class="align-middle">
+                                <input type="text" name="cname" value="" id="cname" placeholder="cname">
+                                <input type="text" name="cvalue" value="" id="cvalue" placeholder="cvalue">
+                                <input type="text" name="cexpire" value="" id="cexpire" placeholder="cexpire">
+                            </td>
+                            <td><button type="submit">Set Cookie</button></td>
+                        </form>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">쿠키 삭제하기</td>
+                        <td><button onclick="delCookie();">Del Cookie</button></td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">쿠키 전체삭제</td>
+                        <td><button onclick="allDelCookie();">All Del Cookie</button></td>
                     </tr>
                 </tbody>
             </table>
