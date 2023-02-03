@@ -129,6 +129,31 @@ const delCookie = function(cname) {
 
 }
 
+/* 쿠키 전체삭제 */
+const allDelCookies = function(domain, path) {
+
+    // const doc = document;
+    domain = domain || document.domain,
+    path = path || '/';
+
+    const cookies = document.cookie.split("; ");
+    // console.log(cookies);
+    // console.log(typeof cookies);
+
+    const expiration = "Sat, 01 Jan 1972 00:00:00 GMT";
+    // console.log(expiration);
+
+    /* 반복문 순회하면서 쿠키 전체 삭제 */
+    for(let i = 0; i < cookies.length; i++) {
+        // console.log(cookies[i].split("=")[0]);
+        document.cookie = cookies[i].split("=")[0] + "=; expires=" + expiration;
+        // document.cookie = cookies[i].split("=")[0] + "=; expires=" + expiration + "; domain=" + domain + "; path=" + path;
+    }
+
+    alert("쿠키를 모두 삭제하였습니다.");
+
+}
+
 /* addEventListener */
 const form = document.getElementById('form');
 form.addEventListener('submit', setCookie);
