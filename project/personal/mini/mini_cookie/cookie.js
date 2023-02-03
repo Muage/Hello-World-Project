@@ -66,6 +66,19 @@
 /** 방법 2 */
 /* JS 쿠키 사용자 정의 함수 및 전체 삭제 만들기 */
 /* 쿠키 읽기 */
+const getCookie = function() {
+
+    /* 로컬에 저장된 모든 쿠키 읽어오기 */
+    const allCookies = document.cookie; // 하나의 문자열로 리턴
+    console.log(allCookies);
+
+    if(allCookies != "")
+        alert("저장된 쿠키의 값: " + allCookies);
+    else
+        alert("저장된 쿠키가 없습니다.");
+
+}
+
 /* 쿠키 생성하기 -> 함수 표현식 */
 const setCookie = function(cname, cvalue, cexpire) {
 
@@ -103,6 +116,16 @@ const setCookie = function(cname, cvalue, cexpire) {
     // document.getElementById('cname').focus();
     document.getElementById('form').reset();
     alert("쿠키를 생성하였습니다.");
+
+}
+
+/* 쿠키 삭제하기 */
+const delCookie = function(cname) {
+
+    // document.cookie = 'userid=; expires=Sat, 01 Jan 1972 00:00:00 GMT';
+    console.log(cname);
+    setCookie(cname, "", 0);
+    alert("쿠키를 삭제하였습니다.");
 
 }
 
