@@ -99,6 +99,9 @@ const setCookie = function(cname, cvalue, cexpire) {
 
     /* 쿠키 저장하기 */
     document.cookie = cookies;
+    // document.getElementById('cname').value = "";
+    // document.getElementById('cname').focus();
+    document.getElementById('form').reset();
     alert("쿠키를 생성하였습니다.");
 
 }
