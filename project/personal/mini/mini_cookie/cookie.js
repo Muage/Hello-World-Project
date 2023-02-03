@@ -144,7 +144,8 @@ const allDelCookies = function(domain, path) {
     // console.log(expiration);
 
     /* 반복문 순회하면서 쿠키 전체 삭제 */
-    for(let i = 0; i < cookies.length; i++) {
+    // for(let i = 0; i < cookies.length; i++) {
+    for(let i = cookies.length - 1; i >= 0; i--) {
         // console.log(cookies[i].split("=")[0]);
         document.cookie = cookies[i].split("=")[0] + "=; expires=" + expiration;
         // document.cookie = cookies[i].split("=")[0] + "=; expires=" + expiration + "; domain=" + domain + "; path=" + path;
