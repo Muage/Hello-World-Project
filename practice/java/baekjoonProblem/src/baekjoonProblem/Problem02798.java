@@ -1,5 +1,7 @@
 package baekjoonProblem;
 
+import java.util.Scanner;
+
 // 문제 ( 브루트 포스 단계 )
 // 카지노에서 제일 인기 있는 게임 블랙잭의 규칙은 상당히 쉽다.
 // 카드의 합이 21을 넘지 않는 한도 내에서, 카드의 합을 최대한 크게 만드는 게임이다.
@@ -31,5 +33,46 @@ package baekjoonProblem;
 
 
 public class Problem02798 {
+	
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		int n = scanner.nextInt();
+		int m = scanner.nextInt();
+		int [] arr = new int[n];
+		int result = 0;
+		
+		for(int i = 0; i < n; i++) {
+			arr[i] = scanner.nextInt();
+		}
+		
+		result = search(arr, n, m);
+		System.out.println(result);
+		
+		scanner.close();
+	}
+	
+	static int search(int[] arr, int n, int m) {
+		int result = 0;
+		int temp = 0;
+		
+		for(int i = 0; i < n - 2; i++) {
+			for(int j = i + 1; j < n - 1; j++) {
+				for(int k = j + 1; k < n; k++) {
+					temp = arr[i] + arr[j] + arr[k];
+					
+					if(m == temp) {
+						return temp;
+					}
+					
+					if(result < temp && temp < m) {
+						result = temp;
+					}
+				}
+			}
+		}
+		
+		return result;
+	}
 
 }
