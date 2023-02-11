@@ -1,5 +1,7 @@
 package baekjoonProblem;
 
+import java.util.Scanner;
+
 // 문제 ( 브루트 포스 단계 )
 // 어떤 자연수 N이 있을 때, 그 자연수 N의 분해합은 N과 N을 이루는 각 자리수의 합을 의미한다.
 // 어떤 자연수 M의 분해합이 N인 경우, M을 N의 생성자라 한다.
@@ -23,5 +25,30 @@ package baekjoonProblem;
 // 198
 
 public class Problem02231 {
+	
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		int n = scanner.nextInt();
+		int result = 0;
+		
+		for(int i = 0; i < n; i++) {
+			int num = i;
+			int sum = 0;
+			
+			while(num != 0) {
+				sum += num % 10;
+				num /= 10;
+			}
+			
+			if(sum + i == n) {
+				result = i;
+				break;
+			}
+		}
+		
+		System.out.println(result);
+		scanner.close();
+	}
 
 }
