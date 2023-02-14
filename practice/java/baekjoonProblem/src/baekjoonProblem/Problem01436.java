@@ -1,5 +1,7 @@
 package baekjoonProblem;
 
+import java.util.Scanner;
+
 // 문제 ( 브루트 포스 단계 )
 // 666은 종말을 나타내는 수라고 한다.
 // 따라서, 많은 블록버스터 영화에서는 666이 들어간 제목을 많이 사용한다.
@@ -35,5 +37,25 @@ package baekjoonProblem;
 // (1) 166699
 
 public class Problem01436 {
+	
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		int n = scanner.nextInt();
+		int num = 666;
+		int count = 1;
+		
+		while(count != n) {
+			num++;
+			
+			if(String.valueOf(num).contains("666")) {
+				count++;
+			}
+		}
+		
+		System.out.println(num);
+		
+		scanner.close();
+	}
 
 }
