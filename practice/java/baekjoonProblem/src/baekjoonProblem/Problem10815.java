@@ -59,6 +59,8 @@ public class Problem10815 {
 		for(int i = 0; i < m; i++) {
 			System.out.print(result[i] + " ");
 		}
+		
+		scanner.close();
 	}
 
 }
