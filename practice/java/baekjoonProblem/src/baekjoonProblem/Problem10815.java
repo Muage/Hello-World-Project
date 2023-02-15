@@ -2,6 +2,8 @@ package baekjoonProblem;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.StringTokenizer;
 
 // 문제 ( 집합과 맵 단계 )
@@ -35,36 +37,32 @@ public class Problem10815 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
+		HashSet<Integer> card = new HashSet<>();
+		ArrayList<Integer> result = new ArrayList<>();
 		
 		int n = Integer.valueOf(reader.readLine());
-		int[] card = new int[n];
 		
 		st = new StringTokenizer(reader.readLine());
 		
 		for(int i = 0; i < n; i++) {
-			card[i] = Integer.valueOf(st.nextToken());
+			card.add(Integer.valueOf(st.nextToken()));
 		}
 		
 		int m = Integer.valueOf(reader.readLine());
-		int[] num = new int[m];
-		int[] result = new int[m];
 		
 		st = new StringTokenizer(reader.readLine());
 		
 		for(int i = 0; i < m; i++) {
-			num[i] = Integer.valueOf(st.nextToken());
+			int num = Integer.valueOf(st.nextToken());
+			
+			if(card.contains(num))
+				result.add(1);
+			else
+				result.add(0);
 		}
 		
-		for(int i = 0; i < n; i++) {
-			for(int j = 0; j < m; j++) {
-				if(card[i] == num[j]) {
-					result[j] = 1;
-				}
-			}
-		}
-		
-		for(int i = 0; i < m; i++) {
-			System.out.print(result[i] + " ");
+		for(Integer value : result) {
+			System.out.print(value + " ");
 		}
 	}
 
