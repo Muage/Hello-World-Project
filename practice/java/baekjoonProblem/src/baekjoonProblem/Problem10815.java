@@ -1,6 +1,8 @@
 package baekjoonProblem;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 // 문제 ( 집합과 맵 단계 )
 // 숫자 카드는 정수 하나가 적혀져 있는 카드이다.
@@ -30,22 +32,27 @@ import java.util.Scanner;
 
 public class Problem10815 {
 	
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+	public static void main(String[] args) throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
 		
-		int n = scanner.nextInt();
+		int n = Integer.valueOf(reader.readLine());
 		int[] card = new int[n];
 		
+		st = new StringTokenizer(reader.readLine());
+		
 		for(int i = 0; i < n; i++) {
-			card[i] = scanner.nextInt();
+			card[i] = Integer.valueOf(st.nextToken());
 		}
 		
-		int m = scanner.nextInt();
+		int m = Integer.valueOf(reader.readLine());
 		int[] num = new int[m];
 		int[] result = new int[m];
 		
+		st = new StringTokenizer(reader.readLine());
+		
 		for(int i = 0; i < m; i++) {
-			num[i] = scanner.nextInt();
+			num[i] = Integer.valueOf(st.nextToken());
 		}
 		
 		for(int i = 0; i < n; i++) {
@@ -59,8 +66,6 @@ public class Problem10815 {
 		for(int i = 0; i < m; i++) {
 			System.out.print(result[i] + " ");
 		}
-		
-		scanner.close();
 	}
 
 }
