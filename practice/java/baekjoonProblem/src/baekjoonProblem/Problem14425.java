@@ -46,11 +46,11 @@ public class Problem14425 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(reader.readLine());
-		HashMap<String, Integer> map = new HashMap<>();
 		
 		int n = Integer.valueOf(st.nextToken());
 		int m = Integer.valueOf(st.nextToken());
 		int count = 0;
+		HashMap<String, Integer> map = new HashMap<>();
 		
 		for(int i = 0; i < n; i++) {
 			map.put(reader.readLine(), 0);

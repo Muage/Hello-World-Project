@@ -1,5 +1,10 @@
 package baekjoonProblem;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.StringTokenizer;
+
 // 문제 ( 집합과 맵 단계 )
 // 안녕? 내 이름은 이다솜. 나의 꿈은 포켓몬 마스터야. 일단 포켓몬 마스터가 되기 위해선 포켓몬을 한 마리 잡아야겠지? 근처 숲으로 가야겠어.
 // (뚜벅 뚜벅)
@@ -101,5 +106,40 @@ package baekjoonProblem;
 // 14
 
 public class Problem01620 {
+	
+	public static void main(String[] args) throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(reader.readLine());
+		
+		int n = Integer.valueOf(st.nextToken());
+		int m = Integer.valueOf(st.nextToken());
+		HashMap<String, Integer> map = new HashMap<>();
+		String[] arr = new String[n + 1];
+		
+		for(int i = 1; i <= n; i++) {
+			arr[i] = reader.readLine();
+			map.put(arr[i], i);
+		}
+		
+		for(int i = 0; i < m; i++) {
+			String str = reader.readLine();
+			
+			if(isNumber(str)) {
+				int num = Integer.valueOf(str);
+				System.out.println(arr[num]);
+			} else {
+				System.out.println(map.get(str));
+			}
+		}
+	}
+	
+	public static boolean isNumber(String str) {
+		try {
+			Integer.valueOf(str);
+			return true;
+		} catch(NumberFormatException e) {
+			return false;
+		}
+	}
 
 }
