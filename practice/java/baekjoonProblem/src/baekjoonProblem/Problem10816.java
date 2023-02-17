@@ -1,5 +1,10 @@
 package baekjoonProblem;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 // 문제 ( 집합과 맵 단계 )
 // 숫자 카드는 정수 하나가 적혀져 있는 카드이다.
 // 상근이는 숫자 카드 N개를 가지고 있다.
@@ -26,5 +31,38 @@ package baekjoonProblem;
 // 3 0 0 1 2 0 0 2
 
 public class Problem10816 {
+	
+	public static void main(String[] args) throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		ArrayList<Integer> result = new ArrayList<>();
+		
+		int n = Integer.valueOf(reader.readLine());
+		int[] card = new int[n];
+		
+		st = new StringTokenizer(reader.readLine());
+		
+		for(int i = 0; i < n; i++) {
+			card[i] = Integer.valueOf(st.nextToken());
+		}
+		
+		int m = Integer.valueOf(reader.readLine());
+		
+		st = new StringTokenizer(reader.readLine());
+		
+		for(int i = 0; i < m; i++) {
+			int count = 0;
+			int num = Integer.valueOf(st.nextToken());
+			
+			for(int j = 0; j < n; j++) {
+				if(card[j] == num) count++;
+			}
+			result.add(count);
+		}
+		
+		for(Integer value : result) {
+			System.out.print(value + " ");
+		}
+	}
 
 }
