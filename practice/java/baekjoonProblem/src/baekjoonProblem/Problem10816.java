@@ -2,7 +2,6 @@ package baekjoonProblem;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -36,6 +35,7 @@ public class Problem10816 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
+		StringBuffer sb = new StringBuffer();
 		HashMap<Integer, Integer> card = new HashMap<>();
 		
 		int n = Integer.valueOf(reader.readLine());
@@ -60,11 +60,13 @@ public class Problem10816 {
 			int num = Integer.valueOf(st.nextToken());
 			
 			if(card.containsKey(num)) {
-				System.out.print(card.get(num) + " ");
+				sb.append(card.get(num) + " ");
 			} else {
-				System.out.print(0 + " ");
+				sb.append(0 + " ");
 			}
 		}
+		
+		System.out.println(sb.toString());
 	}
 
 }
