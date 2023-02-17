@@ -3,6 +3,7 @@ package baekjoonProblem;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 // 문제 ( 집합과 맵 단계 )
@@ -35,15 +36,20 @@ public class Problem10816 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
-		ArrayList<Integer> result = new ArrayList<>();
+		HashMap<Integer, Integer> card = new HashMap<>();
 		
 		int n = Integer.valueOf(reader.readLine());
-		int[] card = new int[n];
 		
 		st = new StringTokenizer(reader.readLine());
 		
 		for(int i = 0; i < n; i++) {
-			card[i] = Integer.valueOf(st.nextToken());
+			int num = Integer.valueOf(st.nextToken());
+			
+			if(!card.containsKey(num)) {
+				card.put(num, 1);
+			} else {
+				card.put(num, card.get(num) + 1);
+			}
 		}
 		
 		int m = Integer.valueOf(reader.readLine());
@@ -51,17 +57,13 @@ public class Problem10816 {
 		st = new StringTokenizer(reader.readLine());
 		
 		for(int i = 0; i < m; i++) {
-			int count = 0;
 			int num = Integer.valueOf(st.nextToken());
 			
-			for(int j = 0; j < n; j++) {
-				if(card[j] == num) count++;
+			if(card.containsKey(num)) {
+				System.out.print(card.get(num) + " ");
+			} else {
+				System.out.print(0 + " ");
 			}
-			result.add(count);
-		}
-		
-		for(Integer value : result) {
-			System.out.print(value + " ");
 		}
 	}
 
