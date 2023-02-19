@@ -62,38 +62,122 @@ public class Lv1_office_hours {
 	
 	public static void main(String[] args) throws Exception {
 		/*
-		 * 방법 1. 득점: 100.0		실행시간: 76ms		메모리: 10.23Mb
+		 * 방법 3. 득점: 100.0		실행시간: 69ms		메모리: 10.3Mb
 		 */
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
-		int sum_weak = 0;
+		int week = 0;
 		
 		for(int i = 0; i < 5; i++) {
-			st = new StringTokenizer(reader.readLine(), ": ");
-			int[] time = new int[4];
 			int start = 0;
 			int end = 0;
-			int sum_day = 0;
+			int day = 0;
+			int[] arr = new int[4];
+			
+			st = new StringTokenizer(reader.readLine(), ": ");
 			
 			for(int j = 0; st.hasMoreTokens(); j++) {
-				if(j % 2 == 0) {
-					time[j] = Integer.valueOf(st.nextToken()) * 60;
-				} else {
-					time[j] = Integer.valueOf(st.nextToken());
-				}
-				
-				if(j < 2) {
-					start += time[j];
-				} else {
-					end += time[j];
-				}
-				
-				sum_day = end - start;
+				 arr[j] = Integer.valueOf(st.nextToken());
 			}
-			sum_weak += sum_day;
+			
+			for(int j = 0; j < arr.length; j++) {
+				switch(j) {
+				case 0:
+					start = Integer.valueOf(arr[0]) * 60;
+					break;
+					
+				case 1:
+					start += Integer.valueOf(arr[1]);
+					break;
+					
+				case 2:
+					end = Integer.valueOf(arr[2]) * 60;
+					break;
+					
+				case 3:
+					end += Integer.valueOf(arr[3]);
+					break;
+				}
+			}
+			
+			day = end - start;
+			week += day;
 		}
 		
-		System.out.println(sum_weak);
+		System.out.println(week);
+		
+		
+		/*
+		 * 방법 2. 득점: 100.0		실행시간: 73ms		메모리: 10.71Mb
+		 */
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		int week = 0;
+//		
+//		for(int i = 0; i < 5; i++) {
+//			String[] arr = reader.readLine().split(":| ");
+//			int start = 0;
+//			int end = 0;
+//			int day = 0;
+//			
+//			for(int j = 0; j < arr.length; j++) {
+//				switch(j) {
+//				case 0:
+//					start = Integer.valueOf(arr[0]) * 60;
+//					break;
+//					
+//				case 1:
+//					start += Integer.valueOf(arr[1]);
+//					break;
+//					
+//				case 2:
+//					end = Integer.valueOf(arr[2]) * 60;
+//					break;
+//					
+//				case 3:
+//					end += Integer.valueOf(arr[3]);
+//					break;
+//				}
+//			}
+//			
+//			day = end - start;
+//			week += day;
+//		}
+//		
+//		System.out.println(week);
+		
+		/*
+		 * 방법 1. 득점: 100.0		실행시간: 76ms		메모리: 10.23Mb
+		 */
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st;
+//		int sum_weak = 0;
+//		
+//		for(int i = 0; i < 5; i++) {
+//			st = new StringTokenizer(reader.readLine(), ": ");
+//			int[] time = new int[4];
+//			int start = 0;
+//			int end = 0;
+//			int sum_day = 0;
+//			
+//			for(int j = 0; st.hasMoreTokens(); j++) {
+//				if(j % 2 == 0) {
+//					time[j] = Integer.valueOf(st.nextToken()) * 60;
+//				} else {
+//					time[j] = Integer.valueOf(st.nextToken());
+//				}
+//				
+//				if(j < 2) {
+//					start += time[j];
+//				} else {
+//					end += time[j];
+//				}
+//				
+//				sum_day = end - start;
+//			}
+//			sum_weak += sum_day;
+//		}
+//		
+//		System.out.println(sum_weak);
 	}
 
 }
