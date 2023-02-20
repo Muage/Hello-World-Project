@@ -2,7 +2,9 @@ package softeer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.StringTokenizer;
 
@@ -36,6 +38,9 @@ import java.util.StringTokenizer;
 public class Lv2_safebreaking {
 	
 	public static void main(String[] args) throws Exception {
+		/*
+		 * 방법 2. 득점: 100.0		실행시간: 1042ms		메모리: 85.2Mb
+		 */
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		
@@ -44,27 +49,17 @@ public class Lv2_safebreaking {
 		int w = Integer.valueOf(st.nextToken());
 		int n = Integer.valueOf(st.nextToken());
 		int price = 0;
-		int[][] arr = new int[n][2];
+		ArrayList<int[]> list = new ArrayList<>();
 		
 		for(int i = 0; i < n; i++) {
 			st = new StringTokenizer(reader.readLine());
 			
-			arr[i][0] = Integer.valueOf(st.nextToken());
-			arr[i][1] = Integer.valueOf(st.nextToken());
+			list.add(new int[] {Integer.valueOf(st.nextToken()), Integer.valueOf(st.nextToken())});
 		}
 		
-		Arrays.sort(arr, new Comparator<int[]>() {
-			@Override
-			public int compare(int[] o1, int[] o2) {
-				if(o1[0] == o2[0]) {
-					return o1[1] - o2[1];
-				} else {
-					return o1[0] - o2[0];
-				}
-			}
-		});
+		Collections.sort(list, (o1, o2) -> o2[1] - o1[1]);
 		
-		for(int[] item : arr) {
+		for(int[] item : list) {
 			if(w > item[0]) {
 				price += item[0] * item[1];
 				 w -= item[0];
@@ -75,6 +70,51 @@ public class Lv2_safebreaking {
 		}
 		
 		System.out.println(price);
+		
+		
+		/*
+		 * 방법 1. 득점: 0.0		실행시간: 1893ms		메모리: 78.25Mb
+		 * 테스트 결과값은 일치하나 오답 ( 시간 초과로 예상 )
+		 */
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st;
+//		
+//		st = new StringTokenizer(reader.readLine());
+//		
+//		int w = Integer.valueOf(st.nextToken());
+//		int n = Integer.valueOf(st.nextToken());
+//		int price = 0;
+//		int[][] arr = new int[n][2];
+//		
+//		for(int i = 0; i < n; i++) {
+//			st = new StringTokenizer(reader.readLine());
+//			
+//			arr[i][0] = Integer.valueOf(st.nextToken());
+//			arr[i][1] = Integer.valueOf(st.nextToken());
+//		}
+//		
+//		Arrays.sort(arr, new Comparator<int[]>() {
+//			@Override
+//			public int compare(int[] o1, int[] o2) {
+//				if(o1[0] == o2[0]) {
+//					return o1[1] - o2[1];
+//				} else {
+//					return o1[0] - o2[0];
+//				}
+//			}
+//		});
+//		
+//		for(int[] item : arr) {
+//			if(w > item[0]) {
+//				price += item[0] * item[1];
+//				 w -= item[0];
+//			} else {
+//				price += w * item[1];
+//				break;
+//			}
+//		}
+//		
+//		System.out.println(price);
 	}
 
 }
