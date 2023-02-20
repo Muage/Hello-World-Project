@@ -37,6 +37,40 @@ public class Lv1_A_plus_B {
 	
 	public static void main(String[] args) throws Exception {
 		/*
+		 * 방법 4. 득점: 100.0		실행시간: 123ms		메모리: 13.89Mb
+		 * 실행 시간은 줄였으나 유지보수의 어려움이 있을 것 같다.
+		 */
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st;
+//		
+//		int T = Integer.valueOf(reader.readLine());
+//		
+//		for(int i = 0; i < T; i++) {
+//			st = new StringTokenizer(reader.readLine());
+//			
+//			System.out.println("Case #" + (i + 1) + ": " + (Integer.valueOf(st.nextToken()) + Integer.valueOf(st.nextToken())));
+//		}
+		
+		
+		/*
+		 * 방법 3. 득점: 100.0		실행시간: 153ms		메모리: 14.1Mb
+		 */
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+//		StringTokenizer st;
+//		
+//		int T = Integer.valueOf(reader.readLine());
+//		
+//		for(int i = 0; i < T; i++) {
+//			st = new StringTokenizer(reader.readLine());
+//			
+//			writer.write("Case #" + (i + 1) + ": " + (Integer.valueOf(st.nextToken()) + Integer.valueOf(st.nextToken())) + "\n");
+//		}
+//		
+//		writer.close();
+		
+		
+		/*
 		 * 방법 2. 득점: 100.0		실행시간: 130ms		메모리: 13.82Mb
 		 */
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
