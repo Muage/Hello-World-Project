@@ -31,33 +31,60 @@ public class Lv2_8_Transmission {
 	
 	public static void main(String[] args) throws Exception {
 		/*
-		 * 방법 2. 득점: 0.0		실행시간: 72ms		메모리: 10.21Mb
+		 * 방법 3. 득점: 100.0		실행시간: 70ms		메모리: 10.22Mb
 		 */
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(reader.readLine());
-		Integer[] arr = new Integer[8];
-		Integer[] sort = new Integer[8];
 		String result = "";
+		int[] ascending = {1, 2, 3, 4, 5, 6, 7, 8};
+		int[] descending = {8, 7, 6, 5, 4, 3, 2, 1};
+		int[] arr = new int[8];
 		
 		for(int i = 0; i < arr.length; i++) {
 			arr[i] = Integer.valueOf(st.nextToken());
-			sort[i] = arr[i];
 		}
 		
 		for(int i = 0; i < 8; i++) {
-			Arrays.sort(sort);
-			if(Arrays.equals(arr, sort)) {
+			if(Arrays.equals(arr, ascending)) {
 				result = "ascending";
+			} else if(Arrays.equals(arr, descending)) {
+				result = "descending";
 			} else {
-				Arrays.sort(sort, Collections.reverseOrder());
-				if(Arrays.equals(arr, sort))
-					result = "descending";
-				else
-					result = "mixed";
+				result = "mixed";
 			}
 		}
 		
 		System.out.println(result);
+		
+		
+		/*
+		 * 방법 2. 득점: 100.0		실행시간: 75ms		메모리: 10.25Mb
+		 */
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st = new StringTokenizer(reader.readLine());
+//		Integer[] arr = new Integer[8];
+//		Integer[] sort = new Integer[8];
+//		String result = "";
+//		
+//		for(int i = 0; i < arr.length; i++) {
+//			arr[i] = Integer.valueOf(st.nextToken());
+//			sort[i] = arr[i];
+//		}
+//		
+//		for(int i = 0; i < 8; i++) {
+//			Arrays.sort(sort);
+//			if(Arrays.equals(arr, sort)) {
+//				result = "ascending";
+//			} else {
+//				Arrays.sort(sort, Collections.reverseOrder());
+//				if(Arrays.equals(arr, sort))
+//					result = "descending";
+//				else
+//					result = "mixed";
+//			}
+//		}
+//		
+//		System.out.println(result);
 		
 		
 		/*
