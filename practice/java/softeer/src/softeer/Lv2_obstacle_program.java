@@ -2,6 +2,7 @@ package softeer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 // 문제 ( Lv2. 장애물 인식 프로그램 )
@@ -48,8 +49,10 @@ public class Lv2_obstacle_program {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(reader.readLine());
 		
+		ArrayList<int[]> list = new ArrayList<>();
 		int n = Integer.valueOf(st.nextToken());
 		int[][] arr = new int[n][n];
+		
 		
 		for(int i = 0; i < n; i++) {
 			st = new StringTokenizer(reader.readLine());
@@ -57,6 +60,16 @@ public class Lv2_obstacle_program {
 			
 			for(int j = 0; j < n; j++) {
 				arr[i][j] = Integer.valueOf(str.charAt(j) - '0');
+			}
+		}
+		
+		for(int i = 0; i < n; i++) {
+			for(int j = 0; j < n; j++) {
+				if(arr[i][j] == 1) {
+					list.add(new int[] {i, j});
+				}
+				
+				System.out.println(list.toString());
 			}
 		}
 	}
