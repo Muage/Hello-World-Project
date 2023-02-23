@@ -3,6 +3,9 @@ package softeer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 // 문제 ( Lv2. 장애물 인식 프로그램 )
@@ -45,14 +48,52 @@ import java.util.StringTokenizer;
 
 public class Lv2_obstacle_program {
 	
+	/*
+	 * 방법 1. 득점: 100.0		실행시간: 88ms		메모리: 10.82Mb
+	 */
+	private static int n;
+	private static int[] dx = {-1, 0, 1, 0};
+	private static int[] dy = {0, -1, 0, 1};
+	private static int[][] arr;
+	private static boolean[][] check;
+	private static ArrayList<Integer> list = new ArrayList<>(); 
+	
+	private static void block(int a, int b) {
+		int size = 1;
+		Queue<int[]> q = new LinkedList<>();
+		
+		check[a][b] = true;
+		q.add(new int[] {a, b});
+		
+		while(!q.isEmpty()) {
+			int[] temp = q.poll();
+			int x = temp[0];
+			int y = temp[1];
+			
+			for(int i = 0; i < 4; i++) {
+				int nx = x + dx[i];
+				int ny = y + dy[i];
+				
+				if(nx < 0 || ny < 0 || nx >= n || ny >= n || arr[nx][ny] == 0 || check[nx][ny]) {
+					continue;
+				} else {
+					check[nx][ny] = true;
+					q.add(new int[] {nx, ny});
+					size++;
+				}
+			}
+		}
+		
+		list.add(size);
+	}
+	
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(reader.readLine());
 		
-		ArrayList<int[]> list = new ArrayList<>();
-		int n = Integer.valueOf(st.nextToken());
-		int[][] arr = new int[n][n];
-		
+		n = Integer.valueOf(st.nextToken());
+		arr = new int[n][n];
+		check = new boolean[n][n];
 		
 		for(int i = 0; i < n; i++) {
 			st = new StringTokenizer(reader.readLine());
@@ -62,15 +103,22 @@ public class Lv2_obstacle_program {
 				arr[i][j] = Integer.valueOf(str.charAt(j) - '0');
 			}
 		}
+
+		int count = 0;
 		
 		for(int i = 0; i < n; i++) {
 			for(int j = 0; j < n; j++) {
-				if(arr[i][j] == 1) {
-					list.add(new int[] {i, j});
+				if(!check[i][j] && arr[i][j] == 1) {
+					count++;
+					block(i, j);
 				}
-				
-				System.out.println(list.toString());
 			}
+		}
+		
+		System.out.println(count);
+		Collections.sort(list);
+		for(int i : list) {
+			System.out.println(i);
 		}
 	}
 
