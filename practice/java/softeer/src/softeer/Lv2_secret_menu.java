@@ -73,7 +73,7 @@ public class Lv2_secret_menu {
 	
 	public static void main(String[] args) throws Exception {
 		/*
-		 * 방법 1. 득점: 0.0		실행시간: 73ms		메모리: 10.23Mb
+		 * 방법 2. 득점: 0.0		실행시간: 73ms		메모리: 10.23Mb
 		 */
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(reader.readLine());
@@ -81,8 +81,6 @@ public class Lv2_secret_menu {
 		int M = Integer.valueOf(st.nextToken());
 		int N = Integer.valueOf(st.nextToken());
 		int K = Integer.valueOf(st.nextToken());
-		int temp = 0;
-		int check = 0;
 		int[] secret = new int[M];
 		int[] user = new int[N];
 		
@@ -96,30 +94,66 @@ public class Lv2_secret_menu {
 			user[i] = Integer.valueOf(st.nextToken());
 		}
 		
+		int check = 0;
+		int j = 0;
+		
 		for(int i = 0; i < N; i++) {
-			for(int j = 0; j < M; j++) {
-				if(user[i] == secret[j]) {
-					check++;
-				} else {
-					check = 0;
-					for(int k = 0; k < M; k++) {
-						temp = secret[k];
-						if(user[i] == secret[k]) {
-							check++;
-						}
-						
-						
-					}
-				}
+			if(user[i] == secret[j]) {
+				check++;
+				j++;
+				if(secret.length == j) break;
+			} else {
+				check = 0;
+				j = 0;
 			}
 		}
 		
 		if(secret.length == check) {
 			System.out.println("secret");
 		} else {
-			System.out.println(check);
 			System.out.println("normal");
 		}
+		
+		
+		/*
+		 * 방법 1. 득점: 0.0		실행시간: 73ms		메모리: 10.23Mb
+		 */
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st = new StringTokenizer(reader.readLine());
+//		
+//		int M = Integer.valueOf(st.nextToken());
+//		int N = Integer.valueOf(st.nextToken());
+//		int K = Integer.valueOf(st.nextToken());
+//		int check = 0;
+//		int[] secret = new int[M];
+//		int[] user = new int[N];
+//		
+//		st = new StringTokenizer(reader.readLine());
+//		for(int i = 0; i < M; i++) {
+//			secret[i] = Integer.valueOf(st.nextToken());
+//		}
+//		
+//		st = new StringTokenizer(reader.readLine());
+//		for(int i = 0; i < N; i++) {
+//			user[i] = Integer.valueOf(st.nextToken());
+//		}
+//		
+//		for(int i = 0; i < M; i++) {
+//			for(int j = 0; j < N; j++) {
+//				if(secret[i] != user[j]) {
+//					continue;
+//				} else {
+//					check++;
+//					break;
+//				}
+//			}
+//		}
+//		
+//		if(secret.length == check) {
+//			System.out.println("secret");
+//		} else {
+//			System.out.println("normal");
+//		}
 	}
 
 }
