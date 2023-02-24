@@ -1,5 +1,10 @@
 package softeer;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 // 문제 ( Lv2. 회의실 예약 )
 // 회사에는 N개의 회의실이 있다.
 // 수많은 팀이 모여 토론하고 업무를 처리하기 위해서는 회의실이 필수적이다.
@@ -85,5 +90,26 @@ package softeer;
 // 12-18
 
 public class Lv2_meeting_room_reservation {
+	
+	public static void main(String[] args) throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(reader.readLine());
+		
+		int N = Integer.valueOf(st.nextToken());
+		int M = Integer.valueOf(st.nextToken());
+		
+		String[] meetingRoom = new String[N];
+		ArrayList<String[]> reserve = new ArrayList<>();
+		
+		for(int i = 0; i < N; i++) {
+			st = new StringTokenizer(reader.readLine());
+			meetingRoom[i] = st.nextToken();
+		}
+		
+		for(int i = 0; i < M; i++) {
+			st = new StringTokenizer(reader.readLine());
+			reserve.add(new String[] {st.nextToken(), st.nextToken(), st.nextToken()});
+		}
+	}
 
 }
