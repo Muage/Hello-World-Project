@@ -1,5 +1,9 @@
 package softeer;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
 // 문제 ( Lv2. 비밀 메뉴 )
 // 회사 식당에는 전설처럼 전해 내려오는 비밀 메뉴에 대한 소문이 있다.
 // 소문의 내용은 대강 이러하다.
@@ -67,8 +71,55 @@ package softeer;
 
 public class Lv2_secret_menu {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+		/*
+		 * 방법 1. 득점: 0.0		실행시간: 73ms		메모리: 10.23Mb
+		 */
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(reader.readLine());
 		
+		int M = Integer.valueOf(st.nextToken());
+		int N = Integer.valueOf(st.nextToken());
+		int K = Integer.valueOf(st.nextToken());
+		int temp = 0;
+		int check = 0;
+		int[] secret = new int[M];
+		int[] user = new int[N];
+		
+		st = new StringTokenizer(reader.readLine());
+		for(int i = 0; i < M; i++) {
+			secret[i] = Integer.valueOf(st.nextToken());
+		}
+		
+		st = new StringTokenizer(reader.readLine());
+		for(int i = 0; i < N; i++) {
+			user[i] = Integer.valueOf(st.nextToken());
+		}
+		
+		for(int i = 0; i < N; i++) {
+			for(int j = 0; j < M; j++) {
+				if(user[i] == secret[j]) {
+					check++;
+				} else {
+					check = 0;
+					for(int k = 0; k < M; k++) {
+						temp = secret[k];
+						if(user[i] == secret[k]) {
+							check++;
+						}
+						
+						
+					}
+				}
+			}
+		}
+		
+		if(secret.length == check) {
+			System.out.println("secret");
+		} else {
+			System.out.println(check);
+			System.out.println("normal");
+		}
 	}
 
 }
