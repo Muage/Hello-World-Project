@@ -3,6 +3,8 @@ package softeer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 // 문제 ( Lv2. 회의실 예약 )
@@ -91,6 +93,25 @@ import java.util.StringTokenizer;
 
 public class Lv2_meeting_room_reservation {
 	
+	private static HashMap<String, String[]> current = new HashMap<>();
+	
+	private static void reserve(String room, int start, int end) {
+		String[] time = current.get(room);
+		int index = start - 9;
+		boolean run = true;
+		
+		while(run) {
+			time[index] = "1";
+			index += 1;
+			
+			current.replace(room, time);
+			
+			if((index + 9) == end) run = false;
+			
+			System.out.println(room + " " + Arrays.toString(time));
+		}
+	}
+	
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(reader.readLine());
@@ -99,17 +120,32 @@ public class Lv2_meeting_room_reservation {
 		int M = Integer.valueOf(st.nextToken());
 		
 		String[] meetingRoom = new String[N];
+		String[] time = {"09", "10", "11", "12", "13", "14", "15", "16", "17", "18"};
 		ArrayList<String[]> reserve = new ArrayList<>();
 		
 		for(int i = 0; i < N; i++) {
 			st = new StringTokenizer(reader.readLine());
 			meetingRoom[i] = st.nextToken();
+			
+			current.put(meetingRoom[i], time);
 		}
 		
 		for(int i = 0; i < M; i++) {
 			st = new StringTokenizer(reader.readLine());
 			reserve.add(new String[] {st.nextToken(), st.nextToken(), st.nextToken()});
+			
+//			System.out.println(reserve.get(i)[0]);
+			String room = reserve.get(i)[0];
+			int start = Integer.valueOf(reserve.get(i)[1]);
+			int end = Integer.valueOf(reserve.get(i)[2]);
+			
+			reserve(room, start, end);
 		}
+		
+//		for(int i = 0; i < current.size(); i++) {
+//			System.out.println(meetingRoom[i]);
+//			System.out.println(Arrays.toString(current.get(meetingRoom[i])));
+//		}
 	}
 
 }
