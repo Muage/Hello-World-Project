@@ -97,6 +97,7 @@ public class Lv2_meeting_room_reservation {
 	
 	private static void reserve(String room, int start, int end) {
 		String[] time = current.get(room);
+		System.out.println(Arrays.toString(time));
 		int index = start - 9;
 		boolean run = true;
 		
@@ -108,8 +109,9 @@ public class Lv2_meeting_room_reservation {
 			
 			if((index + 9) == end) run = false;
 			
-			System.out.println(room + " " + Arrays.toString(time));
+//			System.out.println(room + " " + Arrays.toString(time));
 		}
+		System.out.println(room + " " + Arrays.toString(time));
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -141,6 +143,14 @@ public class Lv2_meeting_room_reservation {
 			
 			reserve(room, start, end);
 		}
+		
+//		ArrayList<String> keyList = new ArrayList<>(current.keySet());
+//		keyList.sort((s1, s2) -> s1.compareTo(s2));
+//		for(String key : keyList) {
+//			System.out.println("Room " + key + ":");
+//			System.out.println(Arrays.toString(current.get(key)));
+//			System.out.println("-----");
+//		}
 		
 //		for(int i = 0; i < current.size(); i++) {
 //			System.out.println(meetingRoom[i]);
