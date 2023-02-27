@@ -114,16 +114,30 @@ public class Lv2_meeting_room_reservation {
 	
 	private static void result(String[] time) {
 		String result = "";
+		String start = "";
+		String end = "";
+		ArrayList<String[]> available = new ArrayList<>();
 		
 		System.out.println(Arrays.toString(time));
 		
-//		for(int i = 0; i < 9; i++) {
-//			if(time[i].equals("1")) {
-//				result = "Not available";
-//			}
-//		}
+		for(int i = 0; i < 9; i++) {
+			if(start.equals("") && end.equals("")) {
+				if(!time[i].equals("1")) {
+					start = time[i];
+					continue;
+				}
+			} else if(!start.equals("") && end.equals("")) {
+				if(time[i].equals("1")) {
+					end = String.valueOf(Integer.valueOf(time[i - 1]) + 1);
+				}
+			} else if(!start.equals("") && !end.equals("")) {
+				available.add(new String[] {start, end});
+				start = "";
+				end = "";
+			}
+		}
 		
-		System.out.println(result);
+		System.out.println(available.size());
 	}
 	
 	public static void main(String[] args) throws Exception {
