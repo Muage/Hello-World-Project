@@ -97,7 +97,6 @@ public class Lv2_meeting_room_reservation {
 	
 	private static void reserve(String room, int start, int end) {
 		String[] time = current.get(room);
-		System.out.println(Arrays.toString(time));
 		int index = start - 9;
 		boolean run = true;
 		
@@ -111,7 +110,20 @@ public class Lv2_meeting_room_reservation {
 			
 //			System.out.println(room + " " + Arrays.toString(time));
 		}
-		System.out.println(room + " " + Arrays.toString(time));
+	}
+	
+	private static void result(String[] time) {
+		String result = "";
+		
+		System.out.println(Arrays.toString(time));
+		
+//		for(int i = 0; i < 9; i++) {
+//			if(time[i].equals("1")) {
+//				result = "Not available";
+//			}
+//		}
+		
+		System.out.println(result);
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -122,10 +134,11 @@ public class Lv2_meeting_room_reservation {
 		int M = Integer.valueOf(st.nextToken());
 		
 		String[] meetingRoom = new String[N];
-		String[] time = {"09", "10", "11", "12", "13", "14", "15", "16", "17", "18"};
 		ArrayList<String[]> reserve = new ArrayList<>();
 		
 		for(int i = 0; i < N; i++) {
+			String[] time = {"09", "10", "11", "12", "13", "14", "15", "16", "17"};
+			
 			st = new StringTokenizer(reader.readLine());
 			meetingRoom[i] = st.nextToken();
 			
@@ -144,13 +157,14 @@ public class Lv2_meeting_room_reservation {
 			reserve(room, start, end);
 		}
 		
-//		ArrayList<String> keyList = new ArrayList<>(current.keySet());
-//		keyList.sort((s1, s2) -> s1.compareTo(s2));
-//		for(String key : keyList) {
-//			System.out.println("Room " + key + ":");
+		ArrayList<String> keyList = new ArrayList<>(current.keySet());
+		keyList.sort((s1, s2) -> s1.compareTo(s2));
+		for(String key : keyList) {
+			System.out.println("Room " + key + ":");
 //			System.out.println(Arrays.toString(current.get(key)));
-//			System.out.println("-----");
-//		}
+			result(current.get(key));
+			System.out.println("-----");
+		}
 		
 //		for(int i = 0; i < current.size(); i++) {
 //			System.out.println(meetingRoom[i]);
