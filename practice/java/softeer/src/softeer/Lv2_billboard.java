@@ -1,5 +1,9 @@
 package softeer;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
 // 문제 ( Lv2. 전광판 )
 // 현대차그룹에 다니는 당신은 전세계 유가 변동에 대해 실시간으로 파악하기 위해 사무실에 유가를 실시간으로 표시하는 전광판을 설치하였다.
 // 전광판은 최대 다섯 자리의 자연수만을 표시할 수 있도록, 아래와 같이 육각형 모양의 전구 7×5=35개로 구성되어 있다.
@@ -46,5 +50,19 @@ package softeer;
 // 6
 
 public class Lv2_billboard {
+	
+	public static void main(String[] args) throws Exception{
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		
+		int T = Integer.valueOf(reader.readLine());
+		
+		for(int i = 0; i < T; i++) {
+			st = new StringTokenizer(reader.readLine());
+			
+			int A = Integer.valueOf(st.nextToken());
+			int B = Integer.valueOf(st.nextToken());
+		}
+	}
 
 }
