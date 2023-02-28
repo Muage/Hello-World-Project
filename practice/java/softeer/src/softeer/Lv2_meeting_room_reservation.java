@@ -94,6 +94,7 @@ import java.util.StringTokenizer;
 public class Lv2_meeting_room_reservation {
 	
 	private static HashMap<String, String[]> current = new HashMap<>();
+	private static ArrayList<String[]> available;
 	
 	private static void reserve(String room, int start, int end) {
 		String[] time = current.get(room);
@@ -113,28 +114,38 @@ public class Lv2_meeting_room_reservation {
 	}
 	
 	private static void result(String[] time) {
-		String result = "";
 		String start = "";
 		String end = "";
-		ArrayList<String[]> available = new ArrayList<>();
+		
+		available = new ArrayList<>();
 		
 		System.out.println(Arrays.toString(time));
 		
 		for(int i = 0; i < 9; i++) {
-			if(start.equals("") && end.equals("")) {
-				if(!time[i].equals("1")) {
-					start = time[i];
+			if(i < 8) {
+				if(start.equals("") && end.equals("")) {
+					if(!time[i].equals("1")) {
+						start = time[i];
+					}
+					continue;
+				} else if(!start.equals("") && end.equals("")) {
+					if(time[i].equals("1")) {
+						end = String.valueOf(Integer.valueOf(time[i - 1]) + 1);
+						available.add(new String[] {start, end});
+						System.out.println(start + "-" + end);
+						start = "";
+						end = "";
+					}
 					continue;
 				}
-			} else if(!start.equals("") && end.equals("")) {
-				if(time[i].equals("1")) {
-					end = String.valueOf(Integer.valueOf(time[i - 1]) + 1);
+			} else {
+				if(!time[i].equals("1")) {
+					end = String.valueOf(Integer.valueOf(time[i]) + 1);
+					available.add(new String[] {start, end});
+					System.out.println(start + "-" + end);
 				}
-			} else if(!start.equals("") && !end.equals("")) {
-				available.add(new String[] {start, end});
-				start = "";
-				end = "";
 			}
+			
 		}
 		
 		System.out.println(available.size());
