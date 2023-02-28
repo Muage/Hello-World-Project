@@ -94,7 +94,7 @@ import java.util.TreeMap;
 public class Lv2_meeting_room_reservation {
 	
 	/*
-	 * 방법 2. 득점: 0.0		실행시간: 180ms		메모리: 14.85Mb
+	 * 방법 2. 득점: 100.0		실행시간: 76ms		메모리: 10.36Mb
 	 */
 	
 	public static void main(String[] args) throws Exception {
@@ -132,6 +132,51 @@ public class Lv2_meeting_room_reservation {
 				current[j - 9][1] = -1;
 			}
 		}
+		
+		for(Map.Entry<String, int[][]> entry : reserve.entrySet()) {
+			sb.append("Room ").append(entry.getKey()).append(":").append("\n");
+			
+			StringBuilder temp = new StringBuilder();
+			int total = 0;
+			int start = -1;
+			int end = -1;
+			int[][] current = entry.getValue();
+			
+			for(int i = 0; i < 9; i++) {
+				if(current[i][0] != -1) {
+					if(start == -1) {
+						start = current[i][0];
+					}
+				} else {
+					if(start != -1) {
+						end = current[i - 1][1];
+					}
+				}
+				
+				if(start != -1 && end != -1) {
+					temp.append(start == 0 ? "09" : start + 9).append("-");
+					temp.append(end + 9).append("\n");
+					start = end = -1;
+					total++;
+				}
+			}
+			
+			if(start != -1) {
+				total++;
+				temp.append(start + 9 == 9 ? "09" : start + 9).append("-").append(18).append("\n");
+			}
+			
+			if(total == 0) {
+				sb.append("Not available").append("\n");
+			} else {
+				sb.append(total).append(" available:").append("\n");
+				sb.append(temp);
+			}
+			
+			sb.append("-----").append("\n");
+		}
+		sb.setLength(sb.length() - 6);
+		System.out.println(sb);
 	}
 	
 	
