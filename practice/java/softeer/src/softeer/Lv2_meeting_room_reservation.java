@@ -108,8 +108,6 @@ public class Lv2_meeting_room_reservation {
 			current.replace(room, time);
 			
 			if((index + 9) == end) run = false;
-			
-//			System.out.println(room + " " + Arrays.toString(time));
 		}
 	}
 	
@@ -118,8 +116,6 @@ public class Lv2_meeting_room_reservation {
 		String end = "";
 		
 		available = new ArrayList<>();
-		
-		System.out.println(Arrays.toString(time));
 		
 		for(int i = 0; i < 9; i++) {
 			if(i < 8) {
@@ -132,7 +128,6 @@ public class Lv2_meeting_room_reservation {
 					if(time[i].equals("1")) {
 						end = String.valueOf(Integer.valueOf(time[i - 1]) + 1);
 						available.add(new String[] {start, end});
-						System.out.println(start + "-" + end);
 						start = "";
 						end = "";
 					}
@@ -142,13 +137,19 @@ public class Lv2_meeting_room_reservation {
 				if(!time[i].equals("1")) {
 					end = String.valueOf(Integer.valueOf(time[i]) + 1);
 					available.add(new String[] {start, end});
-					System.out.println(start + "-" + end);
 				}
 			}
-			
 		}
 		
-		System.out.println(available.size());
+		if(available.size() == 0) {
+			System.out.println("Not available");
+		} else {
+			System.out.println(available.size() + " available:");
+		}
+		
+		for(int i = 0; i < available.size(); i++) {
+			System.out.println(available.get(i)[0] + "-" + available.get(i)[1]);
+		}
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -174,7 +175,6 @@ public class Lv2_meeting_room_reservation {
 			st = new StringTokenizer(reader.readLine());
 			reserve.add(new String[] {st.nextToken(), st.nextToken(), st.nextToken()});
 			
-//			System.out.println(reserve.get(i)[0]);
 			String room = reserve.get(i)[0];
 			int start = Integer.valueOf(reserve.get(i)[1]);
 			int end = Integer.valueOf(reserve.get(i)[2]);
@@ -184,17 +184,16 @@ public class Lv2_meeting_room_reservation {
 		
 		ArrayList<String> keyList = new ArrayList<>(current.keySet());
 		keyList.sort((s1, s2) -> s1.compareTo(s2));
-		for(String key : keyList) {
-			System.out.println("Room " + key + ":");
-//			System.out.println(Arrays.toString(current.get(key)));
-			result(current.get(key));
-			System.out.println("-----");
-		}
 		
-//		for(int i = 0; i < current.size(); i++) {
-//			System.out.println(meetingRoom[i]);
-//			System.out.println(Arrays.toString(current.get(meetingRoom[i])));
-//		}
+		for(int i = 0; i < keyList.size(); i++) {
+			System.out.println("Room " + keyList.get(i) + ":");
+			
+			result(current.get(keyList.get(i)));
+			
+			if(i < keyList.size() - 1) {
+				System.out.println("-----");
+			}
+		}
 	}
 
 }
