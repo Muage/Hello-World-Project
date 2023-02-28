@@ -3,9 +3,9 @@ package softeer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.TreeMap;
 
 // 문제 ( Lv2. 회의실 예약 )
 // 회사에는 N개의 회의실이 있다.
@@ -93,107 +93,152 @@ import java.util.StringTokenizer;
 
 public class Lv2_meeting_room_reservation {
 	
-	private static HashMap<String, String[]> current = new HashMap<>();
-	private static ArrayList<String[]> available;
-	
-	private static void reserve(String room, int start, int end) {
-		String[] time = current.get(room);
-		int index = start - 9;
-		boolean run = true;
-		
-		while(run) {
-			time[index] = "1";
-			index += 1;
-			
-			current.replace(room, time);
-			
-			if((index + 9) == end) run = false;
-		}
-	}
-	
-	private static void result(String[] time) {
-		String start = "";
-		String end = "";
-		
-		available = new ArrayList<>();
-		
-		for(int i = 0; i < 9; i++) {
-			if(i < 8) {
-				if(start.equals("") && end.equals("")) {
-					if(!time[i].equals("1")) {
-						start = time[i];
-					}
-					continue;
-				} else if(!start.equals("") && end.equals("")) {
-					if(time[i].equals("1")) {
-						end = String.valueOf(Integer.valueOf(time[i - 1]) + 1);
-						available.add(new String[] {start, end});
-						start = "";
-						end = "";
-					}
-					continue;
-				}
-			} else {
-				if(!time[i].equals("1")) {
-					end = String.valueOf(Integer.valueOf(time[i]) + 1);
-					available.add(new String[] {start, end});
-				}
-			}
-		}
-		
-		if(available.size() == 0) {
-			System.out.println("Not available");
-		} else {
-			System.out.println(available.size() + " available:");
-		}
-		
-		for(int i = 0; i < available.size(); i++) {
-			System.out.println(available.get(i)[0] + "-" + available.get(i)[1]);
-		}
-	}
+	/*
+	 * 방법 2. 득점: 0.0		실행시간: 180ms		메모리: 14.85Mb
+	 */
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(reader.readLine());
+		StringBuilder sb = new StringBuilder();
 		
 		int N = Integer.valueOf(st.nextToken());
 		int M = Integer.valueOf(st.nextToken());
 		
-		String[] meetingRoom = new String[N];
-		ArrayList<String[]> reserve = new ArrayList<>();
+		Map<String, int[][]> reserve = new TreeMap<>();
 		
 		for(int i = 0; i < N; i++) {
-			String[] time = {"09", "10", "11", "12", "13", "14", "15", "16", "17"};
+			int[][] temp = new int[9][2];
 			
-			st = new StringTokenizer(reader.readLine());
-			meetingRoom[i] = st.nextToken();
+			for(int j = 0; j < 9; j++) {
+				temp[j][0] = j;
+				temp[j][1] = j + 1;
+			}
 			
-			current.put(meetingRoom[i], time);
+			reserve.put(reader.readLine(), temp);
 		}
 		
 		for(int i = 0; i < M; i++) {
 			st = new StringTokenizer(reader.readLine());
-			reserve.add(new String[] {st.nextToken(), st.nextToken(), st.nextToken()});
 			
-			String room = reserve.get(i)[0];
-			int start = Integer.valueOf(reserve.get(i)[1]);
-			int end = Integer.valueOf(reserve.get(i)[2]);
+			String room = st.nextToken();
+			int start = Integer.valueOf(st.nextToken());
+			int end = Integer.valueOf(st.nextToken());
 			
-			reserve(room, start, end);
-		}
-		
-		ArrayList<String> keyList = new ArrayList<>(current.keySet());
-		keyList.sort((s1, s2) -> s1.compareTo(s2));
-		
-		for(int i = 0; i < keyList.size(); i++) {
-			System.out.println("Room " + keyList.get(i) + ":");
+			int[][] current = reserve.get(room);
 			
-			result(current.get(keyList.get(i)));
-			
-			if(i < keyList.size() - 1) {
-				System.out.println("-----");
+			for(int j = start; j < end; j++) {
+				current[j - 9][0] = -1;
+				current[j - 9][1] = -1;
 			}
 		}
 	}
+	
+	
+//	/*
+//	 * 방법 1. 득점: 0.0		실행시간: 180ms		메모리: 14.85Mb
+//	 */
+//	private static HashMap<String, String[]> current = new HashMap<>();
+//	private static ArrayList<String[]> available;
+//	
+//	private static void reserve(String room, int start, int end) {
+//		String[] time = current.get(room);
+//		int index = start - 9;
+//		boolean run = true;
+//		
+//		while(run) {
+//			time[index] = "1";
+//			index += 1;
+//			
+//			current.replace(room, time);
+//			
+//			if((index + 9) == end) run = false;
+//		}
+//	}
+//	
+//	private static void result(String[] time) {
+//		String start = "";
+//		String end = "";
+//		
+//		available = new ArrayList<>();
+//		
+//		for(int i = 0; i < 9; i++) {
+//			if(i < 8) {
+//				if(start.equals("") && end.equals("")) {
+//					if(!time[i].equals("1")) {
+//						start = time[i];
+//					}
+//					continue;
+//				} else if(!start.equals("") && end.equals("")) {
+//					if(time[i].equals("1")) {
+//						end = String.valueOf(Integer.valueOf(time[i - 1]) + 1);
+//						available.add(new String[] {start, end});
+//						start = "";
+//						end = "";
+//					}
+//					continue;
+//				}
+//			} else {
+//				if(!time[i].equals("1")) {
+//					end = String.valueOf(Integer.valueOf(time[i]) + 1);
+//					available.add(new String[] {start, end});
+//				}
+//			}
+//		}
+//		
+//		if(available.size() == 0) {
+//			System.out.println("Not available");
+//		} else {
+//			System.out.println(available.size() + " available:");
+//		}
+//		
+//		for(int i = 0; i < available.size(); i++) {
+//			System.out.println(available.get(i)[0] + "-" + available.get(i)[1]);
+//		}
+//	}
+//	
+//	public static void main(String[] args) throws Exception {
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st = new StringTokenizer(reader.readLine());
+//		
+//		int N = Integer.valueOf(st.nextToken());
+//		int M = Integer.valueOf(st.nextToken());
+//		
+//		String[] meetingRoom = new String[N];
+//		ArrayList<String[]> reserve = new ArrayList<>();
+//		
+//		for(int i = 0; i < N; i++) {
+//			String[] time = {"09", "10", "11", "12", "13", "14", "15", "16", "17"};
+//			
+//			st = new StringTokenizer(reader.readLine());
+//			meetingRoom[i] = st.nextToken();
+//			
+//			current.put(meetingRoom[i], time);
+//		}
+//		
+//		for(int i = 0; i < M; i++) {
+//			st = new StringTokenizer(reader.readLine());
+//			reserve.add(new String[] {st.nextToken(), st.nextToken(), st.nextToken()});
+//			
+//			String room = reserve.get(i)[0];
+//			int start = Integer.valueOf(reserve.get(i)[1]);
+//			int end = Integer.valueOf(reserve.get(i)[2]);
+//			
+//			reserve(room, start, end);
+//		}
+//		
+//		ArrayList<String> keyList = new ArrayList<>(current.keySet());
+//		keyList.sort((s1, s2) -> s1.compareTo(s2));
+//		
+//		for(int i = 0; i < keyList.size(); i++) {
+//			System.out.println("Room " + keyList.get(i) + ":");
+//			
+//			result(current.get(keyList.get(i)));
+//			
+//			if(i < keyList.size() - 1) {
+//				System.out.println("-----");
+//			}
+//		}
+//	}
 
 }
