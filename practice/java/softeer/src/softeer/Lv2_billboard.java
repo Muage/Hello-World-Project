@@ -2,6 +2,8 @@ package softeer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 // ¹®Á¦ ( Lv2. Àü±¤ÆÇ )
@@ -54,6 +56,18 @@ public class Lv2_billboard {
 	public static void main(String[] args) throws Exception{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
+		
+		Map<Integer, boolean[]> num = new HashMap<>();
+		num.put(0, new boolean[] {true, true, true, true, true, true, false});
+		num.put(1, new boolean[] {false, true, true, false, false, false, false});
+		num.put(2, new boolean[] {true, true, false, true, true, false, true});
+		num.put(3, new boolean[] {true, true, true, true, false, false, true});
+		num.put(4, new boolean[] {false, true, true, false, false, true, true});
+		num.put(5, new boolean[] {true, false, true, true, false, true, true});
+		num.put(6, new boolean[] {true, false, true, true, true, true, true});
+		num.put(7, new boolean[] {true, true, true, false, false, true, false});
+		num.put(8, new boolean[] {true, true, true, true, true, true, true});
+		num.put(9, new boolean[] {true, true, true, true, false, true, true});
 		
 		int T = Integer.valueOf(reader.readLine());
 		
