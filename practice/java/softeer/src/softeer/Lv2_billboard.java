@@ -51,6 +51,12 @@ import java.util.StringTokenizer;
 // 2
 // 6
 
+// System.out.println(a % 10);
+// System.out.println((a % 100) / 10);
+// System.out.println((a % 1000) / 100);
+// System.out.println((a % 10000) / 1000);
+// System.out.println((a % 100000) / 10000);
+
 public class Lv2_billboard {
 	
 	public static void main(String[] args) throws Exception{
@@ -68,6 +74,8 @@ public class Lv2_billboard {
 		num.put(7, new boolean[] {true, true, true, false, false, true, false});
 		num.put(8, new boolean[] {true, true, true, true, true, true, true});
 		num.put(9, new boolean[] {true, true, true, true, false, true, true});
+		
+		boolean[] check = {false, false, false, false, false, false, false};
 		
 		int T = Integer.valueOf(reader.readLine());
 		
