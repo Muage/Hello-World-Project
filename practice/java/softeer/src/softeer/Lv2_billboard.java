@@ -2,6 +2,8 @@ package softeer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -77,18 +79,26 @@ public class Lv2_billboard {
 		for(int i = 0; i < T; i++) {
 			st = new StringTokenizer(reader.readLine());
 			
-			String A = st.nextToken();
-			String B = st.nextToken();
+			int A = Integer.valueOf(st.nextToken());
+			int B = Integer.valueOf(st.nextToken());
 			
 			int[] arr_A = {-1, -1, -1, -1, -1};
 			int[] arr_B = {-1, -1, -1, -1, -1};
 			
-			for(int j = 0; j < A.length(); j++) {
-				arr_A[j] = Integer.valueOf(A.charAt(j) - '0');
+			for(int j = 0; j < 5; j++) {
+				arr_A[j] = A % 10;
+				A /= 10;
+				if(A == 0) break;
 			}
-			for(int j = 0; j < B.length(); j++) {
-				arr_B[j] = Integer.valueOf(B.charAt(j) - '0');
+			
+			for(int j = 0; j < 5; j++) {
+				arr_B[j] = B % 10;
+				B /= 10;
+				if(B == 0) break;
 			}
+			
+			System.out.println(Arrays.toString(arr_A));
+			System.out.println(Arrays.toString(arr_B));
 		}
 	}
 	
