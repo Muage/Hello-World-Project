@@ -54,56 +54,25 @@ import java.util.StringTokenizer;
 
 public class Lv2_billboard {
 	
-	private static int count = 0;
+	private static Map<Integer, int[]> num;
 	
-	private static void compare(int a, int b) {
-		Map<Integer, boolean[]> num = new HashMap<>();
-		num.put(0, new boolean[] {true, true, true, true, true, true, false});
-		num.put(1, new boolean[] {false, true, true, false, false, false, false});
-		num.put(2, new boolean[] {true, true, false, true, true, false, true});
-		num.put(3, new boolean[] {true, true, true, true, false, false, true});
-		num.put(4, new boolean[] {false, true, true, false, false, true, true});
-		num.put(5, new boolean[] {true, false, true, true, false, true, true});
-		num.put(6, new boolean[] {true, false, true, true, true, true, true});
-		num.put(7, new boolean[] {true, true, true, false, false, true, false});
-		num.put(8, new boolean[] {true, true, true, true, true, true, true});
-		num.put(9, new boolean[] {true, true, true, true, false, true, true});
-		num.put(10, new boolean[] {false, false, false, false, false, false, false});
-		
-		if(a == 10 && b != 10) {
-			for(int i = 0; i < 7; i++) {
-				if(num.get(b)[i] == true) {
-					count++;
-				}
-			}
-		}
-		
-		if(a != 10 && b == 10) {
-			for(int i = 0; i < 7; i++) {
-				if(num.get(a)[i] == true) {
-					count++;
-				}
-			}
-		}
-		
-		if(a != 10 && b != 10) {
-			for(int i = 0; i < 7; i++) {
-				if(num.get(a)[i] != num.get(b)[i]) {
-					count++;
-				}
-			}
-		}
-		
-		System.out.println(count);
-	}
-	
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		
+		num = new HashMap<>();
+		num.put(0, new int[] {1, 1, 1, 1, 1, 1, 0});
+		num.put(1, new int[] {0, 1, 1, 0, 0, 0, 0});
+		num.put(2, new int[] {1, 1, 0, 1, 1, 0, 1});
+		num.put(3, new int[] {1, 1, 1, 1, 0, 0, 1});
+		num.put(4, new int[] {0, 1, 1, 0, 0, 1, 1});
+		num.put(5, new int[] {1, 0, 1, 1, 0, 1, 1});
+		num.put(6, new int[] {1, 0, 1, 1, 1, 1, 1});
+		num.put(7, new int[] {1, 1, 1, 0, 0, 1, 0});
+		num.put(8, new int[] {1, 1, 1, 1, 1, 1, 1});
+		num.put(9, new int[] {1, 1, 1, 1, 0, 1, 1});
+		
 		int T = Integer.valueOf(reader.readLine());
-		int a = 0;
-		int b = 0;
 		
 		for(int i = 0; i < T; i++) {
 			st = new StringTokenizer(reader.readLine());
@@ -111,8 +80,8 @@ public class Lv2_billboard {
 			String A = st.nextToken();
 			String B = st.nextToken();
 			
-			int[] arr_A = new int[A.length()];
-			int[] arr_B = new int[B.length()];
+			int[] arr_A = {-1, -1, -1, -1, -1};
+			int[] arr_B = {-1, -1, -1, -1, -1};
 			
 			for(int j = 0; j < A.length(); j++) {
 				arr_A[j] = Integer.valueOf(A.charAt(j) - '0');
@@ -120,32 +89,108 @@ public class Lv2_billboard {
 			for(int j = 0; j < B.length(); j++) {
 				arr_B[j] = Integer.valueOf(B.charAt(j) - '0');
 			}
-			
-			Stack<Integer> stack_A = new Stack<>();
-			Stack<Integer> stack_B = new Stack<>();
-			
-			for(int j = 0; j < arr_A.length; j++) {
-				stack_A.add(arr_A[j]);
-			}
-			
-			for(int j = 0; j < arr_B.length; j++) {
-				stack_B.add(arr_B[j]);
-			}
-			
-			if(stack_A.isEmpty()) {
-				a = 10;
-			} else {
-				a = stack_A.pop();
-			}
-			
-			if(stack_B.isEmpty()) {
-				b = 10;
-			} else {
-				b = stack_B.pop();
-			}
-			
-			compare(a, b);
 		}
 	}
+	
+	
+	/*
+	 * 다시 풀어보기
+	 */
+//	private static int compare(int a, int b) {
+//		Map<Integer, boolean[]> num = new HashMap<>();
+//		num.put(0, new boolean[] {true, true, true, true, true, true, false});
+//		num.put(1, new boolean[] {false, true, true, false, false, false, false});
+//		num.put(2, new boolean[] {true, true, false, true, true, false, true});
+//		num.put(3, new boolean[] {true, true, true, true, false, false, true});
+//		num.put(4, new boolean[] {false, true, true, false, false, true, true});
+//		num.put(5, new boolean[] {true, false, true, true, false, true, true});
+//		num.put(6, new boolean[] {true, false, true, true, true, true, true});
+//		num.put(7, new boolean[] {true, true, true, false, false, true, false});
+//		num.put(8, new boolean[] {true, true, true, true, true, true, true});
+//		num.put(9, new boolean[] {true, true, true, true, false, true, true});
+//		num.put(10, new boolean[] {false, false, false, false, false, false, false});
+//		
+//		int count = 0;
+//		
+//		if(a == 10 && b != 10) {
+//			for(int i = 0; i < 7; i++) {
+//				if(num.get(b)[i] == true) {
+//					count++;
+//				}
+//			}
+//		}
+//		
+//		if(a != 10 && b == 10) {
+//			for(int i = 0; i < 7; i++) {
+//				if(num.get(a)[i] == true) {
+//					count++;
+//				}
+//			}
+//		}
+//		
+//		if(a != 10 && b != 10) {
+//			for(int i = 0; i < 7; i++) {
+//				if(num.get(a)[i] != num.get(b)[i]) {
+//					count++;
+//				}
+//			}
+//		}
+//		
+//		return count;
+//	}
+//	
+//	public static void main(String[] args) throws Exception{
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st;
+//		
+//		int T = Integer.valueOf(reader.readLine());
+//		int a = 0;
+//		int b = 0;
+//		int count = 0;
+//		
+//		for(int i = 0; i < T; i++) {
+//			st = new StringTokenizer(reader.readLine());
+//			
+//			String A = st.nextToken();
+//			String B = st.nextToken();
+//			
+//			int[] arr_A = new int[A.length()];
+//			int[] arr_B = new int[B.length()];
+//			
+//			for(int j = 0; j < A.length(); j++) {
+//				arr_A[j] = Integer.valueOf(A.charAt(j) - '0');
+//			}
+//			for(int j = 0; j < B.length(); j++) {
+//				arr_B[j] = Integer.valueOf(B.charAt(j) - '0');
+//			}
+//			
+//			Stack<Integer> stack_A = new Stack<>();
+//			Stack<Integer> stack_B = new Stack<>();
+//			
+//			for(int j = 0; j < arr_A.length; j++) {
+//				stack_A.add(arr_A[j]);
+//			}
+//			
+//			for(int j = 0; j < arr_B.length; j++) {
+//				stack_B.add(arr_B[j]);
+//			}
+//			
+//			if(stack_A.isEmpty()) {
+//				a = 10;
+//			} else {
+//				a = stack_A.pop();
+//			}
+//			
+//			if(stack_B.isEmpty()) {
+//				b = 10;
+//			} else {
+//				b = stack_B.pop();
+//			}
+//			
+//			count += compare(a, b);
+//			
+//			System.out.println(count);
+//		}
+//	}
 
 }
