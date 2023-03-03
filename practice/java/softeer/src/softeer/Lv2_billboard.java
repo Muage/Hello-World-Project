@@ -58,6 +58,33 @@ public class Lv2_billboard {
 	
 	private static Map<Integer, int[]> num;
 	
+	private static int sum(int a) {
+		int count = 0;
+
+		int[] number = num.get(a);
+		
+		for(int i = 0; i < 7; i++) {
+			count += number[i];
+		}
+		
+		return count;
+	}
+	
+	private static int compare(int a, int b) {
+		int count = 0;
+		
+		int[] arr_A = num.get(a);
+		int[] arr_B = num.get(b);
+		
+		for(int i = 0; i < 7; i++) {
+			if(arr_A[i] != arr_B[i]) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
+	
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
@@ -97,8 +124,21 @@ public class Lv2_billboard {
 				if(B == 0) break;
 			}
 			
-			System.out.println(Arrays.toString(arr_A));
-			System.out.println(Arrays.toString(arr_B));
+			int count = 0;
+			
+			for(int j = 0; j < 5; j++) {
+				if(arr_A[j] != arr_B[j]) {
+					if(arr_A[j] == -1) {
+						count += sum(arr_B[j]);
+					} else if(arr_B[j] == -1) {
+						count += sum(arr_A[j]);
+					} else {
+						count += compare(arr_A[j], arr_B[j]);
+					}
+				}
+			}
+			
+			System.out.println(count);
 		}
 	}
 	
