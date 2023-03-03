@@ -1,6 +1,11 @@
 package softeer;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
+import java.util.StringTokenizer;
 
 // 문제 ( Lv2. 전광판 )
 // 현대차그룹에 다니는 당신은 전세계 유가 변동에 대해 실시간으로 파악하기 위해 사무실에 유가를 실시간으로 표시하는 전광판을 설치하였다.
@@ -47,55 +52,98 @@ import java.util.Stack;
 // 2
 // 6
 
-// System.out.println(a % 10);
-// System.out.println((a % 100) / 10);
-// System.out.println((a % 1000) / 100);
-// System.out.println((a % 10000) / 1000);
-// System.out.println((a % 100000) / 10000);
-
 public class Lv2_billboard {
 	
-//	private static void compare(int a, int b) {
-//		Map<Integer, boolean[]> num = new HashMap<>();
-//		num.put(0, new boolean[] {true, true, true, true, true, true, false});
-//		num.put(1, new boolean[] {false, true, true, false, false, false, false});
-//		num.put(2, new boolean[] {true, true, false, true, true, false, true});
-//		num.put(3, new boolean[] {true, true, true, true, false, false, true});
-//		num.put(4, new boolean[] {false, true, true, false, false, true, true});
-//		num.put(5, new boolean[] {true, false, true, true, false, true, true});
-//		num.put(6, new boolean[] {true, false, true, true, true, true, true});
-//		num.put(7, new boolean[] {true, true, true, false, false, true, false});
-//		num.put(8, new boolean[] {true, true, true, true, true, true, true});
-//		num.put(9, new boolean[] {true, true, true, true, false, true, true});
-//		
-//		boolean[] check = {false, false, false, false, false, false, false};
-//	}
+	private static int count = 0;
 	
-	public static void main(String[] args) throws Exception{
-		Stack<Integer> s = new Stack<>();
-		s.add(1);
-		s.add(0);
-		s.add(7);
-		s.add(2);
-		s.add(4);
+	private static void compare(int a, int b) {
+		Map<Integer, boolean[]> num = new HashMap<>();
+		num.put(0, new boolean[] {true, true, true, true, true, true, false});
+		num.put(1, new boolean[] {false, true, true, false, false, false, false});
+		num.put(2, new boolean[] {true, true, false, true, true, false, true});
+		num.put(3, new boolean[] {true, true, true, true, false, false, true});
+		num.put(4, new boolean[] {false, true, true, false, false, true, true});
+		num.put(5, new boolean[] {true, false, true, true, false, true, true});
+		num.put(6, new boolean[] {true, false, true, true, true, true, true});
+		num.put(7, new boolean[] {true, true, true, false, false, true, false});
+		num.put(8, new boolean[] {true, true, true, true, true, true, true});
+		num.put(9, new boolean[] {true, true, true, true, false, true, true});
+		num.put(10, new boolean[] {false, false, false, false, false, false, false});
 		
-		while(!s.isEmpty()) {
-			System.out.println(s.pop());
+		if(a == 10 && b != 10) {
+			for(int i = 0; i < 7; i++) {
+				if(num.get(b)[i] == true) {
+					count++;
+				}
+			}
 		}
 		
-//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//		StringTokenizer st;
-//		
-//		int T = Integer.valueOf(reader.readLine());
-//		
-//		for(int i = 0; i < T; i++) {
-//			st = new StringTokenizer(reader.readLine());
-//			
-//			int A = Integer.valueOf(st.nextToken());
-//			int B = Integer.valueOf(st.nextToken());
-//			
-//			compare(A, B);
-//		}
+		if(a != 10 && b == 10) {
+			for(int i = 0; i < 7; i++) {
+				if(num.get(a)[i] == true) {
+					count++;
+				}
+			}
+		}
+		
+		for(int i = 0; i < 7; i++) {
+			if(num.get(a)[i] != num.get(b)[i]) {
+				count++;
+			}
+		}
+		
+		System.out.println(count);
+	}
+	
+	public static void main(String[] args) throws Exception{
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		
+		int T = Integer.valueOf(reader.readLine());
+		int a = 0;
+		int b = 0;
+		
+		for(int i = 0; i < T; i++) {
+			st = new StringTokenizer(reader.readLine());
+			
+			String A = st.nextToken();
+			String B = st.nextToken();
+			
+			int[] arr_A = new int[A.length()];
+			int[] arr_B = new int[B.length()];
+			
+			for(int j = 0; j < A.length(); j++) {
+				arr_A[j] = Integer.valueOf(A.charAt(j) - '0');
+			}
+			for(int j = 0; j < B.length(); j++) {
+				arr_B[j] = Integer.valueOf(B.charAt(j) - '0');
+			}
+			
+			Stack<Integer> stack_A = new Stack<>();
+			Stack<Integer> stack_B = new Stack<>();
+			
+			for(int j = 0; j < arr_A.length; j++) {
+				stack_A.add(arr_A[j]);
+			}
+			
+			for(int j = 0; j < arr_B.length; j++) {
+				stack_B.add(arr_B[j]);
+			}
+			
+			if(stack_A.isEmpty()) {
+				a = 10;
+			} else {
+				a = stack_A.pop();
+			}
+			
+			if(stack_B.isEmpty()) {
+				b = 10;
+			} else {
+				b = stack_B.pop();
+			}
+			
+			compare(a, b);
+		}
 	}
 
 }
