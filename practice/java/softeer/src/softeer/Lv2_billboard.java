@@ -1,10 +1,6 @@
 package softeer;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.Stack;
 
 // 문제 ( Lv2. 전광판 )
 // 현대차그룹에 다니는 당신은 전세계 유가 변동에 대해 실시간으로 파악하기 위해 사무실에 유가를 실시간으로 표시하는 전광판을 설치하였다.
@@ -59,32 +55,47 @@ import java.util.StringTokenizer;
 
 public class Lv2_billboard {
 	
+//	private static void compare(int a, int b) {
+//		Map<Integer, boolean[]> num = new HashMap<>();
+//		num.put(0, new boolean[] {true, true, true, true, true, true, false});
+//		num.put(1, new boolean[] {false, true, true, false, false, false, false});
+//		num.put(2, new boolean[] {true, true, false, true, true, false, true});
+//		num.put(3, new boolean[] {true, true, true, true, false, false, true});
+//		num.put(4, new boolean[] {false, true, true, false, false, true, true});
+//		num.put(5, new boolean[] {true, false, true, true, false, true, true});
+//		num.put(6, new boolean[] {true, false, true, true, true, true, true});
+//		num.put(7, new boolean[] {true, true, true, false, false, true, false});
+//		num.put(8, new boolean[] {true, true, true, true, true, true, true});
+//		num.put(9, new boolean[] {true, true, true, true, false, true, true});
+//		
+//		boolean[] check = {false, false, false, false, false, false, false};
+//	}
+	
 	public static void main(String[] args) throws Exception{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st;
+		Stack<Integer> s = new Stack<>();
+		s.add(1);
+		s.add(0);
+		s.add(7);
+		s.add(2);
+		s.add(4);
 		
-		Map<Integer, boolean[]> num = new HashMap<>();
-		num.put(0, new boolean[] {true, true, true, true, true, true, false});
-		num.put(1, new boolean[] {false, true, true, false, false, false, false});
-		num.put(2, new boolean[] {true, true, false, true, true, false, true});
-		num.put(3, new boolean[] {true, true, true, true, false, false, true});
-		num.put(4, new boolean[] {false, true, true, false, false, true, true});
-		num.put(5, new boolean[] {true, false, true, true, false, true, true});
-		num.put(6, new boolean[] {true, false, true, true, true, true, true});
-		num.put(7, new boolean[] {true, true, true, false, false, true, false});
-		num.put(8, new boolean[] {true, true, true, true, true, true, true});
-		num.put(9, new boolean[] {true, true, true, true, false, true, true});
-		
-		boolean[] check = {false, false, false, false, false, false, false};
-		
-		int T = Integer.valueOf(reader.readLine());
-		
-		for(int i = 0; i < T; i++) {
-			st = new StringTokenizer(reader.readLine());
-			
-			int A = Integer.valueOf(st.nextToken());
-			int B = Integer.valueOf(st.nextToken());
+		while(!s.isEmpty()) {
+			System.out.println(s.pop());
 		}
+		
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st;
+//		
+//		int T = Integer.valueOf(reader.readLine());
+//		
+//		for(int i = 0; i < T; i++) {
+//			st = new StringTokenizer(reader.readLine());
+//			
+//			int A = Integer.valueOf(st.nextToken());
+//			int B = Integer.valueOf(st.nextToken());
+//			
+//			compare(A, B);
+//		}
 	}
 
 }
