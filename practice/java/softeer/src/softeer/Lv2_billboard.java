@@ -86,9 +86,11 @@ public class Lv2_billboard {
 			}
 		}
 		
-		for(int i = 0; i < 7; i++) {
-			if(num.get(a)[i] != num.get(b)[i]) {
-				count++;
+		if(a != 10 && b != 10) {
+			for(int i = 0; i < 7; i++) {
+				if(num.get(a)[i] != num.get(b)[i]) {
+					count++;
+				}
 			}
 		}
 		
