@@ -57,99 +57,183 @@ import java.util.StringTokenizer;
 public class Lv2_billboard {
 	
 	/*
-	 * 다른 사람 코드
-	 * 방법 2. 득점: 100.0		실행시간: 124ms		메모리: 12.06Mb
+	 * 방법 3. 득점: 100.0		실행시간: 135ms		메모리: 13.7Mb
 	 */
-	private static Map<Integer, int[]> num;
+	private static Map<Integer, int[]> map = new HashMap<>();
 	
-	private static int sum(int a) {
-		int count = 0;
-
-		int[] number = num.get(a);
-		
-		for(int i = 0; i < 7; i++) {
-			count += number[i];
-		}
-		
-		return count;
-	}
-	
-	private static int compare(int a, int b) {
+	private static void compare(int[] arr_A, int[] arr_B) {
 		int count = 0;
 		
-		int[] arr_A = num.get(a);
-		int[] arr_B = num.get(b);
-		
-		for(int i = 0; i < 7; i++) {
-			if(arr_A[i] != arr_B[i]) {
-				count++;
+		for(int i = 4; i >= 0; i--) {
+			if(arr_A[i] != -1 && arr_B[i] != -1) {
+				if(arr_A[i] != arr_B[i]) {
+					for(int j = 0; j < 7; j++) {
+						if(map.get(arr_A[i])[j] != map.get(arr_B[i])[j]) {
+							count++;
+						}
+					}
+				}
+			} else if(arr_A[i] != -1 && arr_B[i] == -1) {
+				for(int j = 0; j < 7; j++) {
+					if(map.get(arr_A[i])[j] == 1) {
+						count++;
+					}
+				}
+			} else if(arr_A[i] == -1 && arr_B[i] != -1) {
+				for(int j = 0; j < 7; j++) {
+					if(map.get(arr_B[i])[j] == 1) {
+						count++;
+					}
+				}
 			}
 		}
 		
-		return count;
+		System.out.println(count);
 	}
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st;
+		StringTokenizer st = new StringTokenizer(reader.readLine());
 		
-		num = new HashMap<>();
-		num.put(0, new int[] {1, 1, 1, 1, 1, 1, 0});
-		num.put(1, new int[] {0, 1, 1, 0, 0, 0, 0});
-		num.put(2, new int[] {1, 1, 0, 1, 1, 0, 1});
-		num.put(3, new int[] {1, 1, 1, 1, 0, 0, 1});
-		num.put(4, new int[] {0, 1, 1, 0, 0, 1, 1});
-		num.put(5, new int[] {1, 0, 1, 1, 0, 1, 1});
-		num.put(6, new int[] {1, 0, 1, 1, 1, 1, 1});
-		num.put(7, new int[] {1, 1, 1, 0, 0, 1, 0});
-		num.put(8, new int[] {1, 1, 1, 1, 1, 1, 1});
-		num.put(9, new int[] {1, 1, 1, 1, 0, 1, 1});
+		map.put(0, new int[] {1, 1, 1, 1, 1, 1, 0});
+		map.put(1, new int[] {0, 1, 1, 0, 0, 0, 0});
+		map.put(2, new int[] {1, 1, 0, 1, 1, 0, 1});
+		map.put(3, new int[] {1, 1, 1, 1, 0, 0, 1});
+		map.put(4, new int[] {0, 1, 1, 0, 0, 1, 1});
+		map.put(5, new int[] {1, 0, 1, 1, 0, 1, 1});
+		map.put(6, new int[] {1, 0, 1, 1, 1, 1, 1});
+		map.put(7, new int[] {1, 1, 1, 0, 0, 1, 0});
+		map.put(8, new int[] {1, 1, 1, 1, 1, 1, 1});
+		map.put(9, new int[] {1, 1, 1, 1, 0, 1, 1});
 		
-		int T = Integer.valueOf(reader.readLine());
+		int T = Integer.valueOf(st.nextToken());
+
+		
 		
 		for(int i = 0; i < T; i++) {
-			st = new StringTokenizer(reader.readLine());
-			
-			int A = Integer.valueOf(st.nextToken());
-			int B = Integer.valueOf(st.nextToken());
-			
 			int[] arr_A = {-1, -1, -1, -1, -1};
 			int[] arr_B = {-1, -1, -1, -1, -1};
 			
-			for(int j = 0; j < 5; j++) {
-				arr_A[j] = A % 10;
-				A /= 10;
-				if(A == 0) break;
-			}
+			st = new StringTokenizer(reader.readLine());
 			
-			for(int j = 0; j < 5; j++) {
-				arr_B[j] = B % 10;
-				B /= 10;
-				if(B == 0) break;
-			}
+			String A = st.nextToken();
+			String B = st.nextToken();
 			
-			int count = 0;
-			
-			for(int j = 0; j < 5; j++) {
-				if(arr_A[j] != arr_B[j]) {
-					if(arr_A[j] == -1) {
-						count += sum(arr_B[j]);
-					} else if(arr_B[j] == -1) {
-						count += sum(arr_A[j]);
-					} else {
-						count += compare(arr_A[j], arr_B[j]);
-					}
+			int k = 1;
+			for(int j = 4; j >= 0; j--) {
+				if(k <= A.length()) {
+					arr_A[j] = A.charAt(A.length() - k) - '0';
+					k++;
 				}
 			}
 			
-			System.out.println(count);
+			k = 1;
+			for(int j = 4; j >= 0; j--) {
+				if(k <= B.length()) {
+					arr_B[j] = B.charAt(B.length() - k) - '0';
+					k++;
+				}
+			}
+			
+			compare(arr_A, arr_B);
 		}
 	}
 	
 	
 	/*
-	 * 다시 풀어보기
-	 * 방법 1. 득점: 0.0		실행시간: 124ms		메모리: 12.06Mb
+	 * 다른 사람 코드
+	 * 방법 2. 득점: 100.0		실행시간: 124ms		메모리: 12.06Mb
+	 */
+//	private static Map<Integer, int[]> num;
+//	
+//	private static int sum(int a) {
+//		int count = 0;
+//
+//		int[] number = num.get(a);
+//		
+//		for(int i = 0; i < 7; i++) {
+//			count += number[i];
+//		}
+//		
+//		return count;
+//	}
+//	
+//	private static int compare(int a, int b) {
+//		int count = 0;
+//		
+//		int[] arr_A = num.get(a);
+//		int[] arr_B = num.get(b);
+//		
+//		for(int i = 0; i < 7; i++) {
+//			if(arr_A[i] != arr_B[i]) {
+//				count++;
+//			}
+//		}
+//		
+//		return count;
+//	}
+//	
+//	public static void main(String[] args) throws Exception {
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st;
+//		
+//		num = new HashMap<>();
+//		num.put(0, new int[] {1, 1, 1, 1, 1, 1, 0});
+//		num.put(1, new int[] {0, 1, 1, 0, 0, 0, 0});
+//		num.put(2, new int[] {1, 1, 0, 1, 1, 0, 1});
+//		num.put(3, new int[] {1, 1, 1, 1, 0, 0, 1});
+//		num.put(4, new int[] {0, 1, 1, 0, 0, 1, 1});
+//		num.put(5, new int[] {1, 0, 1, 1, 0, 1, 1});
+//		num.put(6, new int[] {1, 0, 1, 1, 1, 1, 1});
+//		num.put(7, new int[] {1, 1, 1, 0, 0, 1, 0});
+//		num.put(8, new int[] {1, 1, 1, 1, 1, 1, 1});
+//		num.put(9, new int[] {1, 1, 1, 1, 0, 1, 1});
+//		
+//		int T = Integer.valueOf(reader.readLine());
+//		
+//		for(int i = 0; i < T; i++) {
+//			st = new StringTokenizer(reader.readLine());
+//			
+//			int A = Integer.valueOf(st.nextToken());
+//			int B = Integer.valueOf(st.nextToken());
+//			
+//			int[] arr_A = {-1, -1, -1, -1, -1};
+//			int[] arr_B = {-1, -1, -1, -1, -1};
+//			
+//			for(int j = 0; j < 5; j++) {
+//				arr_A[j] = A % 10;
+//				A /= 10;
+//				if(A == 0) break;
+//			}
+//			
+//			for(int j = 0; j < 5; j++) {
+//				arr_B[j] = B % 10;
+//				B /= 10;
+//				if(B == 0) break;
+//			}
+//			
+//			int count = 0;
+//			
+//			for(int j = 0; j < 5; j++) {
+//				if(arr_A[j] != arr_B[j]) {
+//					if(arr_A[j] == -1) {
+//						count += sum(arr_B[j]);
+//					} else if(arr_B[j] == -1) {
+//						count += sum(arr_A[j]);
+//					} else {
+//						count += compare(arr_A[j], arr_B[j]);
+//					}
+//				}
+//			}
+//			
+//			System.out.println(count);
+//		}
+//	}
+	
+	
+	/*
+	 * 다시 풀어보기 ( 결과 X )
+	 * 방법 1. 득점: 0.0		실행시간: 0ms		메모리: 0Mb
 	 */
 //	private static int compare(int a, int b) {
 //		Map<Integer, boolean[]> num = new HashMap<>();
