@@ -56,6 +56,10 @@ import java.util.StringTokenizer;
 
 public class Lv2_billboard {
 	
+	/*
+	 * 다른 사람 코드
+	 * 방법 2. 득점: 100.0		실행시간: 124ms		메모리: 12.06Mb
+	 */
 	private static Map<Integer, int[]> num;
 	
 	private static int sum(int a) {
@@ -145,6 +149,7 @@ public class Lv2_billboard {
 	
 	/*
 	 * 다시 풀어보기
+	 * 방법 1. 득점: 0.0		실행시간: 124ms		메모리: 12.06Mb
 	 */
 //	private static int compare(int a, int b) {
 //		Map<Integer, boolean[]> num = new HashMap<>();
