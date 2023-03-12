@@ -26,6 +26,9 @@ package softeer;
 // 제약조건
 // 1 ≤ N, M ≤ 100
 
+// 입력형식
+// 첫 줄에 N과 M이 주어진다.
+
 public class Lv2_GBC {
 
 }
