@@ -39,6 +39,7 @@ package softeer;
 // 50 50
 // 40 40
 // 10 30
+// 60 76
 
 public class Lv2_GBC {
 
