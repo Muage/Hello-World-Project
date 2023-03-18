@@ -46,6 +46,9 @@ package softeer;
 // 출력예제1
 // 36
 
+// 입력예제2
+// 3 3
+
 public class Lv2_GBC {
 
 }
