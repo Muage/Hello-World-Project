@@ -49,6 +49,7 @@ package softeer;
 // 입력예제2
 // 3 3
 // 50 90
+// 10 90
 
 public class Lv2_GBC {
 
