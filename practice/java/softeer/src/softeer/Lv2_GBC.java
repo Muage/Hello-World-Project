@@ -1,5 +1,9 @@
 package softeer;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
 // 문제 ( Lv2. GBC )
 // 글로벌 비즈니스 센터(GBC, Global Business Center)는 현대자동차그룹 통합 사옥이다.
 // 지하 7층, 지상 105층, 높이 약 570m의 규모로 2026년 하반기에 완공을 목표로 현재 공사 중에 있다.
@@ -59,5 +63,55 @@ package softeer;
 // 10
 
 public class Lv2_GBC {
+	
+	public static void main(String[] args) throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(reader.readLine());
+		
+		int N = Integer.valueOf(st.nextToken());
+		int M = Integer.valueOf(st.nextToken());
+		int max = 0;
+		int temp = 0;
+		int[][] limit = new int[N][2];
+		int[][] race = new int[M][2];
+		
+		for(int i = 0; i < N; i++) {
+			st = new StringTokenizer(reader.readLine());
+			limit[i][0] = Integer.valueOf(st.nextToken());
+			limit[i][1] = Integer.valueOf(st.nextToken());
+		}
+		
+		for(int i = 0; i < N; i++) {
+			st = new StringTokenizer(reader.readLine());
+			race[i][0] = Integer.valueOf(st.nextToken());
+			race[i][1] = Integer.valueOf(st.nextToken());
+		}
+		
+		for(int i = 0; i < N; i++) {
+			for(int j = temp; j < M; j++) {
+				if(limit[i][0] < race[j][0]) {
+					race[j][0] -= limit[i][0];
+					if(race[j][1] - limit[i][1] > 0) {
+						max = Math.max(max, race[j][1] - limit[i][1]);
+					}
+					break;
+				} else if(limit[i][0] > race[j][0]) {
+					limit[i][0] -= race[j][0];
+					if(race[j][1] - limit[i][1] > 0) {
+						max = Math.max(max, race[j][1] - limit[i][1]);
+					}
+					temp++;
+				} else {
+					if(race[j][1] - limit[i][1] > 0) {
+						max = Math.max(max, race[j][1] - limit[i][1]);
+					}
+					temp++;
+					break;
+				}
+			}
+		}
+		
+		System.out.println(max);
+	}
 
 }
