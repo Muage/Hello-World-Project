@@ -65,6 +65,12 @@ import java.util.StringTokenizer;
 public class Lv2_GBC {
 	
 	public static void main(String[] args) throws Exception {
+		
+		/*
+		 * 다른 사람 코드
+		 * 방법 1. 득점: 0.0		실행시간: 69ms		메모리: 10.37Mb
+		 * test6_런타임에러
+		 */
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(reader.readLine());
 		
