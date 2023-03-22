@@ -64,6 +64,9 @@ import java.util.StringTokenizer;
 
 public class Lv2_GBC {
 	
+	/*
+	 * 방법 2. 득점: 0.0		실행시간: 70ms		메모리: 10.41Mb
+	 */
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(reader.readLine());
@@ -101,6 +104,7 @@ public class Lv2_GBC {
 			speed = Math.min(speed, limit[1][1] - race[1][1]);
 			speed = Math.min(speed, limit[2][1] - race[1][1]);
 		} else if(race[0][0] + race[1][0] == limit[0][0] + limit[1][0]) {
+			speed = Math.min(speed, limit[1][1] - race[1][1]);
 			speed = Math.min(speed, limit[2][1] - race[2][1]);
 		} else if(race[0][0] + race[1][0] < limit[0][0] + limit[1][0]) {
 			speed = Math.min(speed, limit[1][1] - race[1][1]);
