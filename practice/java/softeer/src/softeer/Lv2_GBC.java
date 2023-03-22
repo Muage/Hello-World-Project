@@ -64,64 +64,111 @@ import java.util.StringTokenizer;
 
 public class Lv2_GBC {
 	
+	public static void main(String[] args) throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(reader.readLine());
+		
+		int N = Integer.valueOf(st.nextToken());
+		int M = Integer.valueOf(st.nextToken());
+		
+		int speed = 0;
+		int[][] limit = new int[N][2];
+		int[][] race = new int[M][2];
+		
+		for(int i = 0; i < N; i++) {
+			st = new StringTokenizer(reader.readLine());
+			
+			limit[i][0] = Integer.valueOf(st.nextToken());
+			limit[i][1] = Integer.valueOf(st.nextToken());
+		}
+		
+		for(int i = 0; i < M; i++) {
+			st = new StringTokenizer(reader.readLine());
+			
+			race[i][0] = Integer.valueOf(st.nextToken());
+			race[i][1] = Integer.valueOf(st.nextToken());
+		}
+		
+		speed = Math.min(speed, limit[0][1] - race[0][1]);
+		
+		if(race[0][0] - limit[0][0] > 0) {
+			speed = Math.min(speed, limit[1][1] - race[0][1]);
+		} else if(race[0][0] - limit[0][0] < 0) {
+			speed = Math.min(speed, limit[0][1] - race[1][1]);
+		}
+		
+		if(race[0][0] + race[1][0] > limit[0][0] + limit[1][0]) {
+			speed = Math.min(speed, limit[1][1] - race[1][1]);
+			speed = Math.min(speed, limit[2][1] - race[1][1]);
+		} else if(race[0][0] + race[1][0] == limit[0][0] + limit[1][0]) {
+			speed = Math.min(speed, limit[2][1] - race[2][1]);
+		} else if(race[0][0] + race[1][0] < limit[0][0] + limit[1][0]) {
+			speed = Math.min(speed, limit[1][1] - race[1][1]);
+			speed = Math.min(speed, limit[1][1] - race[2][1]);
+		}
+		
+		System.out.println(speed * -1);
+		
+	}
+	
 	/*
 	 * 다른 사람 코드
 	 * 방법 1. 득점: 0.0		실행시간: 69ms		메모리: 10.37Mb
 	 * test6_런타임에러
 	 */
-	public static int N, M;
-	
-	public static void main(String[] args) throws Exception {
-		
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(reader.readLine());
-		
-		N = Integer.valueOf(st.nextToken());
-		M = Integer.valueOf(st.nextToken());
-		int max = 0;
-		int[][] limit = new int[N][2];
-		
-		for(int i = 0; i < N; i++) {
-			st = new StringTokenizer(reader.readLine());
-			limit[i][0] = Integer.valueOf(st.nextToken());
-			limit[i][1] = Integer.valueOf(st.nextToken());
-		}
-		
-		int[][] race = new int[M][2];
-		
-		for(int i = 0; i < N; i++) {
-			st = new StringTokenizer(reader.readLine());
-			race[i][0] = Integer.valueOf(st.nextToken());
-			race[i][1] = Integer.valueOf(st.nextToken());
-		}
-
-		int temp = 0;
-		
-		for(int i = 0; i < N; i++) {
-			for(int j = temp; j < M; j++) {
-				if(limit[i][0] < race[j][0]) {
-					race[j][0] -= limit[i][0];
-					if(race[j][1] - limit[i][1] > 0) {
-						max = Math.max(max, race[j][1] - limit[i][1]);
-					}
-					break;
-				} else if(limit[i][0] > race[j][0]) {
-					limit[i][0] -= race[j][0];
-					if(race[j][1] - limit[i][1] > 0) {
-						max = Math.max(max, race[j][1] - limit[i][1]);
-					}
-					temp++;
-				} else {
-					if(race[j][1] - limit[i][1] > 0) {
-						max = Math.max(max, race[j][1] - limit[i][1]);
-					}
-					temp++;
-					break;
-				}
-			}
-		}
-		
-		System.out.println(max);
-	}
+//	public static int N, M;
+//	
+//	public static void main(String[] args) throws Exception {
+//		
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st = new StringTokenizer(reader.readLine());
+//		
+//		N = Integer.valueOf(st.nextToken());
+//		M = Integer.valueOf(st.nextToken());
+//		int max = 0;
+//		int[][] limit = new int[N][2];
+//		
+//		for(int i = 0; i < N; i++) {
+//			st = new StringTokenizer(reader.readLine());
+//			limit[i][0] = Integer.valueOf(st.nextToken());
+//			limit[i][1] = Integer.valueOf(st.nextToken());
+//		}
+//		
+//		int[][] race = new int[M][2];
+//		
+//		for(int i = 0; i < N; i++) {
+//			st = new StringTokenizer(reader.readLine());
+//			race[i][0] = Integer.valueOf(st.nextToken());
+//			race[i][1] = Integer.valueOf(st.nextToken());
+//		}
+//
+//		int temp = 0;
+//		
+//		for(int i = 0; i < N; i++) {
+//			for(int j = temp; j < M; j++) {
+//				if(limit[i][0] < race[j][0]) {
+//					race[j][0] -= limit[i][0];
+//					if(race[j][1] - limit[i][1] > 0) {
+//						max = Math.max(max, race[j][1] - limit[i][1]);
+//					}
+//					break;
+//				} else if(limit[i][0] > race[j][0]) {
+//					limit[i][0] -= race[j][0];
+//					if(race[j][1] - limit[i][1] > 0) {
+//						max = Math.max(max, race[j][1] - limit[i][1]);
+//					}
+//					temp++;
+//				} else {
+//					if(race[j][1] - limit[i][1] > 0) {
+//						max = Math.max(max, race[j][1] - limit[i][1]);
+//					}
+//					temp++;
+//					break;
+//				}
+//			}
+//		}
+//		
+//		System.out.println(max);
+//	}
 
 }
