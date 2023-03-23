@@ -65,7 +65,7 @@ import java.util.StringTokenizer;
 public class Lv2_GBC {
 	
 	/*
-	 * 방법 2. 득점: 0.0		실행시간: 71ms		메모리: 10.58Mb
+	 * 방법 3. 득점: 100.0		실행시간: 71ms		메모리: 10.56Mb
 	 */
 	public static void main(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -75,6 +75,8 @@ public class Lv2_GBC {
 		int M = Integer.valueOf(st.nextToken());
 		
 		int speed = 0;
+		int start = 0;
+		int end = 0;
 		int[][] limit = new int[N][2];
 		int[][] race = new int[M][2];
 		
@@ -92,34 +94,99 @@ public class Lv2_GBC {
 			race[i][1] = Integer.valueOf(st.nextToken());
 		}
 		
-		speed = Math.min(speed, limit[0][1] - race[0][1]);
-		
-		if(race[0][0] - limit[0][0] > 0) {
-			speed = Math.min(speed, limit[1][1] - race[0][1]);
-		} else if(race[0][0] - limit[0][0] < 0) {
-			speed = Math.min(speed, limit[0][1] - race[1][1]);
+		for(int i = 0; i < N; i++) {
+			if(i == 0) {
+				end = limit[i][0];
+			} else {
+				end += limit[i][0];
+			}
+			
+			int distance = start;
+			
+			while(distance < end) {
+				int limitSpeed = limit[i][1];
+				int raceSpeed = 0;
+				int raceDistance = 0;
+				
+				for(int j = 0; j < M; j++) {
+					raceDistance += race[j][0];
+					
+					if(distance < raceDistance) {
+						raceSpeed = race[j][1];
+						break;
+					}
+				}
+				
+				if(limitSpeed < raceSpeed) {
+					speed = Math.max(speed, raceSpeed - limitSpeed);
+				}
+				
+				distance++;
+			}
+			
+			start = end;
 		}
 		
-		if(race[0][0] + race[1][0] > limit[0][0] + limit[1][0]) {
-			speed = Math.min(speed, limit[1][1] - race[1][1]);
-			speed = Math.min(speed, limit[2][1] - race[1][1]);
-		} else if(race[0][0] + race[1][0] == limit[0][0] + limit[1][0]) {
-			speed = Math.min(speed, limit[1][1] - race[1][1]);
-			speed = Math.min(speed, limit[2][1] - race[2][1]);
-		} else if(race[0][0] + race[1][0] < limit[0][0] + limit[1][0]) {
-			speed = Math.min(speed, limit[1][1] - race[1][1]);
-			speed = Math.min(speed, limit[1][1] - race[2][1]);
-		}
-		
-		speed = Math.min(speed, limit[2][1] - race[2][1]);
-		
-		if(speed < 0) {
-			System.out.println(speed * -1);
-		} else {
-			System.out.println(0);
-		}
+		System.out.println(speed);
 		
 	}
+	
+	/*
+	 * 방법 2. 득점: 0.0		실행시간: 71ms		메모리: 10.58Mb
+	 */
+//	public static void main(String[] args) throws Exception {
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st = new StringTokenizer(reader.readLine());
+//		
+//		int N = Integer.valueOf(st.nextToken());
+//		int M = Integer.valueOf(st.nextToken());
+//		
+//		int speed = 0;
+//		int[][] limit = new int[N][2];
+//		int[][] race = new int[M][2];
+//		
+//		for(int i = 0; i < N; i++) {
+//			st = new StringTokenizer(reader.readLine());
+//			
+//			limit[i][0] = Integer.valueOf(st.nextToken());
+//			limit[i][1] = Integer.valueOf(st.nextToken());
+//		}
+//		
+//		for(int i = 0; i < M; i++) {
+//			st = new StringTokenizer(reader.readLine());
+//			
+//			race[i][0] = Integer.valueOf(st.nextToken());
+//			race[i][1] = Integer.valueOf(st.nextToken());
+//		}
+//		
+//		speed = Math.min(speed, limit[0][1] - race[0][1]);
+//		
+//		if(race[0][0] - limit[0][0] > 0) {
+//			speed = Math.min(speed, limit[1][1] - race[0][1]);
+//		} else if(race[0][0] - limit[0][0] < 0) {
+//			speed = Math.min(speed, limit[0][1] - race[1][1]);
+//		}
+//		
+//		if(race[0][0] + race[1][0] > limit[0][0] + limit[1][0]) {
+//			speed = Math.min(speed, limit[1][1] - race[1][1]);
+//			speed = Math.min(speed, limit[2][1] - race[1][1]);
+//		} else if(race[0][0] + race[1][0] == limit[0][0] + limit[1][0]) {
+//			speed = Math.min(speed, limit[1][1] - race[1][1]);
+//			speed = Math.min(speed, limit[2][1] - race[2][1]);
+//		} else if(race[0][0] + race[1][0] < limit[0][0] + limit[1][0]) {
+//			speed = Math.min(speed, limit[1][1] - race[1][1]);
+//			speed = Math.min(speed, limit[1][1] - race[2][1]);
+//		}
+//		
+//		speed = Math.min(speed, limit[2][1] - race[2][1]);
+//		
+//		if(speed < 0) {
+//			System.out.println(speed * -1);
+//		} else {
+//			System.out.println(0);
+//		}
+//		
+//	}
 	
 	/*
 	 * 다른 사람 코드
