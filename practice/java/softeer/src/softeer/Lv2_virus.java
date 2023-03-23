@@ -1,5 +1,9 @@
 package softeer;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
 // 문제 ( Lv2. 바이러스 )
 // 바이러스가 숙주의 몸속에서 1초당 P배씩 증가한다.
 // 처음에 바이러스 K마리가 있었다면 N초 후에는 총 몇 마리의 바이러스로 불어날까?
@@ -24,6 +28,21 @@ package softeer;
 
 public class Lv2_virus {
 	
-	
+	public static void main(String[] args) throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(reader.readLine());
+		
+		int K = Integer.valueOf(st.nextToken());
+		int P = Integer.valueOf(st.nextToken());
+		int N = Integer.valueOf(st.nextToken());
+		
+		long virus = K;
+		
+		for(int i = 0; i < N; i++) {
+			virus = (virus * P) % 1000000007;
+		}
+		
+		System.out.println(virus);
+	}
 
 }
