@@ -66,6 +66,7 @@ public class Lv3_baseLine_cover {
 		int N = Integer.valueOf(st.nextToken());
 		int M = Integer.valueOf(st.nextToken());
 		
+		int count = 0;
 		char[][] base = new char[N][M];
 		
 		for(int i = 0; i < N; i++) {
@@ -80,9 +81,10 @@ public class Lv3_baseLine_cover {
 		
 		for(int i = 0; i < N; i++) {
 			for(int j = 0; j < M; j++) {
-				if(base[i][j] == base[i + 1][j]) {
-					
-				}
+//				if(base[i][j] == '.') {
+//					continue;
+//				}
+				
 			}
 		}
 		
