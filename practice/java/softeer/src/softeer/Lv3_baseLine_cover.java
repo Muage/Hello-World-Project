@@ -60,6 +60,12 @@ import java.util.StringTokenizer;
 public class Lv3_baseLine_cover {
 	
 	public static void main(String[] args) throws Exception {
+		/**
+		 * temp index를 2^n으로 해결.. 문제풀이 확인 요망
+		 * 
+		 */
+		
+		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(reader.readLine());
 		
