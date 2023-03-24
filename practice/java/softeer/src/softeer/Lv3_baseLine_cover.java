@@ -1,5 +1,9 @@
 package softeer;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
 // 문제 ( Lv3. 염기서열 커버 )
 // 생명 공학을 연구하는 찬홍이는 요즘 DNA 염기서열을 연구하고 있다.
 // DNA 염기서열이란 4종류의 핵염기 a(아데닌), c(사이토신), g(구아닌), t(티민)이 일자로 연결된 가닥이다.
@@ -55,6 +59,33 @@ package softeer;
 
 public class Lv3_baseLine_cover {
 	
-	
+	public static void main(String[] args) throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(reader.readLine());
+		
+		int N = Integer.valueOf(st.nextToken());
+		int M = Integer.valueOf(st.nextToken());
+		
+		char[][] base = new char[N][M];
+		
+		for(int i = 0; i < N; i++) {
+			st = new StringTokenizer(reader.readLine());
+			
+			String temp = st.nextToken();
+			
+			for(int j = 0; j < temp.length(); j++) {
+				base[i][j] = temp.charAt(j);
+			}
+		}
+		
+		for(int i = 0; i < N; i++) {
+			for(int j = 0; j < M; j++) {
+				if(base[i][j] == base[i + 1][j]) {
+					
+				}
+			}
+		}
+		
+	}
 
 }
