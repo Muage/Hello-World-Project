@@ -13,3 +13,5 @@ create table °í°´(
     id varchar2(20 byte) not null,
     name varchar2(30 byte) not null
 );
+
+alter table °í°´ add constraint °í°´_pk primary key (id);
