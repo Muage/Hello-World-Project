@@ -8,3 +8,8 @@ check*/
 
 --tab 이라는 테이블로부터 모든 행과 모든 컬럼 출력
 select * from tab;
+
+create table 고객(
+    id varchar2(20 byte) not null,
+    name varchar2(30 byte) not null
+);
