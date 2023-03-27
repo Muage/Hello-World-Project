@@ -34,3 +34,23 @@ insert into SQLD_37 values (0, null, 0);
 insert into SQLD_37 values (10, 20, null);
 insert into SQLD_37 values (11, 21, 31);
 insert into SQLD_37 values (12, 22, 32);
+
+--ич
+select max(COL2) AS A, min(COL2) AS B, sum(COL1) AS C from SQLD_37;
+--A   B   C
+--22  0   33
+
+--иш
+select max(COL1) AS A, min(COL2) AS B, sum(COL2) AS C from SQLD_37;
+--A   B   C
+--12  0   63
+
+--ищ
+select max(COL1) AS A, min(COL2) AS B, sum(COL1) AS C from SQLD_37;
+--A   B   C
+--12  0   33
+
+--иъ
+select min(COL1) AS A, max(COL2) AS B, max(COL1) AS C from SQLD_37;
+--A   B   C
+--0  22   12
