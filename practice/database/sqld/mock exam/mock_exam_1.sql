@@ -85,3 +85,30 @@ SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD') FROM DUAL;
 --CONVERT : 문자세트를 다른 문자세트로 문자열을 변환
 SELECT CONVERT(SYSDATE, 'YYYY-MM-DD') FROM DUAL;
 --오류
+
+
+--Q3. 아래와 같은 테이블이 있을 때 모든 SQL이 수행된 이후의 결과는?
+--    [테이블]
+--    SQLD_D5
+--    COL1 VARCHAR2(30)
+--    COL2 NUMBER
+
+--    [SQL]
+--    INSERT INTO SQLD_D5(COL1, COL2) VALUES('ABCD', NULL);
+--    INSERT INTO SQLD_D5(COL1, COL2) VALUES('BC', NULL);
+--    ALTER TABLE SQLD_D5 MODIFY COL2 DEFAULT 10;
+--    INSERT INTO SQLD_D5(COL1, COL2) VALUES('XY', NULL);
+--    INSERT INTO SQLD_D5(COL1) VALUES('EXD');
+--    SELECT SUM(COL2) FROM SQLD_D5;
+    
+--    ① 10
+--    ② 40
+--    ③ 20
+--    ④ 0
+
+--A. 
+
+create table SQLD_D5 (
+    COL1 varchar2(30),
+    COL2 int
+);
