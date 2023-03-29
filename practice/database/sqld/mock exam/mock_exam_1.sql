@@ -63,7 +63,7 @@ select min(COL1) AS A, max(COL2) AS B, max(COL1) AS C from SQLD_37;
 --    ② TO_DATE
 --    ③ TO_CHAR
 --    ④ CONVERT
-
+--
 --A. ③
 
 --①
@@ -92,7 +92,7 @@ SELECT CONVERT(SYSDATE, 'YYYY-MM-DD') FROM DUAL;
 --    SQLD_D5
 --    COL1 VARCHAR2(30)
 --    COL2 NUMBER
-
+--
 --    [SQL]
 --    INSERT INTO SQLD_D5(COL1, COL2) VALUES('ABCD', NULL);
 --    INSERT INTO SQLD_D5(COL1, COL2) VALUES('BC', NULL);
@@ -100,12 +100,12 @@ SELECT CONVERT(SYSDATE, 'YYYY-MM-DD') FROM DUAL;
 --    INSERT INTO SQLD_D5(COL1, COL2) VALUES('XY', NULL);
 --    INSERT INTO SQLD_D5(COL1) VALUES('EXD');
 --    SELECT SUM(COL2) FROM SQLD_D5;
-    
+--    
 --    ① 10
 --    ② 40
 --    ③ 20
 --    ④ 0
-
+--
 --A. ①
 
 create table SQLD_D5 (
@@ -113,9 +113,24 @@ create table SQLD_D5 (
     COL2 int
 );
 
+select * from SQLD_D5;
+
 INSERT INTO SQLD_D5(COL1, COL2) VALUES('ABCD', NULL);
 INSERT INTO SQLD_D5(COL1, COL2) VALUES('BC', NULL);
 ALTER TABLE SQLD_D5 MODIFY COL2 DEFAULT 10;
 INSERT INTO SQLD_D5(COL1, COL2) VALUES('XY', NULL);
 INSERT INTO SQLD_D5(COL1) VALUES('EXD');
 SELECT SUM(COL2) FROM SQLD_D5;
+
+--Q4. 아래와 같이 문자와 문자를 연결하는 함수에 대해서 작성하시오.
+--    SELECT (    ) (COL1, COL2)
+--    FROM EMP
+--    WHERE EMPID = 10;
+    
+--    ① LENGTH
+--    ② CONCAT
+--    ③ TRIM
+--    ④ SUBSTR
+--
+--A. ②
+
