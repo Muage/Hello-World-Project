@@ -134,3 +134,12 @@ SELECT SUM(COL2) FROM SQLD_D5;
 --
 --A. иш
 
+create table EMP(
+    COL1 varchar(10),
+    COL2 varchar(10),
+    EMPID int
+);
+
+select * from EMP;
+
+insert into EMP values('test', 'check', 10);
