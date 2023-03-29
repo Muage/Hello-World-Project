@@ -143,3 +143,20 @@ create table EMP(
 select * from EMP;
 
 insert into EMP values('test', 'check', 10);
+
+--①
+SELECT LENGTH (COL1, COL2) FROM EMP WHERE EMPID = 10;
+--오류
+
+--②
+SELECT CONCAT (COL1, COL2) FROM EMP WHERE EMPID = 10;
+--CONCAT(COL1,COL2)
+--testcheck
+
+--③
+SELECT TRIM (COL1, COL2) FROM EMP WHERE EMPID = 10;
+--오류
+
+--④
+SELECT SUBSTR (COL1, COL2) FROM EMP WHERE EMPID = 10;
+--오류
