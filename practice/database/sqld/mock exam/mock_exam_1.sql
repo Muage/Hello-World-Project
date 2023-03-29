@@ -145,18 +145,22 @@ select * from EMP;
 insert into EMP values('test', 'check', 10);
 
 --①
+--LENGTH : 입력된 문자열의 글자 수 반환
 SELECT LENGTH (COL1, COL2) FROM EMP WHERE EMPID = 10;
 --오류
 
 --②
+--CONCAT : 문자열 연결 함수
 SELECT CONCAT (COL1, COL2) FROM EMP WHERE EMPID = 10;
 --CONCAT(COL1,COL2)
 --testcheck
 
 --③
+--TRIM : 문자열 양쪽 공백 제거 함수
 SELECT TRIM (COL1, COL2) FROM EMP WHERE EMPID = 10;
 --오류
 
 --④
+--SUBSTR : 문자열 자르기 함수
 SELECT SUBSTR (COL1, COL2) FROM EMP WHERE EMPID = 10;
 --오류
