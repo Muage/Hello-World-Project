@@ -176,3 +176,23 @@ SELECT SUBSTR (COL1, COL2) FROM EMP WHERE EMPID = 10;
 --    ④ CEIL
 --
 --A. ④
+
+--①
+--FLOOR : 내림 함수
+SELECT FLOOR(3.46) FROM DUAL;
+--3
+
+--②
+--TRUNC : 소수점, 날짜, 시간 절사 함수
+SELECT TRUNC(3.46) FROM DUAL;
+--3
+
+--③
+--ROUND : 반올림 함수
+SELECT ROUND(3.46) FROM DUAL;
+--3
+
+--④
+--CEIL : 올림 함수
+SELECT CEIL(3.46) FROM DUAL;
+--4
