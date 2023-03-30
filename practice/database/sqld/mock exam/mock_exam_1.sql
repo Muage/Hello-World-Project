@@ -126,7 +126,7 @@ SELECT SUM(COL2) FROM SQLD_D5;
 --    SELECT (    ) (COL1, COL2)
 --    FROM EMP
 --    WHERE EMPID = 10;
-    
+--    
 --    ① LENGTH
 --    ② CONCAT
 --    ③ TRIM
@@ -164,3 +164,15 @@ SELECT TRIM (COL1, COL2) FROM EMP WHERE EMPID = 10;
 --SUBSTR : 문자열 자르기 함수
 SELECT SUBSTR (COL1, COL2) FROM EMP WHERE EMPID = 10;
 --오류
+
+
+--Q5. 아래의 SQL에서 FUNCTION 자리에 쓰인 함수에 의한 결과값이 다른 하나는?
+--    
+--    SELECT FUNCTION(3.46) FROM DUAL;
+--
+--    ① FLOOR
+--    ② TRUNC
+--    ③ ROUND
+--    ④ CEIL
+--
+--A. ④
