@@ -196,3 +196,10 @@ SELECT ROUND(3.46) FROM DUAL;
 --CEIL : 올림 함수
 SELECT CEIL(3.46) FROM DUAL;
 --4
+
+--Q6. 아래의 SQL에 대해서 결과값이 다른 것은?
+--
+--    ① SELECT 'RDBMS' & 'SQL' FROM DUAL;
+--    ② SELECT CONCAT ('RDBMS', 'SQL') FROM DUAL;
+--    ③ SELECT 'RDBMS' + 'SQL' FROM DUAL;
+--    ④ SELECT 'RDBMS' || 'SQL' FROM DUAL;
